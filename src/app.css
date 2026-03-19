@@ -414,6 +414,21 @@ body {
   color: var(--text-muted);
 }
 
+.ability-cd {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.ability-cost {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.ability-range {
+  color: var(--green);
+  font-weight: 600;
+}
+
 .ratio-ad { color: var(--gold); font-weight: 600; }
 .ratio-ap { color: var(--blue); font-weight: 600; }
 
@@ -2171,13 +2186,28 @@ body {
   margin-top: 12px;
 }
 
-.sr-map-svg {
+.sr-map-img {
   width: 100%;
   max-width: 400px;
   height: auto;
-  margin: 0 auto;
   display: block;
+  margin: 0 auto;
   border-radius: var(--radius);
+}
+.map-ward-overlay {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.ward-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffeb3b;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,0,0,0.5);
+  transform: translate(-50%, -50%);
+  cursor: help;
 }
 
 /* === Game Logger === */

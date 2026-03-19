@@ -1,11 +1,33 @@
 /**
- * Coaching module data — all structured data for Jungle & Support coaching.
+ * Coaching module data — structured data for all roles (Top, Jungle, Mid, ADC, Support).
  * Every user-visible string has ES and EN translations.
  */
 
 // ─── Champion Pool Recommendations ──────────────────────────────────────────
 
 export const CHAMPION_POOLS = {
+  top: {
+    'iron-bronze': [
+      { id: 'Garen', name: 'Garen', difficulty: 1, reason: { es: 'Tanque simple, pasiva regenera vida', en: 'Simple tank, passive regens health' } },
+      { id: 'Malphite', name: 'Malphite', difficulty: 1, reason: { es: 'Ult de engage, muy tanque vs AD', en: 'Engage ult, very tanky vs AD' } },
+      { id: 'Mordekaiser', name: 'Mordekaiser', difficulty: 1, reason: { es: 'Ult 1v1, domina peleas aisladas', en: 'Ult 1v1, dominates isolated fights' } },
+    ],
+    'silver-gold': [
+      { id: 'Darius', name: 'Darius', difficulty: 2, reason: { es: 'Lane bully, resets en teamfights', en: 'Lane bully, teamfight resets' } },
+      { id: 'Camille', name: 'Camille', difficulty: 2, reason: { es: 'Splitpush + engage con ult', en: 'Splitpush + engage with ult' } },
+      { id: 'Sett', name: 'Sett', difficulty: 1, reason: { es: 'Trades cortos, W absorbe dano', en: 'Short trades, W absorbs damage' } },
+    ],
+    'plat-emerald': [
+      { id: 'Fiora', name: 'Fiora', difficulty: 3, reason: { es: 'Splitpush pura, outplay con W', en: 'Pure splitpush, outplay with W' } },
+      { id: 'Jax', name: 'Jax', difficulty: 2, reason: { es: 'Escala como monstruo, 1v1 letal', en: 'Scales like a monster, lethal 1v1' } },
+      { id: 'Aatrox', name: 'Aatrox', difficulty: 2, reason: { es: 'Sustain en peleas, teamfighter', en: 'Sustain in fights, teamfighter' } },
+    ],
+    'diamond-plus': [
+      { id: 'Jayce', name: 'Jayce', difficulty: 3, reason: { es: 'Poke + all-in, domina early', en: 'Poke + all-in, early dominance' } },
+      { id: 'Gangplank', name: 'Gangplank', difficulty: 3, reason: { es: 'Barriles escalan, presion global con R', en: 'Barrels scale, global pressure with R' } },
+      { id: 'Kennen', name: 'Kennen', difficulty: 2, reason: { es: 'Teamfight con ult, safe laning', en: 'Teamfight with ult, safe laning' } },
+    ],
+  },
   jungle: {
     'iron-bronze': [
       { id: 'Warwick', name: 'Warwick', difficulty: 1, reason: { es: 'Sustain + ganks faciles', en: 'Sustain + easy ganks' } },
@@ -26,6 +48,50 @@ export const CHAMPION_POOLS = {
       { id: 'Nidalee', name: 'Nidalee', difficulty: 3, reason: { es: 'Clear mas rapido, invade king', en: 'Fastest clear, invade king' } },
       { id: 'Elise', name: 'Elise', difficulty: 3, reason: { es: 'Especialista en tower dives', en: 'Tower dive specialist' } },
       { id: 'Kindred', name: 'Kindred', difficulty: 3, reason: { es: 'Escala, potencial de outplay', en: 'Scales, outplay potential' } },
+    ],
+  },
+  mid: {
+    'iron-bronze': [
+      { id: 'Annie', name: 'Annie', difficulty: 1, reason: { es: 'Stun facil, burst con ult', en: 'Easy stun, burst with ult' } },
+      { id: 'Veigar', name: 'Veigar', difficulty: 1, reason: { es: 'Escala infinito, cage de zona', en: 'Infinite scaling, zone cage' } },
+      { id: 'Lux', name: 'Lux', difficulty: 1, reason: { es: 'Poke seguro, root + burst', en: 'Safe poke, root + burst' } },
+    ],
+    'silver-gold': [
+      { id: 'Ahri', name: 'Ahri', difficulty: 2, reason: { es: 'Mobilidad con R, picks con E', en: 'Mobility with R, picks with E' } },
+      { id: 'Viktor', name: 'Viktor', difficulty: 2, reason: { es: 'Control de zona, escala fuerte', en: 'Zone control, scales hard' } },
+      { id: 'Syndra', name: 'Syndra', difficulty: 2, reason: { es: 'Burst alto, stun versatil', en: 'High burst, versatile stun' } },
+    ],
+    'plat-emerald': [
+      { id: 'Zed', name: 'Zed', difficulty: 3, reason: { es: 'Asesino AD, outplay con sombras', en: 'AD assassin, outplay with shadows' } },
+      { id: 'Leblanc', name: 'LeBlanc', difficulty: 3, reason: { es: 'Burst rapido, escape con W', en: 'Fast burst, escape with W' } },
+      { id: 'Orianna', name: 'Orianna', difficulty: 2, reason: { es: 'Control de zona, ult cambia teamfights', en: 'Zone control, ult changes teamfights' } },
+    ],
+    'diamond-plus': [
+      { id: 'Azir', name: 'Azir', difficulty: 3, reason: { es: 'DPS + engage con R, alto skill ceiling', en: 'DPS + engage with R, high skill ceiling' } },
+      { id: 'Akali', name: 'Akali', difficulty: 3, reason: { es: 'Mobilidad extrema, outplay mecanico', en: 'Extreme mobility, mechanical outplay' } },
+      { id: 'TwistedFate', name: 'Twisted Fate', difficulty: 2, reason: { es: 'Presion global con R, wave clear', en: 'Global pressure with R, wave clear' } },
+    ],
+  },
+  adc: {
+    'iron-bronze': [
+      { id: 'MissFortune', name: 'Miss Fortune', difficulty: 1, reason: { es: 'Ult de teamfight, laning facil', en: 'Teamfight ult, easy laning' } },
+      { id: 'Ashe', name: 'Ashe', difficulty: 1, reason: { es: 'Utilidad con R, vision con E', en: 'Utility with R, vision with E' } },
+      { id: 'Jinx', name: 'Jinx', difficulty: 1, reason: { es: 'Resets en teamfights, escala fuerte', en: 'Teamfight resets, scales hard' } },
+    ],
+    'silver-gold': [
+      { id: 'Kaisa', name: "Kai'Sa", difficulty: 2, reason: { es: 'Versatil AP/AD, ult reposiciona', en: 'Versatile AP/AD, ult repositions' } },
+      { id: 'Ezreal', name: 'Ezreal', difficulty: 2, reason: { es: 'Seguro con E, poke con Q', en: 'Safe with E, poke with Q' } },
+      { id: 'Jhin', name: 'Jhin', difficulty: 2, reason: { es: 'Utility + burst, ult de rango', en: 'Utility + burst, long range ult' } },
+    ],
+    'plat-emerald': [
+      { id: 'Draven', name: 'Draven', difficulty: 3, reason: { es: 'Snowball con pasiva, dano early', en: 'Snowball with passive, early damage' } },
+      { id: 'Vayne', name: 'Vayne', difficulty: 2, reason: { es: 'Tank shredder, outplay con ult + Q', en: 'Tank shredder, outplay with ult + Q' } },
+      { id: 'Aphelios', name: 'Aphelios', difficulty: 3, reason: { es: 'DPS extremo, multiples armas', en: 'Extreme DPS, multiple weapons' } },
+    ],
+    'diamond-plus': [
+      { id: 'Kalista', name: 'Kalista', difficulty: 3, reason: { es: 'Kite perfecto, sinergia con support', en: 'Perfect kite, support synergy' } },
+      { id: 'Zeri', name: 'Zeri', difficulty: 3, reason: { es: 'Mobilidad extrema, teamfights largos', en: 'Extreme mobility, long teamfights' } },
+      { id: 'Lucian', name: 'Lucian', difficulty: 2, reason: { es: 'Lane dominante, burst con combo', en: 'Lane dominant, burst with combo' } },
     ],
   },
   support: {
@@ -381,10 +447,13 @@ export const CLIMBING_TIPS = {
 export const COACHING_I18N = {
   es: {
     tabCoaching: 'Coaching',
-    coachingTitle: 'Coaching — Jungle & Support',
+    coachingTitle: 'Coaching — Todos los Roles',
     selectRole: 'Selecciona tu rol',
     selectElo: 'Selecciona tu elo',
+    roleTop: 'Top',
     roleJungle: 'Jungle',
+    roleMid: 'Mid',
+    roleAdc: 'ADC',
     roleSupport: 'Support',
     eloIronBronze: 'Iron-Bronze',
     eloSilverGold: 'Silver-Gold',
@@ -411,10 +480,13 @@ export const COACHING_I18N = {
   },
   en: {
     tabCoaching: 'Coaching',
-    coachingTitle: 'Coaching — Jungle & Support',
+    coachingTitle: 'Coaching — All Roles',
     selectRole: 'Select your role',
     selectElo: 'Select your elo',
+    roleTop: 'Top',
     roleJungle: 'Jungle',
+    roleMid: 'Mid',
+    roleAdc: 'ADC',
     roleSupport: 'Support',
     eloIronBronze: 'Iron-Bronze',
     eloSilverGold: 'Silver-Gold',
@@ -451,6 +523,9 @@ export const ELO_BRACKETS = [
 ]
 
 export const ROLE_OPTIONS = [
+  { key: 'top', labelKey: 'roleTop' },
   { key: 'jungle', labelKey: 'roleJungle' },
+  { key: 'mid', labelKey: 'roleMid' },
+  { key: 'adc', labelKey: 'roleAdc' },
   { key: 'support', labelKey: 'roleSupport' },
 ]

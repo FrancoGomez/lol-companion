@@ -269,8 +269,7 @@ function renderMapSection() {
   append(section, toggle)
 
   const mapContainer = el('div', { cls: 'map-container hidden' })
-  // Inline SVG map of SR with ward spots
-  mapContainer.innerHTML = getSRMapSVG()
+  mapContainer.innerHTML = getSRMapHTML()
   append(section, mapContainer)
 
   return section
@@ -282,65 +281,27 @@ function formatTime(seconds) {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
 
-function getSRMapSVG() {
-  return `<svg viewBox="0 0 400 400" class="sr-map-svg" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="400" height="400" fill="#1a2e1a" rx="12"/>
+function getSRMapHTML() {
+  const wardSpots = [
+    { name: 'River pixel brush', x: 50, y: 50 },
+    { name: 'Dragon pit', x: 72, y: 68 },
+    { name: 'Baron pit', x: 28, y: 32 },
+    { name: 'Blue tri-bush (bot)', x: 38, y: 72 },
+    { name: 'Red tri-bush (top)', x: 62, y: 28 },
+    { name: 'Blue buff side', x: 25, y: 55 },
+    { name: 'Red buff side', x: 75, y: 45 },
+    { name: 'Bot lane river', x: 65, y: 62 },
+    { name: 'Top lane river', x: 35, y: 38 },
+  ]
 
-  <!-- River -->
-  <path d="M 0 400 Q 200 200 400 0" stroke="#2a4a6a" stroke-width="40" fill="none" opacity="0.4"/>
+  const wardDots = wardSpots.map(w =>
+    `<span class="ward-dot" style="left:${w.x}%;top:${w.y}%" title="${w.name}"></span>`
+  ).join('')
 
-  <!-- Lanes -->
-  <line x1="40" y1="360" x2="40" y2="40" stroke="#3a3a3a" stroke-width="6" opacity="0.5"/>
-  <line x1="40" y1="40" x2="360" y2="40" stroke="#3a3a3a" stroke-width="6" opacity="0.5"/>
-  <line x1="360" y1="40" x2="360" y2="360" stroke="#3a3a3a" stroke-width="6" opacity="0.5"/>
-  <line x1="40" y1="360" x2="360" y2="360" stroke="#3a3a3a" stroke-width="6" opacity="0.5"/>
-  <line x1="40" y1="360" x2="360" y2="40" stroke="#3a3a3a" stroke-width="4" opacity="0.3"/>
-
-  <!-- Blue base -->
-  <rect x="10" y="340" width="50" height="50" fill="#1a3a6a" rx="6" opacity="0.6"/>
-  <text x="35" y="370" text-anchor="middle" fill="#4e7ab5" font-size="10" font-weight="bold">BLUE</text>
-
-  <!-- Red base -->
-  <rect x="340" y="10" width="50" height="50" fill="#6a1a1a" rx="6" opacity="0.6"/>
-  <text x="365" y="40" text-anchor="middle" fill="#b54e4e" font-size="10" font-weight="bold">RED</text>
-
-  <!-- Dragon pit -->
-  <circle cx="280" cy="300" r="20" fill="#4a2a0a" stroke="#C8AA6E" stroke-width="1.5" opacity="0.7"/>
-  <text x="280" y="304" text-anchor="middle" fill="#C8AA6E" font-size="10">D</text>
-
-  <!-- Baron pit -->
-  <circle cx="120" cy="100" r="20" fill="#2a0a4a" stroke="#9c27b0" stroke-width="1.5" opacity="0.7"/>
-  <text x="120" y="104" text-anchor="middle" fill="#9c27b0" font-size="10">B</text>
-
-  <!-- Ward spots (yellow dots) -->
-  <circle cx="160" cy="260" r="6" fill="#ffeb3b" opacity="0.8"><title>Tri-bush ward</title></circle>
-  <circle cx="240" cy="140" r="6" fill="#ffeb3b" opacity="0.8"><title>Tri-bush ward</title></circle>
-  <circle cx="200" cy="200" r="6" fill="#ffeb3b" opacity="0.8"><title>River pixel brush</title></circle>
-  <circle cx="230" cy="260" r="6" fill="#ffeb3b" opacity="0.8"><title>Dragon ward</title></circle>
-  <circle cx="170" cy="140" r="6" fill="#ffeb3b" opacity="0.8"><title>Baron ward</title></circle>
-  <circle cx="100" cy="200" r="6" fill="#ffeb3b" opacity="0.8"><title>Blue buff ward</title></circle>
-  <circle cx="300" cy="200" r="6" fill="#ffeb3b" opacity="0.8"><title>Red buff ward</title></circle>
-
-  <!-- Jungle camps (small circles) -->
-  <circle cx="100" cy="280" r="8" fill="#3a5a3a" stroke="#5a7a5a" stroke-width="1"><title>Blue buff</title></circle>
-  <circle cx="80" cy="240" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Gromp</title></circle>
-  <circle cx="140" cy="310" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Wolves</title></circle>
-  <circle cx="100" cy="340" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Raptors</title></circle>
-  <circle cx="180" cy="340" r="8" fill="#5a3a3a" stroke="#7a5a5a" stroke-width="1"><title>Red buff</title></circle>
-  <circle cx="220" cy="360" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Krugs</title></circle>
-
-  <circle cx="300" cy="120" r="8" fill="#5a3a3a" stroke="#7a5a5a" stroke-width="1"><title>Red buff</title></circle>
-  <circle cx="320" cy="160" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Gromp</title></circle>
-  <circle cx="260" cy="90" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Wolves</title></circle>
-  <circle cx="300" cy="60" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Raptors</title></circle>
-  <circle cx="220" cy="60" r="8" fill="#3a5a3a" stroke="#5a7a5a" stroke-width="1"><title>Blue buff</title></circle>
-  <circle cx="180" cy="40" r="6" fill="#3a4a3a" stroke="#5a6a5a" stroke-width="1"><title>Krugs</title></circle>
-
-  <!-- Scuttle crab areas -->
-  <circle cx="240" cy="230" r="8" fill="none" stroke="#4eabb5" stroke-width="1.5" stroke-dasharray="3"><title>Scuttle</title></circle>
-  <circle cx="160" cy="170" r="8" fill="none" stroke="#4eabb5" stroke-width="1.5" stroke-dasharray="3"><title>Scuttle</title></circle>
-</svg>`
+  return `<div class="map-ward-overlay">
+  <img class="sr-map-img" src="https://raw.communitydragon.org/latest/game/assets/maps/minimap/minimap_base_order_hextech_sr.png" alt="Summoner's Rift minimap" />
+  ${wardDots}
+</div>`
 }
 
 export function cleanup() {

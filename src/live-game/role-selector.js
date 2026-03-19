@@ -17,8 +17,11 @@ export async function render(container) {
   append(roleSection, el('h3', { cls: 'setup-label', text: t('selectRole') }))
   const roleRow = el('div', { cls: 'role-buttons' })
   const roles = [
+    { id: 'top', icon: '\u{1F5E1}\u{FE0F}', label: 'Top' },
     { id: 'jungle', icon: '\u{1F332}', label: 'Jungle' },
-    { id: 'support', icon: '\u{1F6E1}', label: 'Support' },
+    { id: 'mid', icon: '\u{1F52E}', label: 'Mid' },
+    { id: 'adc', icon: '\u{1F3F9}', label: 'ADC' },
+    { id: 'support', icon: '\u{1F6E1}\u{FE0F}', label: 'Support' },
   ]
   roles.forEach(r => {
     const btn = el('button', {

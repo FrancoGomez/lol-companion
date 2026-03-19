@@ -144,7 +144,7 @@ function renderModal(content, champ, version, dd) {
   // Tabs
   const tabsContainer = el('div', { cls: 'modal-tabs' })
   const tabNames = [t('modalAbilities'), t('modalStats'), t('modalBuilds'), t('modalSkins')]
-  if (dd?.lore) tabNames.unshift(t('modalAbout'))
+  if (dd?.lore) tabNames.push(t('modalAbout'))
 
   const tabContents = {}
 
@@ -216,17 +216,17 @@ function renderAbilities(container, dd, version) {
     const info = el('div')
     append(info, el('div', { cls: 'ability-key', text: keys[i] }))
     append(info, el('div', { cls: 'ability-name', text: spell.name }))
-    append(info, el('div', { cls: 'ability-desc', html: cleanTooltip(spell.tooltip || spell.description) }))
+    append(info, el('div', { cls: 'ability-desc', html: cleanTooltip(spell.tooltip || spell.description, spell) }))
 
     const meta = el('div', { cls: 'ability-meta' })
     if (spell.cooldownBurn && spell.cooldownBurn !== '0') {
-      append(meta, el('span', { text: `${t('cd')}: ${spell.cooldownBurn}s` }))
+      append(meta, el('span', { cls: 'ability-cd', text: `${t('cd')}: ${spell.cooldownBurn}s` }))
     }
     if (spell.costBurn && spell.costBurn !== '0') {
-      append(meta, el('span', { text: `${t('cost')}: ${spell.costBurn}` }))
+      append(meta, el('span', { cls: 'ability-cost', text: `${t('cost')}: ${spell.costBurn}` }))
     }
     if (spell.rangeBurn && spell.rangeBurn !== 'self') {
-      append(meta, el('span', { text: `${t('range')}: ${spell.rangeBurn}` }))
+      append(meta, el('span', { cls: 'ability-range', text: `${t('range')}: ${spell.rangeBurn}` }))
     }
     append(info, meta)
 
@@ -240,13 +240,46 @@ function cleanDescription(html) {
   return html.replace(/<br\s*\/?>/gi, '<br>').replace(/<\/?font[^>]*>/gi, '')
 }
 
-function cleanTooltip(html) {
+function cleanTooltip(html, spell) {
   if (!html) return ''
   let text = html
   // Remove spellmodifierdescriptionappend placeholders entirely
   text = text.replace(/\{\{\s*spellmodifierdescriptionappend\s*\}\}/gi, '')
-  // Replace {{ ... }} variable placeholders with styled "?"
-  text = text.replace(/\{\{[^}]*\}\}/g, '<span style="color:var(--text-muted);font-style:italic">?</span>')
+
+  // Build a lookup map from spell.vars (key -> display value)
+  const varsMap = {}
+  if (spell?.vars) {
+    for (const v of spell.vars) {
+      if (v.key && v.values && v.values.length > 0) {
+        // Join all rank values like "80/120/160/200/240"
+        const display = v.values.filter(val => val !== 0).join('/')
+        varsMap[v.key.toLowerCase()] = display || String(v.values[0])
+      }
+    }
+  }
+
+  // Replace {{ eN }} patterns with effectBurn[N] if available
+  // Also replace {{ aN }}, {{ fN }} and other known patterns using vars
+  text = text.replace(/\{\{\s*([^}]*?)\s*\}\}/g, (match, varName) => {
+    const key = varName.trim().toLowerCase()
+
+    // Try effectBurn for e0, e1, e2... patterns
+    const effectMatch = key.match(/^e(\d+)$/)
+    if (effectMatch && spell?.effectBurn) {
+      const idx = parseInt(effectMatch[1])
+      if (spell.effectBurn[idx] && spell.effectBurn[idx] !== 'null') {
+        return `<span style="font-weight:600">${spell.effectBurn[idx]}</span>`
+      }
+    }
+
+    // Try spell.vars lookup
+    if (varsMap[key]) {
+      return `<span style="font-weight:600">${varsMap[key]}</span>`
+    }
+
+    // Last resort: show "?"
+    return '<span style="color:var(--text-muted);font-style:italic">?</span>'
+  })
   // Convert damage/effect type tags to styled spans
   text = text.replace(/<magicDamage>/gi, '<span style="color:#4e7ab5;font-weight:600">')
   text = text.replace(/<\/magicDamage>/gi, '</span>')
