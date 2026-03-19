@@ -140,6 +140,102 @@ const translations = {
     groupBruiser: 'Bruiser',
     groupOnHit: 'On-Hit',
     groupEnchanter: 'Encantador',
+
+    // New tabs
+    tabLive: 'Live Game',
+    tabProgress: 'Progreso',
+
+    // Auth
+    loginGitHub: 'Login con GitHub',
+    logout: 'Cerrar sesion',
+    profile: 'Perfil',
+
+    // Live Game - Setup
+    selectRole: 'Elegí tu rol',
+    selectChampion: 'Elegí tu campeon',
+    selectSide: 'Elegí tu lado',
+    blueSide: 'Azul',
+    redSide: 'Rojo',
+    favorites: 'Favoritos',
+    allChampions: 'Todos los campeones',
+    nextDraft: 'Siguiente: Draft',
+
+    // Live Game - Draft
+    startGame: 'Iniciar partida',
+
+    // Live Game - In Game
+    phaseSetup: 'Setup',
+    phaseDraft: 'Draft',
+    phaseInGame: 'En Partida',
+    phaseLog: 'Log',
+    gameTime: 'TIEMPO',
+    start: 'Iniciar',
+    pause: 'Pausar',
+    reset: 'Reset',
+    itemAdvisor: 'Items',
+    currentGold: 'Oro disponible',
+    building: 'ARMANDO:',
+    bought: 'Comprado',
+    objectives: 'Objetivos',
+    objClear: 'Clear',
+    objScuttle: 'Scuttle',
+    objGank: 'Gank',
+    objDragon: 'Dragon',
+    objHerald: 'Herald',
+    objTower: 'Torre',
+    showMap: 'Mostrar Mapa',
+    hideMap: 'Ocultar Mapa',
+    noItemReco: 'Selecciona un campeon para ver recomendaciones',
+
+    // Live Game - Log
+    logGame: 'Registrar partida',
+    win: 'Victoria',
+    loss: 'Derrota',
+    gameDuration: 'Duracion (min)',
+    objectiveTimes: 'Tiempos de objetivos',
+    notes: 'Notas',
+    notesPlaceholder: 'Que aprendiste? Que harias diferente?',
+    saveGame: 'Guardar en la nube',
+    saveLocal: 'Guardar local',
+    saving: 'Guardando...',
+    saved: 'Guardado!',
+    selectResult: 'Selecciona Victoria o Derrota',
+    newGame: 'Nueva partida',
+
+    // Progress
+    overview: 'Resumen',
+    gamesPlayed: 'Partidas',
+    bestClear: 'Mejor Clear',
+    insights: 'Analisis',
+    champBreakdown: 'Por Campeon',
+    recentGames: 'Partidas recientes',
+    noGames: 'No hay partidas registradas',
+    noGamesYet: 'Todavia no registraste partidas',
+    noGamesHint: 'Usa el tab "Live Game" para trackear tus partidas',
+    today: 'Hoy',
+    yesterday: 'Ayer',
+
+    // Insights
+    insightWinrateGood: (wr, n) => `Win rate ${wr}% en ${n} partidas. Segui asi!`,
+    insightWinrateBad: (wr, n) => `Win rate ${wr}% en ${n} partidas. Analiza tus replays.`,
+    insightDeathsHigh: (avg) => `Moris mucho (promedio ${avg}). Meta: menos de 4.`,
+    insightDeathsMed: (avg) => `Muertes promedio: ${avg}. Intenta bajarlas a 3 o menos.`,
+    insightDeathsGood: (avg) => `Buen control de muertes (${avg} promedio).`,
+    insightClearImproved: (s) => `Tu clear mejoro ${s} segundos en las ultimas partidas!`,
+    insightClearSlower: (s) => `Tu clear empeoro ${s} segundos. Practica la ruta.`,
+    insightBestClear: (time) => `Tu mejor clear: ${time}`,
+    insightChampBad: (c, wr, n) => `Win rate con ${c}: ${wr}% en ${n} partidas. Cambia de pick.`,
+    insightChampGood: (c, wr, n) => `${c} es tu mejor pick: ${wr}% WR en ${n} partidas.`,
+    insightKDALow: (kda) => `KDA bajo en recientes: ${kda}. Juega mas seguro.`,
+    insightKDAHigh: (kda) => `Excelente KDA reciente: ${kda}.`,
+    insightLoseStreak: (n) => `${n} derrotas seguidas. Toma un descanso.`,
+    insightWinStreak: (n) => `${n} victorias seguidas! Aprovecha el momento.`,
+    insightDragonLate: (avg) => `Tu primer dragon promedia min ${avg}. Intenta antes del 8.`,
+    insightCSLow: (csm) => `CS/min bajo: ${csm}. Farmea entre ganks.`,
+    insightGamesLong: 'Tus partidas son largas. Enfocate en cerrar antes.',
+
+    // Item tree
+    noComponents: 'Este item no tiene componentes',
   },
 
   en: {
@@ -272,6 +368,102 @@ const translations = {
     groupBruiser: 'Bruiser',
     groupOnHit: 'On-Hit',
     groupEnchanter: 'Enchanter',
+
+    // New tabs
+    tabLive: 'Live Game',
+    tabProgress: 'Progress',
+
+    // Auth
+    loginGitHub: 'Login with GitHub',
+    logout: 'Sign out',
+    profile: 'Profile',
+
+    // Live Game - Setup
+    selectRole: 'Choose your role',
+    selectChampion: 'Choose your champion',
+    selectSide: 'Choose your side',
+    blueSide: 'Blue',
+    redSide: 'Red',
+    favorites: 'Favorites',
+    allChampions: 'All Champions',
+    nextDraft: 'Next: Draft',
+
+    // Live Game - Draft
+    startGame: 'Start Game',
+
+    // Live Game - In Game
+    phaseSetup: 'Setup',
+    phaseDraft: 'Draft',
+    phaseInGame: 'In Game',
+    phaseLog: 'Log',
+    gameTime: 'TIME',
+    start: 'Start',
+    pause: 'Pause',
+    reset: 'Reset',
+    itemAdvisor: 'Items',
+    currentGold: 'Available gold',
+    building: 'BUILDING:',
+    bought: 'Bought',
+    objectives: 'Objectives',
+    objClear: 'Clear',
+    objScuttle: 'Scuttle',
+    objGank: 'Gank',
+    objDragon: 'Dragon',
+    objHerald: 'Herald',
+    objTower: 'Tower',
+    showMap: 'Show Map',
+    hideMap: 'Hide Map',
+    noItemReco: 'Select a champion to see recommendations',
+
+    // Live Game - Log
+    logGame: 'Log Game',
+    win: 'Win',
+    loss: 'Loss',
+    gameDuration: 'Duration (min)',
+    objectiveTimes: 'Objective Times',
+    notes: 'Notes',
+    notesPlaceholder: 'What did you learn? What would you do differently?',
+    saveGame: 'Save to cloud',
+    saveLocal: 'Save locally',
+    saving: 'Saving...',
+    saved: 'Saved!',
+    selectResult: 'Select Win or Loss',
+    newGame: 'New Game',
+
+    // Progress
+    overview: 'Overview',
+    gamesPlayed: 'Games',
+    bestClear: 'Best Clear',
+    insights: 'Analysis',
+    champBreakdown: 'By Champion',
+    recentGames: 'Recent Games',
+    noGames: 'No games recorded',
+    noGamesYet: 'No games recorded yet',
+    noGamesHint: 'Use the "Live Game" tab to track your games',
+    today: 'Today',
+    yesterday: 'Yesterday',
+
+    // Insights
+    insightWinrateGood: (wr, n) => `${wr}% win rate over ${n} games. Keep it up!`,
+    insightWinrateBad: (wr, n) => `${wr}% win rate over ${n} games. Review your replays.`,
+    insightDeathsHigh: (avg) => `Dying too much (avg ${avg}). Target: under 4.`,
+    insightDeathsMed: (avg) => `Average deaths: ${avg}. Try to get under 3.`,
+    insightDeathsGood: (avg) => `Good death control (${avg} avg).`,
+    insightClearImproved: (s) => `Your clear improved by ${s} seconds recently!`,
+    insightClearSlower: (s) => `Your clear got ${s} seconds slower. Practice the route.`,
+    insightBestClear: (time) => `Your best clear: ${time}`,
+    insightChampBad: (c, wr, n) => `${c} win rate: ${wr}% over ${n} games. Consider switching.`,
+    insightChampGood: (c, wr, n) => `${c} is your best pick: ${wr}% WR over ${n} games.`,
+    insightKDALow: (kda) => `Low recent KDA: ${kda}. Play safer.`,
+    insightKDAHigh: (kda) => `Excellent recent KDA: ${kda}.`,
+    insightLoseStreak: (n) => `${n} losses in a row. Take a break.`,
+    insightWinStreak: (n) => `${n} wins in a row! Ride the momentum.`,
+    insightDragonLate: (avg) => `Average first dragon at min ${avg}. Try before 8.`,
+    insightCSLow: (csm) => `Low CS/min: ${csm}. Farm between ganks.`,
+    insightGamesLong: 'Your games are running long. Focus on closing earlier.',
+
+    // Item tree
+    noComponents: 'This item has no components',
   }
 }
 

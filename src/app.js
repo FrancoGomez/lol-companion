@@ -2,6 +2,7 @@ import './app.css'
 import { getVersion } from './data/data-service.js'
 import { t, getLang, setLang } from './data/i18n.js'
 import { initGlobalSearch, updatePlaceholder } from './global-search.js'
+import { initAuth } from './auth/auth-ui.js'
 
 const tabs = {}
 const tabInited = {}
@@ -28,6 +29,16 @@ async function loadTab(name) {
     }
     case 'coaching': {
       const m = await import('./coaching/coaching-tab.js')
+      tabs[name] = m
+      break
+    }
+    case 'live': {
+      const m = await import('./live-game/live-game-tab.js')
+      tabs[name] = m
+      break
+    }
+    case 'progress': {
+      const m = await import('./progress/progress-tab.js')
       tabs[name] = m
       break
     }
@@ -120,6 +131,8 @@ function updateUIStrings() {
   document.querySelector('[data-tab="items"]').textContent = t('tabItems')
   document.querySelector('[data-tab="matchup"]').textContent = t('tabMatchup')
   document.querySelector('[data-tab="coaching"]').textContent = t('tabCoaching')
+  document.querySelector('[data-tab="live"]').textContent = t('tabLive')
+  document.querySelector('[data-tab="progress"]').textContent = t('tabProgress')
   updatePlaceholder()
 }
 
@@ -146,6 +159,7 @@ async function init() {
   updateUIStrings()
   setupLangToggle()
   initGlobalSearch()
+  initAuth()
   switchTab('champions')
 }
 

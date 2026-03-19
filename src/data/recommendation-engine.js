@@ -261,6 +261,81 @@ function calcDiminishingPenalty(item, profile) {
 /**
  * Get anti-synergy warnings
  */
+/**
+ * Get step-by-step item recommendation for live game.
+ * Returns the next full item to build and its components in buy order.
+ *
+ * @param {Object} champion - { id, name, tags }
+ * @param {number} gold - current gold
+ * @param {Object} allItems - all items from data service
+ * @param {Array} boughtIds - already purchased item IDs
+ * @returns {{ nextItem, steps: Array<{id, name, cost}> } | null}
+ */
+export function getStepByStepRecommendation(champion, gold, allItems, boughtIds = []) {
+  if (!champion || !allItems) return null
+
+  // Get recommended items based on champion type
+  const ctx = { champion, currentItems: boughtIds.map(id => allItems[id]).filter(Boolean), enemies: [], allItems }
+  const recos = getRecommendations(ctx)
+  if (recos.length === 0) return null
+
+  // Pick the top recommendation that hasn't been fully built
+  const nextItem = recos[0]?.item
+  if (!nextItem) return null
+
+  // Build the component tree
+  const steps = getComponentSteps(nextItem.id || nextItem, allItems, gold, boughtIds)
+
+  return {
+    nextItem: allItems[nextItem.id] || nextItem,
+    steps
+  }
+}
+
+/**
+ * Recursively get all components needed to build an item, in buy order.
+ * Prioritizes: 1) already affordable 2) cheapest first (build up)
+ */
+function getComponentSteps(itemId, allItems, gold, boughtIds = []) {
+  const item = allItems[itemId]
+  if (!item || !item.buildsFrom || item.buildsFrom.length === 0) return []
+
+  const steps = []
+  const visited = new Set(boughtIds)
+
+  function collectComponents(id) {
+    const component = allItems[id]
+    if (!component || visited.has(id)) return
+
+    // If this component has sub-components, recurse first
+    if (component.buildsFrom && component.buildsFrom.length > 0) {
+      component.buildsFrom.forEach(subId => collectComponents(subId))
+    }
+
+    // Add this component if not already owned
+    if (!visited.has(id)) {
+      steps.push({
+        id,
+        name: component.name,
+        cost: component.shop?.prices?.total || 0,
+      })
+      visited.add(id)
+    }
+  }
+
+  item.buildsFrom.forEach(compId => collectComponents(compId))
+
+  // Sort: affordable first, then by cost ascending
+  steps.sort((a, b) => {
+    const aCanBuy = gold >= a.cost ? 0 : 1
+    const bCanBuy = gold >= b.cost ? 0 : 1
+    if (aCanBuy !== bCanBuy) return aCanBuy - bCanBuy
+    return a.cost - b.cost
+  })
+
+  return steps
+}
+
 export function getAntiSynergies(items) {
   const warnings = []
   const stats = {}

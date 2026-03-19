@@ -1,5 +1,5 @@
 import { getChampions, getVersion } from '../data/data-service.js'
-import { ROLES, ROLE_LIST, CHAMPION_IMG } from '../data/constants.js'
+import { ROLES, ROLE_LIST, CHAMPION_IMG, CHAMPION_LOADING } from '../data/constants.js'
 import { t } from '../data/i18n.js'
 import { el, append, clear, spinner } from '../utilities/utilities.js'
 import { openChampionModal } from './champion-modal.js'
@@ -73,19 +73,26 @@ function render() {
 
     filtered.forEach(champ => {
       const card = el('div', {
-        cls: 'card',
+        cls: 'champ-card',
         on: { click: () => openChampionModal(champ, version) }
       })
 
+      // Splash art background (loading screen image)
+      const splash = el('div', { cls: 'champ-card-splash' })
       const img = el('img', {
-        cls: 'card-img',
-        attrs: { src: CHAMPION_IMG(version, champ.id), alt: champ.name, loading: 'lazy' }
+        cls: 'champ-card-img',
+        attrs: { src: CHAMPION_LOADING(champ.id, 0), alt: champ.name, loading: 'lazy' }
       })
+      // Gradient overlay
+      const overlay = el('div', { cls: 'champ-card-overlay' })
+      append(splash, img, overlay)
 
-      const name = el('div', { cls: 'card-name', text: champ.name })
-      const title = el('div', { cls: 'card-subtitle', text: champ.title })
+      // Info bar at bottom
+      const info = el('div', { cls: 'champ-card-info' })
+      const name = el('div', { cls: 'champ-card-name', text: champ.name })
 
-      const tags = el('div', { cls: 'card-tags' })
+      // Role badges
+      const tags = el('div', { cls: 'champ-card-tags' })
       champ.tags.forEach(tag => {
         const role = ROLES[tag]
         if (role) {
@@ -97,7 +104,8 @@ function render() {
         }
       })
 
-      append(card, img, name, title, tags)
+      append(info, name, tags)
+      append(card, splash, info)
       append(grid, card)
     })
   }

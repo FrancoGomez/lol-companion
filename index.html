@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#C8AA6E" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="/manifest.json" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -21,7 +25,10 @@
       <button class="tab-btn" data-tab="items">Objetos</button>
       <button class="tab-btn" data-tab="matchup">Matchup</button>
       <button class="tab-btn" data-tab="coaching">Coaching</button>
+      <button class="tab-btn" data-tab="live">Live Game</button>
+      <button class="tab-btn" data-tab="progress">Progreso</button>
     </nav>
+    <div id="auth-container" class="auth-container"></div>
     <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
   </header>
 
@@ -30,6 +37,8 @@
     <section id="tab-items" class="tab-content"></section>
     <section id="tab-matchup" class="tab-content"></section>
     <section id="tab-coaching" class="tab-content"></section>
+    <section id="tab-live" class="tab-content"></section>
+    <section id="tab-progress" class="tab-content"></section>
   </main>
 
   <div id="modal-overlay" class="modal-overlay hidden">
