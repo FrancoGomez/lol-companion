@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>LoL Companion</title>
+</head>
+<body>
+  <header id="app-header">
+    <h1 class="app-title">LoL Companion</h1>
+    <span id="patch-version" class="patch-badge"></span>
+    <div id="global-search-wrapper" class="global-search-wrapper">
+      <input id="global-search" type="text" class="global-search" placeholder="Search..." />
+      <div id="global-search-results" class="global-search-results hidden"></div>
+    </div>
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="champions">Campeones</button>
+      <button class="tab-btn" data-tab="items">Objetos</button>
+      <button class="tab-btn" data-tab="matchup">Matchup</button>
+    </nav>
+    <button id="lang-toggle" class="lang-toggle" title="Switch language">EN</button>
+  </header>
+
+  <main id="app">
+    <section id="tab-champions" class="tab-content active"></section>
+    <section id="tab-items" class="tab-content"></section>
+    <section id="tab-matchup" class="tab-content"></section>
+  </main>
+
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div id="modal-container" class="modal-container">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <div id="picker-overlay" class="picker-overlay hidden">
+    <div id="picker-container" class="picker-container">
+      <div id="picker-header" class="picker-header">
+        <input id="picker-search" type="text" placeholder="Buscar..." class="picker-search" />
+        <div id="picker-filters" class="picker-filters"></div>
+        <button id="picker-close" class="picker-close">&times;</button>
+      </div>
+      <div id="picker-grid" class="picker-grid"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>
