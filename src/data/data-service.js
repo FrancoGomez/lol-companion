@@ -15,12 +15,19 @@ const cache = {
 
 const MAX_RETRIES = 3
 
+// Base path for local data (synced by scripts/sync-ddragon.js)
+const LOCAL_DATA = import.meta.env.BASE_URL + 'data'
+
+async function fetchJSON(url) {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  return res.json()
+}
+
 async function fetchWithRetry(url, retries = MAX_RETRIES) {
   for (let i = 0; i < retries; i++) {
     try {
-      const res = await fetch(url)
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      return await res.json()
+      return await fetchJSON(url)
     } catch (err) {
       if (i === retries - 1) throw err
       await new Promise(r => setTimeout(r, 1000 * (i + 1)))
@@ -28,26 +35,50 @@ async function fetchWithRetry(url, retries = MAX_RETRIES) {
   }
 }
 
-async function cachedFetch(storeName, key, url, memoryKey = null) {
+/**
+ * Try local data first, then DDragon, then IndexedDB cache.
+ */
+async function smartFetch(storeName, key, localUrl, remoteUrl, memoryKey = null) {
   if (memoryKey && cache[memoryKey]) return cache[memoryKey]
+
+  // 1. Try local (synced data in /data/)
   try {
-    const data = await fetchWithRetry(url)
-    await dbSet(storeName, key, { data }).catch(() => {})
+    const data = await fetchJSON(localUrl)
     if (memoryKey) cache[memoryKey] = data
+    await dbSet(storeName, key, { data }).catch(() => {})
     return data
-  } catch {
-    const stored = await dbGet(storeName, key)
-    if (stored?.data) {
-      if (memoryKey) cache[memoryKey] = stored.data
-      return stored.data
-    }
-    throw new Error(`No data available for ${key} (offline and no cache)`)
+  } catch { /* local not available, try remote */ }
+
+  // 2. Try DDragon remote
+  try {
+    const data = await fetchWithRetry(remoteUrl)
+    if (memoryKey) cache[memoryKey] = data
+    await dbSet(storeName, key, { data }).catch(() => {})
+    return data
+  } catch { /* remote failed, try IndexedDB */ }
+
+  // 3. Try IndexedDB cache (offline)
+  const stored = await dbGet(storeName, key)
+  if (stored?.data) {
+    if (memoryKey) cache[memoryKey] = stored.data
+    return stored.data
   }
+
+  throw new Error(`No data available for ${key} (offline and no cache)`)
 }
 
 /** Get current patch version */
 export async function getVersion() {
   if (cache.version) return cache.version
+  try {
+    // Try local version.json first
+    const local = await fetchJSON(`${LOCAL_DATA}/version.json`)
+    if (local?.patch) {
+      cache.version = local.patch
+      return cache.version
+    }
+  } catch { /* no local */ }
+
   try {
     const versions = await fetchWithRetry(VERSIONS_URL)
     cache.version = versions[0]
@@ -63,36 +94,51 @@ export async function getVersion() {
   }
 }
 
-/** Get DDragon champion list in current locale */
+/** Get champion list in current locale */
 export async function getChampions() {
   const locale = getDDragonLocale()
-  const v = await getVersion()
-  const cacheKey = `champions_${locale}`
   if (cache.champions[locale]) return cache.champions[locale]
-  const raw = await cachedFetch('champions', `list_${locale}`, CHAMPIONS_URL(v, locale))
-  const data = raw.data || raw
-  cache.champions[locale] = data
-  return data
+  const v = await getVersion()
+
+  const data = await smartFetch(
+    'champions', `list_${locale}`,
+    `${LOCAL_DATA}/${locale}/champions.json`,
+    CHAMPIONS_URL(v, locale)
+  )
+  const champions = data.data || data
+  cache.champions[locale] = champions
+  return champions
 }
 
-/** Get DDragon champion detail in current locale */
+/** Get champion detail in current locale */
 export async function getDDragonChampionDetail(championId) {
   const locale = getDDragonLocale()
   const detailKey = `${locale}_${championId}`
   if (cache.ddragonDetails[detailKey]) return cache.ddragonDetails[detailKey]
   const v = await getVersion()
-  const raw = await cachedFetch('champions', `ddragon_${detailKey}`, CHAMPION_DETAIL_URL(v, championId, locale))
+
+  const raw = await smartFetch(
+    'champions', `ddragon_${detailKey}`,
+    `${LOCAL_DATA}/${locale}/champion/${championId}.json`,
+    CHAMPION_DETAIL_URL(v, championId, locale)
+  )
+  // Local data is already the detail object; remote wraps it in data[id]
   const detail = raw.data?.[championId] || raw
   cache.ddragonDetails[detailKey] = detail
   return detail
 }
 
-/** Get DDragon items in current locale, normalized */
+/** Get items in current locale, normalized */
 export async function getItems() {
   const locale = getDDragonLocale()
   if (cache.items[locale]) return cache.items[locale]
   const v = await getVersion()
-  const raw = await cachedFetch('items', `all_${locale}`, DDRAGON_ITEMS_URL(v, locale))
+
+  const raw = await smartFetch(
+    'items', `all_${locale}`,
+    `${LOCAL_DATA}/${locale}/items.json`,
+    DDRAGON_ITEMS_URL(v, locale)
+  )
   const data = raw.data || raw
   cache.items[locale] = normalizeItems(data, v)
   return cache.items[locale]
@@ -101,6 +147,14 @@ export async function getItems() {
 /** Clear locale-specific caches (called on language switch) */
 export function clearLocaleCache() {
   // Don't clear — we keep both locales cached for fast switching
+}
+
+/**
+ * Get local image URL if data is synced, otherwise DDragon URL.
+ * Used by constants.js image helpers as a potential override.
+ */
+export function getLocalImageBase() {
+  return `${LOCAL_DATA}/img`
 }
 
 /** Normalize DDragon items to a consistent format */

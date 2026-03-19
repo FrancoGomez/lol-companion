@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node scripts/sync-ddragon.js && vite build",
+    "preview": "vite preview",
+    "sync": "node scripts/sync-ddragon.js"
   },
   "devDependencies": {
     "vite": "^8.0.1"

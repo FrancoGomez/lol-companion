@@ -4,18 +4,22 @@ export const DDRAGON_CDN = (version) => `${DDRAGON_BASE}/cdn/${version}`
 export const MERAKI_BASE = 'https://cdn.merakianalytics.com/riot/lol/resources/latest/en-US'
 export const CDRAGON_BASE = 'https://raw.communitydragon.org/latest'
 
-// API endpoints
+// Local data base path (synced by scripts/sync-ddragon.js, served as static files)
+const LOCAL_IMG = import.meta.env.BASE_URL + 'data/img'
+
+// API endpoints (remote fallback)
 export const VERSIONS_URL = `${DDRAGON_BASE}/api/versions.json`
 export const CHAMPIONS_URL = (v, locale = 'es_AR') => `${DDRAGON_CDN(v)}/data/${locale}/champion.json`
 export const CHAMPION_DETAIL_URL = (v, id, locale = 'es_AR') => `${DDRAGON_CDN(v)}/data/${locale}/champion/${id}.json`
-export const CHAMPION_IMG = (v, id) => `${DDRAGON_CDN(v)}/img/champion/${id}.png`
-export const CHAMPION_SPLASH = (id, num) => `${DDRAGON_BASE}/cdn/img/champion/splash/${id}_${num}.jpg`
-export const CHAMPION_LOADING = (id, num) => `${DDRAGON_BASE}/cdn/img/champion/loading/${id}_${num}.jpg`
-export const SPELL_IMG = (v, img) => `${DDRAGON_CDN(v)}/img/spell/${img}`
-export const PASSIVE_IMG = (v, img) => `${DDRAGON_CDN(v)}/img/passive/${img}`
-export const ITEM_IMG = (v, id) => `${DDRAGON_CDN(v)}/img/item/${id}.png`
-
 export const DDRAGON_ITEMS_URL = (v, locale = 'es_AR') => `${DDRAGON_CDN(v)}/data/${locale}/item.json`
+
+// Image URLs — use local synced images, fall back to DDragon
+export const CHAMPION_IMG = (_v, id) => `${LOCAL_IMG}/champion/${id}.png`
+export const CHAMPION_SPLASH = (id, num) => `${DDRAGON_BASE}/cdn/img/champion/splash/${id}_${num}.jpg`
+export const CHAMPION_LOADING = (id, _num) => `${LOCAL_IMG}/champion/loading/${id}_0.jpg`
+export const SPELL_IMG = (_v, img) => `${LOCAL_IMG}/spell/${img}`
+export const PASSIVE_IMG = (_v, img) => `${LOCAL_IMG}/passive/${img}`
+export const ITEM_IMG = (_v, id) => `${LOCAL_IMG}/item/${id}.png`
 
 // DDragon stat key → our normalized key mapping
 export const DDRAGON_STAT_MAP = {
