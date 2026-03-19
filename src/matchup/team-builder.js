@@ -195,12 +195,18 @@ function render() {
             onSelect: (champ) => {
               champions[index] = champ
               updateSlot()
-              if (isBlue && index === myChampionIndex) {
-                itemBuilder.setChampion(champ)
+              if (isBlue) {
+                // Auto-select first blue champion as "my champion" if none selected yet
+                if (!myTeam[myChampionIndex]) {
+                  myChampionIndex = index
+                  refreshAllSlots()
+                }
+                if (index === myChampionIndex) {
+                  itemBuilder.setChampion(champ)
+                }
               }
-              if (!isBlue) {
-                triggerRecalc()
-              }
+              // Always recalc when any champion is added (for counter-building)
+              triggerRecalc()
             }
           })
         }

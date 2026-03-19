@@ -92,11 +92,12 @@ function setupPicker() {
     })
   }
 
-  // Remove old listener and add new
-  const newSearch = searchInput.cloneNode(true)
-  searchInput.parentNode.replaceChild(newSearch, searchInput)
-  newSearch.addEventListener('input', debounce(renderPickerGrid, 200))
-  newSearch.focus()
+  // Reset search value and attach listener
+  searchInput.value = ''
+  searchInput._handler && searchInput.removeEventListener('input', searchInput._handler)
+  searchInput._handler = debounce(renderPickerGrid, 200)
+  searchInput.addEventListener('input', searchInput._handler)
+  searchInput.focus()
 
   renderPickerGrid()
 }

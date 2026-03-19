@@ -38,7 +38,6 @@ export function createItemBuilder(opts = {}) {
   for (let i = 0; i < 6; i++) {
     const slot = el('div', { cls: 'item-slot empty', html: '+' })
     slot.addEventListener('click', () => {
-      if (items[i]) return
       openItemPicker({ onSelect: (item) => setItem(i, item) })
     })
     slotElements.push(slot)
@@ -87,11 +86,6 @@ export function createItemBuilder(opts = {}) {
       })
     } else {
       slot.innerHTML = '+'
-      slot.addEventListener('click', () => {
-        if (!items[index]) {
-          openItemPicker({ onSelect: (item) => setItem(index, item) })
-        }
-      }, { once: true })
     }
   }
 
