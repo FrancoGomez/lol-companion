@@ -216,7 +216,11 @@ function renderAbilities(container, dd, version) {
     const info = el('div')
     append(info, el('div', { cls: 'ability-key', text: keys[i] }))
     append(info, el('div', { cls: 'ability-name', text: spell.name }))
-    append(info, el('div', { cls: 'ability-desc', html: cleanTooltip(spell.tooltip || spell.description, spell) }))
+    // Use tooltip if it resolves well, otherwise fall back to description
+    const tooltipText = spell.tooltip ? cleanTooltip(spell.tooltip, spell) : ''
+    const unresolvedCount = (tooltipText.match(/font-style:italic/g) || []).length
+    const useDescription = !spell.tooltip || unresolvedCount >= 3
+    append(info, el('div', { cls: 'ability-desc', html: useDescription ? cleanDescription(spell.description) : tooltipText }))
 
     const meta = el('div', { cls: 'ability-meta' })
     if (spell.cooldownBurn && spell.cooldownBurn !== '0') {
