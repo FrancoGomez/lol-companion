@@ -299,7 +299,7 @@ function getSRMapHTML() {
   ).join('')
 
   return `<div class="map-ward-overlay">
-  <img class="sr-map-img" src="https://raw.communitydragon.org/latest/game/assets/maps/minimap/minimap_base_order_hextech_sr.png" alt="Summoner's Rift minimap" />
+  <img class="sr-map-img" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/map-north.png" alt="Summoner's Rift minimap" />
   ${wardDots}
 </div>`
 }
