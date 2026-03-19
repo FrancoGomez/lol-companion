@@ -63,7 +63,6 @@ function renderPhaseNav(nav) {
       on: {
         click: () => {
           setState({ phase: phase.id })
-          renderPhase()
         }
       }
     })
