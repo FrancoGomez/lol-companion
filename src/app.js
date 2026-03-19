@@ -26,6 +26,11 @@ async function loadTab(name) {
       tabs[name] = m
       break
     }
+    case 'coaching': {
+      const m = await import('./coaching/coaching-tab.js')
+      tabs[name] = m
+      break
+    }
   }
   return tabs[name]
 }
@@ -114,6 +119,7 @@ function updateUIStrings() {
   document.querySelector('[data-tab="champions"]').textContent = t('tabChampions')
   document.querySelector('[data-tab="items"]').textContent = t('tabItems')
   document.querySelector('[data-tab="matchup"]').textContent = t('tabMatchup')
+  document.querySelector('[data-tab="coaching"]').textContent = t('tabCoaching')
   updatePlaceholder()
 }
 

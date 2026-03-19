@@ -5,6 +5,7 @@ const translations = {
     tabChampions: 'Campeones',
     tabItems: 'Objetos',
     tabMatchup: 'Matchup',
+    tabCoaching: 'Coaching',
     patchPrefix: 'Patch',
     offline: 'Offline',
 
@@ -146,6 +147,7 @@ const translations = {
     tabChampions: 'Champions',
     tabItems: 'Items',
     tabMatchup: 'Matchup',
+    tabCoaching: 'Coaching',
     patchPrefix: 'Patch',
     offline: 'Offline',
 

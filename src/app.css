@@ -1055,6 +1055,451 @@ body {
   color: var(--text-muted);
 }
 
+/* === Coaching Module === */
+.coaching-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coaching-section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.coaching-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.coaching-sub-header {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gold-dim);
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+
+.coaching-subsection {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.coaching-subsection:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Role & Elo selector buttons */
+.role-selector,
+.elo-selector {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.selector-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.selector-btn:hover { color: var(--text-primary); border-color: var(--gold-dim); }
+.selector-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
+
+/* Champion pool grid */
+.champ-pool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.champ-pool-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.champ-pool-card:hover { border-color: var(--gold-dim); }
+.champ-pool-card.selected { border-color: var(--gold); box-shadow: 0 0 12px rgba(200,170,110,0.25); }
+
+.champ-pool-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  object-fit: cover;
+}
+.champ-pool-card.selected .champ-pool-img { border-color: var(--gold); }
+
+.champ-pool-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.difficulty-stars {
+  font-size: 0.8rem;
+  color: var(--gold);
+}
+.difficulty-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.champ-pool-reason {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.main-btn {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+.main-btn:hover { border-color: var(--gold-dim); color: var(--text-primary); }
+.main-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
+
+/* Clear Routes */
+.clear-route-champ {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.clear-route-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-dim);
+}
+
+.clear-route-champ-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.clear-route {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.clear-route-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold-bright);
+  margin-bottom: 10px;
+}
+
+/* Horizontal timeline bar */
+.route-timeline {
+  margin-bottom: 12px;
+}
+
+.route-bar {
+  position: relative;
+  height: 4px;
+  background: var(--border);
+  border-radius: 99px;
+  margin: 12px 8px;
+}
+
+.route-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+  cursor: default;
+  z-index: 1;
+}
+
+/* Vertical step list */
+.route-steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.route-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 32px;
+}
+
+.route-connector {
+  position: relative;
+  width: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.route-connector::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.route-connector::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: calc(100% - 4px);
+  background: var(--border);
+}
+
+.route-connector.last::after {
+  display: none;
+}
+
+.route-step-content {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding-bottom: 8px;
+}
+
+.route-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  min-width: 40px;
+}
+
+.route-camp {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+/* Objective table */
+.objective-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.objective-table th {
+  text-align: left;
+  color: var(--gold-dim);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--border);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.objective-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.objective-table tr:last-child td {
+  border-bottom: none;
+}
+
+.objective-table tbody tr:hover {
+  background: var(--bg-card);
+}
+
+/* Decision list */
+.decision-list {
+  list-style: none;
+  padding: 0;
+}
+
+.decision-list li {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--gold);
+  line-height: 1.5;
+}
+
+/* Gameplan timeline (vertical) */
+.gameplan-timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.gameplan-timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.gameplan-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.gameplan-dot {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg-secondary);
+  z-index: 1;
+}
+
+.gameplan-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gameplan-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.gameplan-action {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Ward phase */
+.ward-phase {
+  margin-bottom: 14px;
+}
+
+.ward-phase-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold-bright);
+  margin-bottom: 6px;
+}
+
+.ward-list,
+.tip-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ward-list li,
+.tip-list li {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  padding: 6px 12px;
+  margin-bottom: 3px;
+  border-left: 3px solid var(--blue);
+  line-height: 1.5;
+}
+
+.tip-list li {
+  border-left-color: var(--green);
+}
+
+/* Tip cards (climbing tips) */
+.tip-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tip-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  border-left: 3px solid var(--gold);
+  transition: border-color 0.2s;
+}
+.tip-card:hover { border-color: var(--gold); }
+
+/* Coaching responsive */
+@media (max-width: 720px) {
+  .champ-pool-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .objective-table {
+    font-size: 0.7rem;
+  }
+
+  .objective-table th,
+  .objective-table td {
+    padding: 6px;
+  }
+
+  .role-selector,
+  .elo-selector {
+    gap: 4px;
+  }
+
+  .selector-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
 /* === Hidden utility === */
 .hidden { display: none !important; }
 
