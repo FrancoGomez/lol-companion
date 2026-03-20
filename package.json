@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/sync-ddragon.js && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "sync": "node scripts/sync-ddragon.js"
   },
   "devDependencies": {
+    "playwright": "^1.58.2",
     "vite": "^8.0.1"
   },
   "dependencies": {
