@@ -208,11 +208,20 @@ function renderAbilities(container, dd, version) {
     const info = el('div')
     append(info, el('div', { cls: 'ability-key', text: keys[i] }))
     append(info, el('div', { cls: 'ability-name', text: spell.name }))
-    // Use tooltip if it resolves well, otherwise fall back to description
+    // Use tooltip if it resolves well, otherwise fall back to description + scaling data
     const tooltipText = spell.tooltip ? cleanTooltip(spell.tooltip, spell) : ''
     const unresolvedCount = (tooltipText.match(/font-style:italic/g) || []).length
-    const useDescription = !spell.tooltip || unresolvedCount >= 3
-    append(info, el('div', { cls: 'ability-desc', html: useDescription ? cleanDescription(spell.description) : tooltipText }))
+    if (unresolvedCount === 0 && spell.tooltip) {
+      append(info, el('div', { cls: 'ability-desc', html: tooltipText }))
+    } else {
+      // Show clean description + raw scaling data
+      append(info, el('div', { cls: 'ability-desc', html: cleanDescription(spell.description) }))
+      // Add scaling info from effectBurn and vars
+      const scalingInfo = buildScalingInfo(spell)
+      if (scalingInfo) {
+        append(info, el('div', { cls: 'ability-scaling', html: scalingInfo }))
+      }
+    }
 
     const meta = el('div', { cls: 'ability-meta' })
     if (spell.cooldownBurn && spell.cooldownBurn !== '0') {
@@ -294,6 +303,44 @@ function cleanTooltip(html, spell) {
   // Apply existing cleanDescription logic
   text = text.replace(/<br\s*\/?>/gi, '<br>').replace(/<\/?font[^>]*>/gi, '')
   return text
+}
+
+function buildScalingInfo(spell) {
+  const parts = []
+
+  // Effect values (damage/healing/shield per rank)
+  if (spell.effectBurn) {
+    spell.effectBurn.forEach((val, i) => {
+      if (i === 0 || !val || val === 'null' || val === '0') return
+      // Only show non-trivial values
+      const nums = val.split('/')
+      if (nums.length >= 3 && nums.some(n => parseFloat(n) > 0)) {
+        parts.push(`<span class="scaling-values">${val}</span>`)
+      }
+    })
+  }
+
+  // Scaling ratios from vars
+  if (spell.vars && spell.vars.length > 0) {
+    spell.vars.forEach(v => {
+      if (!v.coeff || !v.link) return
+      const coeff = Array.isArray(v.coeff) ? v.coeff[0] : v.coeff
+      if (!coeff || coeff === 0) return
+      const pct = Math.round(coeff * 100)
+      const linkLabel = v.link === 'spelldamage' ? 'AP'
+        : v.link === 'attackdamage' ? 'AD'
+        : v.link === 'bonusattackdamage' ? 'AD bonus'
+        : v.link === 'bonushealth' ? 'HP bonus'
+        : v.link === 'armor' ? 'Armadura'
+        : v.link === 'spelldamage' ? 'AP'
+        : v.link
+      const color = linkLabel.includes('AP') ? '#4e7ab5' : '#c97e2a'
+      parts.push(`<span class="scaling-ratio" style="color:${color}">(+${pct}% ${linkLabel})</span>`)
+    })
+  }
+
+  if (parts.length === 0) return null
+  return parts.join(' ')
 }
 
 function renderStats(container, dd, version) {

@@ -447,6 +447,28 @@ body {
   font-weight: 600;
 }
 
+.ability-scaling {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--gold-dim);
+  font-size: 0.72rem;
+}
+
+.scaling-values {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.scaling-ratio {
+  font-weight: 700;
+}
+
 .ratio-ad { color: var(--gold); font-weight: 600; }
 .ratio-ap { color: var(--blue); font-weight: 600; }
 
