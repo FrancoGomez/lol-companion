@@ -41,7 +41,7 @@ async function fetchBuildData(champId) {
   } catch { return null }
 }
 
-function renderModal(content, champ, version, dd) {
+async function renderModal(content, champ, version, dd) {
   // Header
   const header = el('div', { cls: 'modal-header' })
   const img = el('img', { attrs: { src: CHAMPION_IMG(version, champ.id), alt: champ.name } })
@@ -59,23 +59,35 @@ function renderModal(content, champ, version, dd) {
   append(info, badges)
   append(header, img, info)
 
-  // Tabs
+  // Load identity data
+  let champIdentity = null
+  try {
+    const { CHAMPION_IDENTITIES } = await import('../data/champion-identities.js')
+    champIdentity = CHAMPION_IDENTITIES[champ.id] || null
+  } catch { /* no identity data */ }
+
+  // Tabs: Habilidades, Stats, Builds, Identidad
   const tabsContainer = el('div', { cls: 'modal-tabs' })
-  const tabNames = [t('modalAbilities'), t('modalStats'), t('modalBuilds')]
-  if (dd?.lore) tabNames.push(t('modalAbout'))
+  const lang = getLang()
+  const tabDefs = [
+    { key: 'abilities', label: t('modalAbilities') },
+    { key: 'stats', label: t('modalStats') },
+    { key: 'builds', label: t('modalBuilds') },
+    { key: 'identity', label: lang === 'es' ? 'Identidad' : 'Identity' },
+  ]
 
   const tabContents = {}
 
-  tabNames.forEach((name, i) => {
+  tabDefs.forEach((tab, i) => {
     const btn = el('button', {
       cls: `modal-tab${i === 0 ? ' active' : ''}`,
-      text: name,
+      text: tab.label,
       on: {
         click: () => {
           tabsContainer.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'))
           btn.classList.add('active')
           Object.values(tabContents).forEach(c => c.classList.remove('active'))
-          tabContents[name].classList.add('active')
+          tabContents[tab.key].classList.add('active')
         }
       }
     })
@@ -84,14 +96,16 @@ function renderModal(content, champ, version, dd) {
 
   append(content, header, tabsContainer)
 
-  tabNames.forEach((name, i) => {
+  tabDefs.forEach((tab, i) => {
     const div = el('div', { cls: `modal-tab-content${i === 0 ? ' active' : ''}` })
-    tabContents[name] = div
+    tabContents[tab.key] = div
 
-    if (name === t('modalAbout')) renderAbout(div, dd)
-    else if (name === t('modalAbilities')) renderAbilities(div, dd, version)
-    else if (name === t('modalStats')) renderStats(div, dd, version)
-    else if (name === t('modalBuilds')) renderBuilds(div, champ, version)
+    switch (tab.key) {
+      case 'abilities': renderAbilities(div, dd, version, champIdentity, lang); break
+      case 'stats': renderStats(div, dd, version); break
+      case 'builds': renderBuilds(div, champ, version, champIdentity, lang); break
+      case 'identity': renderIdentity(div, champIdentity, lang, dd); break
+    }
 
     append(content, div)
   })
@@ -102,10 +116,43 @@ function renderAbout(container, dd) {
   append(container, el('p', { cls: 'lore-text', text: dd.lore }))
 }
 
-function renderAbilities(container, dd, version) {
+function renderAbilities(container, dd, version, identity, lang) {
   if (!dd) {
     append(container, el('div', { cls: 'empty-state', text: t('abilitiesNA') }))
     return
+  }
+
+  // Combo section at the top
+  if (identity?.combo) {
+    const comboSection = el('div', { cls: 'combo-section' })
+    append(comboSection, el('h3', { cls: 'combo-title', text: lang === 'es' ? 'Combos' : 'Combos' }))
+
+    if (identity.combo.basic) {
+      const basic = el('div', { cls: 'combo-card' })
+      append(basic, el('div', { cls: 'combo-label', text: lang === 'es' ? 'Combo básico' : 'Basic combo' }))
+      append(basic, el('div', { cls: 'combo-keys', text: identity.combo.basic.keys }))
+      append(basic, el('div', { cls: 'combo-explain', text: identity.combo.basic[lang] || identity.combo.basic.en }))
+      append(comboSection, basic)
+    }
+
+    if (identity.combo.advanced) {
+      const adv = el('div', { cls: 'combo-card' })
+      append(adv, el('div', { cls: 'combo-label', text: lang === 'es' ? 'Combo avanzado' : 'Advanced combo' }))
+      append(adv, el('div', { cls: 'combo-keys', text: identity.combo.advanced.keys }))
+      append(adv, el('div', { cls: 'combo-explain', text: identity.combo.advanced[lang] || identity.combo.advanced.en }))
+      append(comboSection, adv)
+    }
+
+    append(container, comboSection)
+  }
+
+  // Skill order
+  if (identity?.skillOrder) {
+    const skillSection = el('div', { cls: 'skill-order-section' })
+    append(skillSection, el('span', { cls: 'skill-order-label', text: lang === 'es' ? 'Orden de maxeo: ' : 'Skill max: ' }))
+    append(skillSection, el('strong', { cls: 'skill-order-value', text: identity.skillOrder.order }))
+    append(skillSection, el('span', { cls: 'skill-order-reason', text: ' — ' + (identity.skillOrder[lang] || identity.skillOrder.en) }))
+    append(container, skillSection)
   }
 
   if (dd.passive) {
@@ -432,12 +479,19 @@ function renderStats(container, dd, version) {
   updateStats()
 }
 
-async function renderBuilds(container, champ, version) {
+async function renderBuilds(container, champ, version, identity, lang) {
   append(container, spinner())
   try {
     const [itemsMap, buildData] = await Promise.all([getItems(), fetchBuildData(champ.id)])
-    const lang = getLang()
     clear(container)
+
+    // Build reasoning from identity data
+    if (identity?.buildReasoning) {
+      const reasonSection = el('div', { cls: 'build-reasoning' })
+      append(reasonSection, el('h4', { cls: 'build-reasoning-title', text: lang === 'es' ? '¿Por qué estos items?' : 'Why these items?' }))
+      append(reasonSection, el('p', { cls: 'build-reasoning-text', text: identity.buildReasoning[lang] || identity.buildReasoning.en }))
+      append(container, reasonSection)
+    }
 
     if (!buildData || Object.keys(buildData).length === 0) {
       append(container, el('div', { cls: 'empty-state', text: t('noRecommendations') }))
@@ -554,5 +608,63 @@ async function renderBuilds(container, champ, version) {
   } catch (err) {
     clear(container)
     append(container, el('div', { cls: 'empty-state', text: t('errorItems') }))
+  }
+}
+
+function renderIdentity(container, identity, lang, dd) {
+  if (!identity) {
+    append(container, el('div', { cls: 'empty-state', text: lang === 'es' ? 'Identidad no disponible para este campeón' : 'Identity not available for this champion' }))
+    return
+  }
+
+  // Identity summary
+  const summary = el('div', { cls: 'identity-summary' })
+  const spikeLabels = { early: 'Early Game', mid: 'Mid Game', late: 'Late Game' }
+  append(summary,
+    el('div', { cls: 'identity-text', text: identity.identity[lang] || identity.identity.en }),
+    el('div', { cls: 'identity-meta', children: [
+      el('span', { cls: 'identity-badge', text: identity.playstyle[lang] || identity.playstyle.en }),
+      el('span', { cls: 'identity-badge identity-spike', text: '⚡ ' + (spikeLabels[identity.powerSpike] || identity.powerSpike) }),
+    ]})
+  )
+  append(container, summary)
+
+  // Gameplan by phase
+  if (identity.gameplan) {
+    const phases = [
+      { key: 'early', label: 'Early Game (1-14 min)', icon: '🌱' },
+      { key: 'mid', label: 'Mid Game (14-25 min)', icon: '⚔️' },
+      { key: 'late', label: 'Late Game (25+ min)', icon: '🏆' },
+    ]
+
+    phases.forEach(phase => {
+      const text = identity.gameplan[phase.key]
+      if (!text) return
+
+      const card = el('div', { cls: 'identity-phase' })
+      append(card,
+        el('div', { cls: 'identity-phase-header', text: `${phase.icon} ${phase.label}` }),
+        el('div', { cls: 'identity-phase-text', text: text[lang] || text.en })
+      )
+      append(container, card)
+    })
+  }
+
+  // Lore (collapsed)
+  if (dd?.lore) {
+    const loreSection = el('div', { cls: 'identity-lore' })
+    const loreBtn = el('button', {
+      cls: 'identity-lore-toggle',
+      text: lang === 'es' ? '📜 Historia' : '📜 Lore',
+      on: {
+        click: () => {
+          const body = loreSection.querySelector('.identity-lore-text')
+          body.classList.toggle('hidden')
+        }
+      }
+    })
+    append(loreSection, loreBtn)
+    append(loreSection, el('p', { cls: 'identity-lore-text hidden', text: dd.lore }))
+    append(container, loreSection)
   }
 }
