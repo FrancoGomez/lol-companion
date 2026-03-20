@@ -1148,6 +1148,45 @@ body {
   color: var(--text-secondary);
 }
 
+.build-rune-info {
+  font-size: 0.75rem;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.build-skill-order {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.build-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.build-item-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 36px;
+  flex-shrink: 0;
+}
+
+.build-counters {
+  font-size: 0.7rem;
+  color: var(--red);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
 /* === Global search === */
 .global-search-wrapper {
   position: relative;

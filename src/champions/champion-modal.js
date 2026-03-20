@@ -23,97 +23,22 @@ async function loadChampionData(champ, version, content) {
   }
 }
 
-const ARCHETYPE_BUILDS = {
-  Marksman: [
-    {
-      name: { es: 'ADC Critico', en: 'Crit ADC' },
-      items: ['3031', '3094', '3085', '3072', '3036', '3006']
-    },
-    {
-      name: { es: 'On-Hit', en: 'On-Hit' },
-      items: ['3153', '3124', '3091', '3085', '3026', '3006']
-    }
-  ],
-  Mage: [
-    {
-      name: { es: 'Burst', en: 'Burst' },
-      items: ['3020', '4645', '3089', '3135', '3157', '3165']
-    },
-    {
-      name: { es: 'AP Asesino', en: 'AP Assassin' },
-      items: ['3152', '4645', '3089', '3157', '3135', '3020']
-    }
-  ],
-  Assassin: [
-    {
-      name: { es: 'Letalidad', en: 'Lethality' },
-      items: ['3142', '3814', '6701', '3071', '3026', '3158']
-    },
-    {
-      name: { es: 'AP Asesino', en: 'AP Assassin' },
-      items: ['3152', '4645', '3089', '3157', '3135', '3020']
-    }
-  ],
-  Tank: [
-    {
-      name: { es: 'Full Tanque', en: 'Full Tank' },
-      items: ['6665', '3075', '3143', '3065', '3742', '3047']
-    },
-    {
-      name: { es: 'Bruiser Tanque', en: 'Tank Bruiser' },
-      items: ['3078', '3075', '3143', '3065', '3742', '3047']
-    }
-  ],
-  Fighter: [
-    {
-      name: { es: 'Bruiser', en: 'Bruiser' },
-      items: ['3078', '3053', '3742', '3065', '3026', '3047']
-    },
-    {
-      name: { es: 'AP Fighter', en: 'AP Fighter' },
-      items: ['3152', '3116', '3089', '3157', '3065', '3020']
-    }
-  ],
-  Support: [
-    {
-      name: { es: 'Encantador', en: 'Enchanter' },
-      items: ['3504', '3107', '3222', '3011', '3158']
-    },
-    {
-      name: { es: 'Tanque Soporte', en: 'Tank Support' },
-      items: ['3109', '3107', '3190', '3047']
-    }
-  ]
+const POS_LABELS = {
+  jungle: { es: 'Jungla', en: 'Jungle' },
+  top: { es: 'Top', en: 'Top' },
+  mid: { es: 'Mid', en: 'Mid' },
+  adc: { es: 'ADC', en: 'ADC' },
+  support: { es: 'Soporte', en: 'Support' },
 }
 
-function getRecommendedBuilds(champion, itemsMap, lang) {
-  const tags = champion.tags || []
-  const builds = []
-  const seenNames = new Set()
-
-  for (const tag of tags) {
-    const archetypes = ARCHETYPE_BUILDS[tag]
-    if (!archetypes) continue
-    for (const arch of archetypes) {
-      const buildName = arch.name[lang] || arch.name.en
-      if (seenNames.has(buildName)) continue
-      seenNames.add(buildName)
-
-      const resolvedItems = []
-      let totalGold = 0
-      for (const itemId of arch.items) {
-        const found = itemsMap[itemId]
-        if (found) {
-          resolvedItems.push(found)
-          totalGold += found.shop?.prices?.total || 0
-        }
-      }
-      if (resolvedItems.length > 0) {
-        builds.push({ name: buildName, items: resolvedItems, totalGold })
-      }
-    }
-  }
-  return builds
+/** Fetch lolalytics build data for a champion */
+async function fetchBuildData(champId) {
+  const LOCAL_DATA = import.meta.env.BASE_URL + 'data'
+  try {
+    const res = await fetch(`${LOCAL_DATA}/builds/${champId}.json`)
+    if (!res.ok) return null
+    return await res.json()
+  } catch { return null }
 }
 
 function renderModal(content, champ, version, dd) {
@@ -510,42 +435,116 @@ function renderStats(container, dd, version) {
 async function renderBuilds(container, champ, version) {
   append(container, spinner())
   try {
-    const itemsMap = await getItems()
+    const [itemsMap, buildData] = await Promise.all([getItems(), fetchBuildData(champ.id)])
     const lang = getLang()
-    const builds = getRecommendedBuilds(champ, itemsMap, lang)
     clear(container)
 
-    if (builds.length === 0) {
+    if (!buildData || Object.keys(buildData).length === 0) {
       append(container, el('div', { cls: 'empty-state', text: t('noRecommendations') }))
       return
     }
 
-    builds.forEach(build => {
+    // Sort positions by pick rate (most played first)
+    const positions = Object.entries(buildData)
+      .filter(([_, d]) => d.winRate && d.pickRate)
+      .sort((a, b) => {
+        const prA = parseFloat(a[1].pickRate) || 0
+        const prB = parseFloat(b[1].pickRate) || 0
+        return prB - prA
+      })
+
+    if (positions.length === 0) {
+      append(container, el('div', { cls: 'empty-state', text: t('noRecommendations') }))
+      return
+    }
+
+    positions.forEach(([pos, data]) => {
+      const posLabel = POS_LABELS[pos]?.[lang] || POS_LABELS[pos]?.en || pos
+
+      // Position header with tier + stats
       const section = el('div', { cls: 'build-section' })
       const header = el('div', { cls: 'build-section-header' })
-      append(header, el('span', { cls: 'build-section-name', text: build.name }))
-      append(header, el('span', { cls: 'build-section-gold', text: `${build.totalGold} ${t('gold')}` }))
+      const tierColor = { S: '#ff7f7f', A: '#ffbf7f', B: '#ffdf7f', C: '#bfff7f', D: '#7fbfff' }
+      const tierLetter = (data.tier || '?').charAt(0)
+      append(header,
+        el('span', { cls: 'build-section-name', children: [
+          el('span', {
+            text: data.tier || '?',
+            style: { background: tierColor[tierLetter] || '#888', color: '#000', padding: '1px 6px', borderRadius: '4px', fontWeight: '800', marginRight: '8px', fontSize: '0.75rem' }
+          }),
+          el('span', { text: posLabel })
+        ]}),
+        el('span', { cls: 'build-section-gold', text: `${data.winRate} WR · ${data.pickRate} PR` })
+      )
       append(section, header)
 
-      const itemsRow = el('div', { cls: 'build-path' })
-      build.items.forEach(item => {
-        const itemEl = el('div', {
-          cls: 'build-path-item',
-          on: {
-            click: async () => {
-              const { openItemModal } = await import('../items/item-modal.js')
-              openItemModal(item, version, itemsMap)
+      // Keystone rune
+      if (data.runes?.keystone?.name) {
+        append(section, el('div', {
+          cls: 'build-rune-info',
+          text: `${data.runes.keystone.name} · ${data.summoners?.join(' + ') || ''}`,
+        }))
+      }
+
+      // Skill priority
+      if (data.skillPriority?.length >= 3) {
+        append(section, el('div', {
+          cls: 'build-skill-order',
+          text: `${lang === 'es' ? 'Subir' : 'Max'}: ${data.skillPriority.join(' > ')}`,
+        }))
+      }
+
+      // Items in order: starting → boots → core → 4th → 5th → 6th
+      const itemSections = [
+        { key: 'starting', label: lang === 'es' ? 'Inicio' : 'Start' },
+        { key: 'boots', label: lang === 'es' ? 'Botas' : 'Boots' },
+        { key: 'core', label: 'Core' },
+        { key: 'fourth', label: '4th' },
+        { key: 'fifth', label: '5th' },
+        { key: 'sixth', label: '6th' },
+      ]
+
+      itemSections.forEach(({ key, label }) => {
+        const ids = data.items?.[key]
+        if (!ids || ids.length === 0) return
+
+        const row = el('div', { cls: 'build-item-row' })
+        append(row, el('span', { cls: 'build-item-label', text: label }))
+
+        const itemsContainer = el('div', { cls: 'build-path' })
+        ids.forEach(id => {
+          const item = itemsMap[id]
+          const itemEl = el('div', {
+            cls: 'build-path-item',
+            on: {
+              click: async () => {
+                if (item) {
+                  const { openItemModal } = await import('../items/item-modal.js')
+                  openItemModal(item, version, itemsMap)
+                }
+              }
             }
-          }
+          })
+          append(itemEl, el('img', { attrs: { src: ITEM_IMG(version, id), alt: item?.name || id } }))
+          append(itemEl, el('span', { text: item?.name || id }))
+          append(itemsContainer, itemEl)
         })
-        append(itemEl, el('img', { attrs: { src: ITEM_IMG(version, item.id), alt: item.name || '' } }))
-        append(itemEl, el('span', { text: item.name || '' }))
-        append(itemsRow, itemEl)
+        append(row, itemsContainer)
+        append(section, row)
       })
-      append(section, itemsRow)
+
+      // Counters
+      if (data.counters?.length > 0) {
+        const uniqueCounters = [...new Set(data.counters.map(c => c.name))].slice(0, 5)
+        append(section, el('div', {
+          cls: 'build-counters',
+          text: `${lang === 'es' ? 'Counters' : 'Counters'}: ${uniqueCounters.join(', ')}`,
+        }))
+      }
+
       append(container, section)
     })
-  } catch {
+  } catch (err) {
     clear(container)
     append(container, el('div', { cls: 'empty-state', text: t('errorItems') }))
   }
