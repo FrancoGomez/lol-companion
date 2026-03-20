@@ -10,20 +10,20 @@ export const FUNDAMENTALS = [
   // ═══════════════════════════════════════════════════════════════════════════
   {
     id: 'damage-types',
-    title: { es: 'Tipos de Dano', en: 'Damage Types' },
+    title: { es: 'Tipos de Daño', en: 'Damage Types' },
     icon: '\u2694\uFE0F',
     topics: [
       {
         title: { es: 'AD vs AP vs Verdadero', en: 'AD vs AP vs True Damage' },
         content: {
-          es: `<p>En League of Legends hay <strong>tres tipos de dano</strong>:</p>
+          es: `<p>En League of Legends hay <strong>tres tipos de daño</strong>:</p>
 <ul>
-  <li><strong>Dano Fisico (Physical / AD Damage):</strong> Es el dano que se reduce con <strong>Armadura (Armor)</strong>. Los autoataques basicos, la mayoria de las habilidades de campeones AD (Zed, Talon, Draven) y las torretas hacen dano fisico.</li>
-  <li><strong>Dano Magico (Magic / AP Damage):</strong> Es el dano que se reduce con <strong>Resistencia Magica (MR)</strong>. La mayoria de las habilidades de magos y supports (Lux, Brand, Syndra) hacen dano magico.</li>
-  <li><strong>Dano Verdadero (True Damage):</strong> <strong>Ignora TODA resistencia</strong>. No se reduce por armadura ni MR. Ejemplos: Ignite, la pasiva de Vayne (Silver Bolts, cada 3 hits), la ult de Cho'Gath (Feast), y el dano de Kraken Slayer.</li>
+  <li><strong>Daño Físico (Physical / AD Damage):</strong> Es el daño que se reduce con <strong>Armadura (Armor)</strong>. Los autoataques básicos, la mayoria de las habilidades de campeones AD (Zed, Talon, Draven) y las torretas hacen daño físico.</li>
+  <li><strong>Daño Mágico (Magic / AP Damage):</strong> Es el daño que se reduce con <strong>Resistencia Mágica (MR)</strong>. La mayoria de las habilidades de magos y supports (Lux, Brand, Syndra) hacen daño mágico.</li>
+  <li><strong>Daño Verdadero (True Damage):</strong> <strong>Ignora TODA resistencia</strong>. No se reduce por armadura ni MR. Ejemplos: Ignite, la pasiva de Vayne (Silver Bolts, cada 3 hits), la ult de Cho'Gath (Feast), y el daño de Kraken Slayer.</li>
 </ul>
-<p><strong>Importante:</strong> El tipo de dano NO depende de que stat compres, sino de lo que dice la habilidad. Por ejemplo, la E de Ezreal escala con AD pero hace <em>dano magico</em>. Corki hace 80% de su dano de autoataques como magico gracias a su pasiva.</p>
-<p><strong>Consejo practico:</strong> Presiona la tecla <strong>C</strong> en la pantalla de muerte para ver que tipo de dano te mato. Si ves mucho dano fisico, compra Armadura. Si ves mucho dano magico, compra MR.</p>`,
+<p><strong>Importante:</strong> El tipo de daño NO depende de que stat compres, sino de lo que dice la habilidad. Por ejemplo, la E de Ezreal escala con AD pero hace <em>daño mágico</em>. Corki hace 80% de su daño de autoataques como mágico gracias a su pasiva.</p>
+<p><strong>Consejo practico:</strong> Presiona la tecla <strong>C</strong> en la pantalla de muerte para ver que tipo de daño te mato. Si ves mucho daño físico, compra Armadura. Si ves mucho daño mágico, compra MR.</p>`,
           en: `<p>In League of Legends there are <strong>three damage types</strong>:</p>
 <ul>
   <li><strong>Physical Damage (AD Damage):</strong> Reduced by <strong>Armor</strong>. Basic attacks, most AD champion abilities (Zed, Talon, Draven), and turrets deal physical damage.</li>
@@ -37,15 +37,15 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Como funcionan los autoataques', en: 'How basic attacks work' },
         content: {
-          es: `<p>Los <strong>autoataques basicos</strong> siempre hacen <strong>dano fisico</strong> por defecto. Su dano base es igual a tu <strong>AD total</strong> (base + bonus).</p>
+          es: `<p>Los <strong>autoataques básicos</strong> siempre hacen <strong>daño físico</strong> por defecto. Su daño base es igual a tu <strong>AD total</strong> (base + bonus).</p>
 <p>Sin embargo, hay excepciones importantes:</p>
 <ul>
-  <li><strong>Corki:</strong> Su pasiva hace que el 80% del dano de sus autos sea <em>magico</em> y el 20% sea fisico.</li>
-  <li><strong>Kayle:</strong> Cuando activa su E (Starfire Spellblade), sus autos pasan a hacer parte de dano magico. Despues del nivel 11, TODOS sus autos hacen dano magico bonus permanentemente (ondas de fuego).</li>
-  <li><strong>Teemo:</strong> Su E (Toxic Shot) agrega dano magico on-hit a cada autoataque. El dano base del auto sigue siendo fisico, pero el dano adicional del veneno es magico.</li>
-  <li><strong>Thresh:</strong> Su E (Flay) pasiva agrega dano magico bonus a sus autos basado en las almas recolectadas.</li>
+  <li><strong>Corki:</strong> Su pasiva hace que el 80% del daño de sus autos sea <em>mágico</em> y el 20% sea físico.</li>
+  <li><strong>Kayle:</strong> Cuando activa su E (Starfire Spellblade), sus autos pasan a hacer parte de daño mágico. Despues del nivel 11, TODOS sus autos hacen daño mágico bonus permanentemente (ondas de fuego).</li>
+  <li><strong>Teemo:</strong> Su E (Toxic Shot) agrega daño mágico on-hit a cada autoataque. El daño base del auto sigue siendo físico, pero el daño adicional del veneno es mágico.</li>
+  <li><strong>Thresh:</strong> Su E (Flay) pasiva agrega daño mágico bonus a sus autos basado en las almas recolectadas.</li>
 </ul>
-<p><strong>Concepto clave:</strong> El dano base de tu auto siempre es tu AD. Lo que puede cambiar es si se agrega dano extra de otro tipo encima.</p>`,
+<p><strong>Concepto clave:</strong> El daño base de tu auto siempre es tu AD. Lo que puede cambiar es si se agrega daño extra de otro tipo encima.</p>`,
           en: `<p><strong>Basic attacks</strong> always deal <strong>physical damage</strong> by default. Their base damage equals your <strong>total AD</strong> (base + bonus).</p>
 <p>However, there are important exceptions:</p>
 <ul>
@@ -58,19 +58,19 @@ export const FUNDAMENTALS = [
         },
       },
       {
-        title: { es: 'Mito: "AP reduce el dano de tus autos"', en: 'Myth: "AP reduces your auto damage"' },
+        title: { es: 'Mito: "AP reduce el daño de tus autos"', en: 'Myth: "AP reduces your auto damage"' },
         content: {
           es: `<p>Esto es un <strong>mito MUY comun</strong> entre jugadores nuevos. Vamos a aclararlo:</p>
-<p><strong>Comprar AP NO reduce el dano de tus autoataques.</strong> Punto. Nunca. Jamas.</p>
-<p>Lo que pasa es lo siguiente: si jugás, por ejemplo, Lux y compras AP, el dano de tus autos NO baja. Sigue siendo igual a tu AD total. Lo que sucede es que <strong>no obtenes ningun beneficio extra en los autos</strong> porque Lux no tiene escalado de AP en sus autoataques (salvo su pasiva Illumination).</p>
+<p><strong>Comprar AP NO reduce el daño de tus autoataques.</strong> Punto. Nunca. Jamas.</p>
+<p>Lo que pasa es lo siguiente: si jugás, por ejemplo, Lux y compras AP, el daño de tus autos NO baja. Sigue siendo igual a tu AD total. Lo que sucede es que <strong>no obtenes ningun beneficio extra en los autos</strong> porque Lux no tiene escalado de AP en sus autoataques (salvo su pasiva Illumination).</p>
 <p>Comparemos:</p>
 <ul>
-  <li><strong>Lux nivel 10 sin items:</strong> Auto = ~75 de dano fisico (su AD base)</li>
-  <li><strong>Lux nivel 10 con Luden's (80 AP):</strong> Auto = ~75 de dano fisico (MISMO dano, el AP no le agrega nada al auto normal)</li>
-  <li><strong>Lux nivel 10 con un Long Sword (10 AD):</strong> Auto = ~85 de dano fisico (el AD SI le suma al auto)</li>
+  <li><strong>Lux nivel 10 sin items:</strong> Auto = ~75 de daño físico (su AD base)</li>
+  <li><strong>Lux nivel 10 con Luden's (80 AP):</strong> Auto = ~75 de daño físico (MISMO daño, el AP no le agrega nada al auto normal)</li>
+  <li><strong>Lux nivel 10 con un Long Sword (10 AD):</strong> Auto = ~85 de daño físico (el AD SI le suma al auto)</li>
 </ul>
 <p>El AP simplemente <strong>no le suma</strong> al auto, pero <strong>tampoco le resta</strong>. Es neutro.</p>
-<p><strong>Excepcion:</strong> Algunos campeones SI tienen escalado de AP en sus autoataques: Kayle (E), Teemo (E), Diana (pasiva), Twisted Fate (W pick-a-card), Ekko (pasiva), Fizz (W), entre otros. Para estos campeones, comprar AP SI aumenta el dano de sus autos.</p>`,
+<p><strong>Excepcion:</strong> Algunos campeones SI tienen escalado de AP en sus autoataques: Kayle (E), Teemo (E), Diana (pasiva), Twisted Fate (W pick-a-card), Ekko (pasiva), Fizz (W), entre otros. Para estos campeones, comprar AP SI aumenta el daño de sus autos.</p>`,
           en: `<p>This is a <strong>VERY common myth</strong> among new players. Let's clarify it:</p>
 <p><strong>Buying AP does NOT reduce your auto-attack damage.</strong> Period. Never. Ever.</p>
 <p>Here's what happens: if you play, say, Lux and buy AP, your auto damage does NOT go down. It remains equal to your total AD. What happens is that <strong>you get no extra benefit on autos</strong> because Lux has no AP scaling on her basic attacks (except her Illumination passive).</p>
@@ -87,12 +87,12 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Efectos On-Hit', en: 'On-Hit Effects' },
         content: {
-          es: `<p>Los <strong>efectos on-hit</strong> son dano o efectos extra que se aplican <strong>cada vez que un autoataque conecta</strong>. Son una capa adicional encima del dano base del auto.</p>
+          es: `<p>Los <strong>efectos on-hit</strong> son daño o efectos extra que se aplican <strong>cada vez que un autoataque conecta</strong>. Son una capa adicional encima del daño base del auto.</p>
 <p><strong>Fuentes comunes de on-hit:</strong></p>
 <ul>
-  <li><strong>Items:</strong> Blade of the Ruined King (dano fisico basado en % HP del enemigo), Wit's End (dano magico on-hit), Nashor's Tooth (dano magico basado en AP), Kraken Slayer (dano verdadero cada 3 hits).</li>
-  <li><strong>Habilidades de campeones:</strong> Vayne W (dano verdadero cada 3 hits), Kog'Maw W (% HP magico on-hit), Varus W (% HP magico on-hit), Kayle E (dano magico on-hit).</li>
-  <li><strong>Runas:</strong> Press the Attack (dano bonus despues de 3 hits), Lethal Tempo (stacks de AS con autos).</li>
+  <li><strong>Items:</strong> Blade of the Ruined King (daño físico basado en % HP del enemigo), Wit's End (daño mágico on-hit), Nashor's Tooth (daño mágico basado en AP), Kraken Slayer (daño verdadero cada 3 hits).</li>
+  <li><strong>Habilidades de campeones:</strong> Vayne W (daño verdadero cada 3 hits), Kog'Maw W (% HP mágico on-hit), Varus W (% HP mágico on-hit), Kayle E (daño mágico on-hit).</li>
+  <li><strong>Runas:</strong> Press the Attack (daño bonus despues de 3 hits), Lethal Tempo (stacks de AS con autos).</li>
 </ul>
 <p><strong>Interaccion clave:</strong> Habilidades que aplican on-hit:</p>
 <ul>
@@ -101,7 +101,7 @@ export const FUNDAMENTALS = [
   <li><strong>Irelia Q</strong> (Bladesurge) aplica on-hit. Por eso BOTRK es su primer item.</li>
   <li><strong>Yasuo/Yone Q</strong> aplica on-hit en el primer enemigo golpeado.</li>
 </ul>
-<p><strong>Life Steal</strong> solo aplica al dano fisico del auto. <strong>Omnivamp</strong> aplica a todo el dano (fisico, magico, verdadero) pero al 33% de efectividad en dano de area.</p>`,
+<p><strong>Life Steal</strong> solo aplica al daño físico del auto. <strong>Omnivamp</strong> aplica a todo el daño (físico, mágico, verdadero) pero al 33% de efectividad en daño de area.</p>`,
           en: `<p><strong>On-hit effects</strong> are extra damage or effects that are applied <strong>every time a basic attack lands</strong>. They are an additional layer on top of the auto's base damage.</p>
 <p><strong>Common on-hit sources:</strong></p>
 <ul>
@@ -133,23 +133,23 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Todas las stats explicadas', en: 'All stats explained' },
         content: {
-          es: `<p>Estas son <strong>todas las estadisticas</strong> del juego:</p>
+          es: `<p>Estas son <strong>todas las estadísticas</strong> del juego:</p>
 <table>
   <tr><th>Stat</th><th>Que hace</th><th>Quien la quiere</th></tr>
-  <tr><td><strong>AD (Attack Damage)</strong></td><td>Aumenta el dano de tus autoataques y de habilidades que escalan con AD</td><td>Carries AD, asesinos AD, bruisers</td></tr>
-  <tr><td><strong>AP (Ability Power)</strong></td><td>Aumenta el dano de habilidades que escalan con AP (no afecta autos salvo excepciones)</td><td>Magos, supports AP, algunos junglers</td></tr>
+  <tr><td><strong>AD (Attack Damage)</strong></td><td>Aumenta el daño de tus autoataques y de habilidades que escalan con AD</td><td>Carries AD, asesinos AD, bruisers</td></tr>
+  <tr><td><strong>AP (Ability Power)</strong></td><td>Aumenta el daño de habilidades que escalan con AP (no afecta autos salvo excepciones)</td><td>Magos, supports AP, algunos junglers</td></tr>
   <tr><td><strong>AS (Attack Speed)</strong></td><td>Cuantos autoataques por segundo haces. Mas AS = mas autos = mas DPS</td><td>ADCs, on-hit champions, Jax, Irelia</td></tr>
-  <tr><td><strong>Crit (Probabilidad de Critico)</strong></td><td>Probabilidad de que tu auto haga x1.75 de dano. A 100% crit, TODOS tus autos critean</td><td>ADCs, Yasuo/Yone (doble crit chance)</td></tr>
+  <tr><td><strong>Crit (Probabilidad de Critico)</strong></td><td>Probabilidad de que tu auto haga x1.75 de daño. A 100% crit, TODOS tus autos critean</td><td>ADCs, Yasuo/Yone (doble crit chance)</td></tr>
   <tr><td><strong>Lethality</strong></td><td>Penetracion de armadura plana. Ignora X puntos de armadura del enemigo (escala con tu nivel)</td><td>Asesinos AD (Zed, Talon, Kha'Zix)</td></tr>
-  <tr><td><strong>Penetracion Magica (Magic Pen)</strong></td><td>Ignora MR del enemigo. Viene en plana (Sorc Shoes) y porcentual (Void Staff)</td><td>Magos burst, supports AP con dano</td></tr>
-  <tr><td><strong>Armor</strong></td><td>Reduce dano fisico recibido</td><td>Tanks, bruisers, contra equipos AD</td></tr>
-  <tr><td><strong>MR (Magic Resistance)</strong></td><td>Reduce dano magico recibido</td><td>Tanks, contra equipos AP</td></tr>
-  <tr><td><strong>HP (Health Points)</strong></td><td>Tu vida total. Mas HP = sobrevivís mas (pero es vulnerable a dano % HP)</td><td>Todos, especialmente tanks</td></tr>
+  <tr><td><strong>Penetracion Mágica (Magic Pen)</strong></td><td>Ignora MR del enemigo. Viene en plana (Sorc Shoes) y porcentual (Void Staff)</td><td>Magos burst, supports AP con daño</td></tr>
+  <tr><td><strong>Armor</strong></td><td>Reduce daño físico recibido</td><td>Tanks, bruisers, contra equipos AD</td></tr>
+  <tr><td><strong>MR (Magic Resistance)</strong></td><td>Reduce daño mágico recibido</td><td>Tanks, contra equipos AP</td></tr>
+  <tr><td><strong>HP (Health Points)</strong></td><td>Tu vida total. Mas HP = sobrevivís mas (pero es vulnerable a daño % HP)</td><td>Todos, especialmente tanks</td></tr>
   <tr><td><strong>Mana</strong></td><td>Recurso para usar habilidades. Sin mana, no podes castear</td><td>Magos, algunos supports y ADCs</td></tr>
   <tr><td><strong>AH (Ability Haste)</strong></td><td>Reduce el cooldown de tus habilidades. Antes se llamaba CDR</td><td>Magos, bruisers, tanks, supports</td></tr>
-  <tr><td><strong>Life Steal</strong></td><td>Cura un % del dano fisico de tus autos</td><td>ADCs, bruisers AD</td></tr>
-  <tr><td><strong>Omnivamp</strong></td><td>Cura un % de TODO el dano que haces (fisico, magico, verdadero). 33% efectividad en AoE</td><td>Bruisers, algunos magos</td></tr>
-  <tr><td><strong>Move Speed (MS)</strong></td><td>Que tan rapido te moves. Base ~325-345 para la mayoria. Boots dan +25 a +45</td><td>Todos. MS es la stat mas infravalorada del juego</td></tr>
+  <tr><td><strong>Life Steal</strong></td><td>Cura un % del daño físico de tus autos</td><td>ADCs, bruisers AD</td></tr>
+  <tr><td><strong>Omnivamp</strong></td><td>Cura un % de TODO el daño que haces (físico, mágico, verdadero). 33% efectividad en AoE</td><td>Bruisers, algunos magos</td></tr>
+  <tr><td><strong>Move Speed (MS)</strong></td><td>Que tan rápido te moves. Base ~325-345 para la mayoria. Boots dan +25 a +45</td><td>Todos. MS es la stat mas infravalorada del juego</td></tr>
 </table>`,
           en: `<p>These are <strong>all the stats</strong> in the game:</p>
 <table>
@@ -186,8 +186,8 @@ export const FUNDAMENTALS = [
 <ul>
   <li>AD total = 120</li>
   <li>AD bonus = 40</li>
-  <li>Habilidad con 100% AD total = 120 dano extra</li>
-  <li>Habilidad con 100% AD bonus = 40 dano extra</li>
+  <li>Habilidad con 100% AD total = 120 daño extra</li>
+  <li>Habilidad con 100% AD bonus = 40 daño extra</li>
 </ul>
 <p>Por eso cuando lees las habilidades, presta atencion si dice <strong>"total"</strong> o <strong>"bonus"</strong>. Lo mismo aplica para HP, Armor, etc. Por ejemplo, Gargoyle Stoneplate aumenta tu HP basado en tu <strong>HP bonus</strong>, no tu HP total.</p>
 <p><strong>Tip:</strong> Podes ver tus stats base y bonus en la pantalla de stats (tecla C en el juego). Las stats base estan en blanco, las bonus en verde.</p>`,
@@ -213,9 +213,9 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Como crecen las stats por nivel', en: 'How stats grow per level' },
         content: {
-          es: `<p>Las stats de tu campeon <strong>no crecen linealmente</strong> por nivel. Riot usa una formula especifica:</p>
+          es: `<p>Las stats de tu campeon <strong>no crecen linealmente</strong> por nivel. Riot usa una fórmula especifica:</p>
 <p><strong>Stat en nivel X = Stat base + Crecimiento x (Nivel - 1) x (0.7025 + 0.0175 x (Nivel - 1))</strong></p>
-<p>Esto significa que las stats crecen <strong>mas rapido en niveles altos</strong>. Ganar el nivel 18 da mas stats que ganar el nivel 2.</p>
+<p>Esto significa que las stats crecen <strong>mas rápido en niveles altos</strong>. Ganar el nivel 18 da mas stats que ganar el nivel 2.</p>
 <p><strong>Ejemplo con Jinx (AD):</strong></p>
 <ul>
   <li>AD base: 57</li>
@@ -227,7 +227,7 @@ export const FUNDAMENTALS = [
   <li>Nivel 18: 57 + 3.4 x 17 x (0.7025 + 0.0175 x 17) = 57 + 57.8 x 1.0 = <strong>114.8 AD</strong></li>
 </ul>
 <p><strong>Por que importa:</strong> Estar un nivel arriba del rival es como tener ~600g de ventaja en stats gratis. Por eso el XP importa tanto como el oro. Un jungler nivel 6 con R vs un jungler nivel 5 sin R tiene una ventaja ENORME en un 1v1.</p>`,
-          en: `<p>Your champion's stats <strong>don't grow linearly</strong> per level. Riot uses a specific formula:</p>
+          en: `<p>Your champion's stats <strong>don't grow linearly</strong> per level. Riot uses a specific fórmula:</p>
 <p><strong>Stat at level X = Base stat + Growth x (Level - 1) x (0.7025 + 0.0175 x (Level - 1))</strong></p>
 <p>This means stats grow <strong>faster at higher levels</strong>. Gaining level 18 gives more stats than gaining level 2.</p>
 <p><strong>Example with Jinx (AD):</strong></p>
@@ -244,9 +244,9 @@ export const FUNDAMENTALS = [
         },
       },
       {
-        title: { es: 'Formula de Attack Speed', en: 'Attack Speed Formula' },
+        title: { es: 'Fórmula de Attack Speed', en: 'Attack Speed Fórmula' },
         content: {
-          es: `<p>El Attack Speed tiene una formula especial, diferente a las demas stats:</p>
+          es: `<p>El Attack Speed tiene una fórmula especial, diferente a las demas stats:</p>
 <p><strong>AS total = AS base x (1 + AS bonus%)</strong></p>
 <p>Cada campeon tiene un <strong>AS base</strong> diferente. Es MUY importante porque determina cuanto rinde cada punto de AS%.</p>
 <p><strong>Ejemplo:</strong></p>
@@ -254,7 +254,7 @@ export const FUNDAMENTALS = [
   <li><strong>Jinx:</strong> AS base = 0.625. Con 50% AS bonus: 0.625 x 1.5 = <strong>0.9375 attacks/sec</strong></li>
   <li><strong>Kalista:</strong> AS base = 0.694. Con 50% AS bonus: 0.694 x 1.5 = <strong>1.041 attacks/sec</strong></li>
 </ul>
-<p>Con el mismo item, Kalista ataca mas rapido porque tiene mayor AS base.</p>
+<p>Con el mismo item, Kalista ataca mas rápido porque tiene mayor AS base.</p>
 <p><strong>Cap de Attack Speed: 2.5 ataques por segundo.</strong></p>
 <p>Es imposible superar 2.5 AS (salvo Lethal Tempo que temporalmente lo eleva a ~3.0+). Una vez que llegas a 2.5, comprar mas AS es desperdicio de oro.</p>
 <p><strong>Cuantos autos por segundo:</strong></p>
@@ -266,7 +266,7 @@ export const FUNDAMENTALS = [
   <li>2.5 AS = cap, 2.5 autos por segundo</li>
 </ul>
 <p><strong>Tip practico:</strong> Si jugás un ADC y sentis que atacas lento despues de comprar un item de AD puro (como B.F. Sword), es porque necesitas AS. La mayoria de los ADCs quieren un mix de AD + AS + Crit.</p>`,
-          en: `<p>Attack Speed has a special formula, different from other stats:</p>
+          en: `<p>Attack Speed has a special fórmula, different from other stats:</p>
 <p><strong>Total AS = Base AS x (1 + Bonus AS%)</strong></p>
 <p>Every champion has a different <strong>base AS</strong>. It's VERY important because it determines how much each point of AS% is worth.</p>
 <p><strong>Example:</strong></p>
@@ -292,8 +292,8 @@ export const FUNDAMENTALS = [
         title: { es: 'Ability Haste y la conversion a CDR', en: 'Ability Haste and CDR conversion' },
         content: {
           es: `<p>En el pasado, League usaba <strong>CDR (Cooldown Reduction)</strong> que tenia un cap de 40%. Ahora usa <strong>Ability Haste (AH)</strong> que no tiene cap, pero tiene retornos decrecientes.</p>
-<p><strong>Formula: CDR% = AH / (AH + 100) x 100</strong></p>
-<p>En la practica, cada punto de AH te da la misma cantidad de "habilidades extra" por minuto. Lo que pasa es que la <strong>reduccion porcentual</strong> crece cada vez mas lento:</p>
+<p><strong>Fórmula: CDR% = AH / (AH + 100) x 100</strong></p>
+<p>En la práctica, cada punto de AH te da la misma cantidad de "habilidades extra" por minuto. Lo que pasa es que la <strong>reduccion porcentual</strong> crece cada vez mas lento:</p>
 <table>
   <tr><th>Ability Haste</th><th>CDR Equivalente</th><th>Ejemplo (habilidad de 10s)</th></tr>
   <tr><td>0</td><td>0%</td><td>10.0 seg de cooldown</td></tr>
@@ -313,7 +313,7 @@ export const FUNDAMENTALS = [
 <p>Sin embargo, en terminos de <strong>DPS de habilidades</strong>, cada punto de AH es igualmente valioso. 10 AH siempre te deja castear un 10% mas de habilidades por minuto, sin importar cuanto AH ya tengas.</p>
 <p><strong>Tip:</strong> Para la mayoria de los campeones, 60-100 AH es el sweet spot. Mas alla de eso, generalmente conviene invertir en otras stats.</p>`,
           en: `<p>In the past, League used <strong>CDR (Cooldown Reduction)</strong> which was capped at 40%. Now it uses <strong>Ability Haste (AH)</strong> which has no cap but has diminishing returns.</p>
-<p><strong>Formula: CDR% = AH / (AH + 100) x 100</strong></p>
+<p><strong>Fórmula: CDR% = AH / (AH + 100) x 100</strong></p>
 <p>In practice, each point of AH gives you the same amount of "extra ability casts" per minute. What happens is that the <strong>percentage reduction</strong> grows more slowly:</p>
 <table>
   <tr><th>Ability Haste</th><th>CDR Equivalent</th><th>Example (10s ability)</th></tr>
@@ -342,19 +342,19 @@ export const FUNDAMENTALS = [
   // 3. FORMULAS DE DANO (DAMAGE FORMULAS)
   // ═══════════════════════════════════════════════════════════════════════════
   {
-    id: 'damage-formulas',
-    title: { es: 'Formulas de Dano', en: 'Damage Formulas' },
+    id: 'damage-fórmulas',
+    title: { es: 'Fórmulas de Daño', en: 'Damage Fórmulas' },
     icon: '\uD83E\uddEE',
     topics: [
       {
-        title: { es: 'Dano fisico despues de armadura', en: 'Physical damage after armor' },
+        title: { es: 'Daño físico despues de armadura', en: 'Physical damage after armor' },
         content: {
-          es: `<p>Esta es la formula mas importante del juego:</p>
-<p><strong>Dano final = Dano bruto x 100 / (100 + Armadura)</strong></p>
-<p>Es decir, la armadura <strong>nunca te hace inmune</strong>. Siempre recibis algo de dano. Pero cuanta mas armadura tenes, menos dano recibis.</p>
+          es: `<p>Esta es la fórmula mas importante del juego:</p>
+<p><strong>Daño final = Daño bruto x 100 / (100 + Armadura)</strong></p>
+<p>Es decir, la armadura <strong>nunca te hace inmune</strong>. Siempre recibis algo de daño. Pero cuanta mas armadura tenes, menos daño recibis.</p>
 <p><strong>Ejemplos:</strong></p>
 <table>
-  <tr><th>Dano bruto</th><th>Armadura</th><th>Calculo</th><th>Dano final</th><th>Reduccion</th></tr>
+  <tr><th>Daño bruto</th><th>Armadura</th><th>Calculo</th><th>Daño final</th><th>Reduccion</th></tr>
   <tr><td>200</td><td>0</td><td>200 x 100/100</td><td>200</td><td>0%</td></tr>
   <tr><td>200</td><td>50</td><td>200 x 100/150</td><td>133</td><td>33%</td></tr>
   <tr><td>200</td><td>100</td><td>200 x 100/200</td><td>100</td><td>50%</td></tr>
@@ -363,12 +363,12 @@ export const FUNDAMENTALS = [
 </table>
 <p><strong>Observaciones clave:</strong></p>
 <ul>
-  <li>100 de armadura = reduces el dano a la mitad (50% de reduccion)</li>
-  <li>Cada punto de armadura te da <strong>1% mas de HP efectiva</strong> vs dano fisico (esto es lineal, no hay retornos decrecientes en terminos de EHP)</li>
-  <li>Ir de 0 a 100 armadura dobla tu vida efectiva vs fisico. Ir de 100 a 200 la triplica. El beneficio REAL es constante.</li>
+  <li>100 de armadura = reduces el daño a la mitad (50% de reduccion)</li>
+  <li>Cada punto de armadura te da <strong>1% mas de HP efectiva</strong> vs daño físico (esto es lineal, no hay retornos decrecientes en terminos de EHP)</li>
+  <li>Ir de 0 a 100 armadura dobla tu vida efectiva vs físico. Ir de 100 a 200 la triplica. El beneficio REAL es constante.</li>
 </ul>
-<p><strong>Armadura negativa:</strong> Si la penetracion reduce tu armadura por debajo de 0, la formula funciona al reves: el enemigo recibe MAS dano del que le tirás. Esto pasa con items como Black Cleaver + Lethality.</p>`,
-          en: `<p>This is the most important formula in the game:</p>
+<p><strong>Armadura negativa:</strong> Si la penetracion reduce tu armadura por debajo de 0, la fórmula funciona al reves: el enemigo recibe MAS daño del que le tirás. Esto pasa con items como Black Cleaver + Lethality.</p>`,
+          en: `<p>This is the most important fórmula in the game:</p>
 <p><strong>Final damage = Raw damage x 100 / (100 + Armor)</strong></p>
 <p>This means armor <strong>never makes you immune</strong>. You always take some damage. But the more armor you have, the less damage you take.</p>
 <p><strong>Examples:</strong></p>
@@ -386,20 +386,20 @@ export const FUNDAMENTALS = [
   <li>Each point of armor gives you <strong>1% more effective HP</strong> vs physical damage (this is linear, no diminishing returns in terms of EHP)</li>
   <li>Going from 0 to 100 armor doubles your effective HP vs physical. Going from 100 to 200 triples it. The REAL benefit is constant.</li>
 </ul>
-<p><strong>Negative armor:</strong> If penetration reduces armor below 0, the formula works in reverse: the enemy takes MORE damage than you deal. This happens with items like Black Cleaver + Lethality.</p>`,
+<p><strong>Negative armor:</strong> If penetration reduces armor below 0, the fórmula works in reverse: the enemy takes MORE damage than you deal. This happens with items like Black Cleaver + Lethality.</p>`,
         },
       },
       {
-        title: { es: 'Dano magico despues de MR', en: 'Magic damage after MR' },
+        title: { es: 'Daño mágico despues de MR', en: 'Magic damage after MR' },
         content: {
-          es: `<p>La formula es <strong>exactamente la misma</strong> que para armadura, pero con MR:</p>
-<p><strong>Dano final = Dano bruto x 100 / (100 + MR)</strong></p>
-<p>Funciona identico. 100 MR = 50% de reduccion de dano magico. 200 MR = 67% de reduccion, etc.</p>
-<p><strong>Dato importante:</strong> La mayoria de los campeones tienen <strong>menos MR base que armadura base</strong>. Un campeon tipico tiene ~30 armadura y ~30 MR a nivel 1, pero la armadura crece mas rapido por nivel que la MR. Ademas, los campeones cuerpo a cuerpo ganan mas MR por nivel que los ranged.</p>
+          es: `<p>La fórmula es <strong>exactamente la misma</strong> que para armadura, pero con MR:</p>
+<p><strong>Daño final = Daño bruto x 100 / (100 + MR)</strong></p>
+<p>Funciona identico. 100 MR = 50% de reduccion de daño mágico. 200 MR = 67% de reduccion, etc.</p>
+<p><strong>Dato importante:</strong> La mayoria de los campeones tienen <strong>menos MR base que armadura base</strong>. Un campeon típico tiene ~30 armadura y ~30 MR a nivel 1, pero la armadura crece mas rápido por nivel que la MR. Ademas, los campeones cuerpo a cuerpo ganan mas MR por nivel que los ranged.</p>
 <p><strong>Ejemplo comun:</strong></p>
-<p>Un ADC nivel 11 tiene ~50 armadura pero solo ~38 MR. Eso significa que un mago hace proporcionalmente mas dano a un ADC que un asesino AD en las mismas condiciones, porque el ADC tiene menos resistencia a lo magico.</p>
-<p>Por eso items como Maw of Malmortius, Wit's End, y Mercury's Treads son tan importantes para ADCs contra equipos con mucho burst magico.</p>`,
-          en: `<p>The formula is <strong>exactly the same</strong> as for armor, but with MR:</p>
+<p>Un ADC nivel 11 tiene ~50 armadura pero solo ~38 MR. Eso significa que un mago hace proporcionalmente mas daño a un ADC que un asesino AD en las mismas condiciones, porque el ADC tiene menos resistencia a lo mágico.</p>
+<p>Por eso items como Maw of Malmortius, Wit's End, y Mercury's Treads son tan importantes para ADCs contra equipos con mucho burst mágico.</p>`,
+          en: `<p>The fórmula is <strong>exactly the same</strong> as for armor, but with MR:</p>
 <p><strong>Final damage = Raw damage x 100 / (100 + MR)</strong></p>
 <p>Works identically. 100 MR = 50% magic damage reduction. 200 MR = 67% reduction, etc.</p>
 <p><strong>Important fact:</strong> Most champions have <strong>less base MR than base armor</strong>. A typical champion has ~30 armor and ~30 MR at level 1, but armor grows faster per level than MR. Also, melee champions gain more MR per level than ranged ones.</p>
@@ -411,7 +411,7 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Orden de penetracion de armadura/MR', en: 'Armor/MR penetration order' },
         content: {
-          es: `<p>Cuando tenes penetracion, se aplica en un <strong>orden especifico</strong>. Esto es CRITICO para entender cuanta defensa realmente tiene el enemigo:</p>
+          es: `<p>Cuando tenes penetracion, se aplica en un <strong>orden específico</strong>. Esto es CRITICO para entender cuanta defensa realmente tiene el enemigo:</p>
 <p><strong>Orden de aplicacion:</strong></p>
 <ol>
   <li><strong>Reduccion de armadura % (Armor Reduction %)</strong> — Black Cleaver stacks (hasta 30%)</li>
@@ -425,10 +425,10 @@ export const FUNDAMENTALS = [
   <li>Armadura despues de % pen: 100 x (1 - 0.30) = 100 x 0.70 = <strong>70</strong></li>
   <li>Armadura despues de lethality: 70 - 18 = <strong>52</strong></li>
 </ol>
-<p>Armadura efectiva del enemigo: <strong>52</strong> (en vez de 100). Tu dano: bruto x 100/152 = ~66% del dano bruto pasa.</p>
-<p><strong>Sin penetracion:</strong> bruto x 100/200 = 50% del dano bruto pasa.</p>
+<p>Armadura efectiva del enemigo: <strong>52</strong> (en vez de 100). Tu daño: bruto x 100/152 = ~66% del daño bruto pasa.</p>
+<p><strong>Sin penetracion:</strong> bruto x 100/200 = 50% del daño bruto pasa.</p>
 <p>La diferencia es ENORME. Por eso la penetracion es la stat mas eficiente contra enemigos que stackean resistencias.</p>
-<p><strong>Para penetracion magica es lo mismo:</strong></p>
+<p><strong>Para penetracion mágica es lo mismo:</strong></p>
 <ol>
   <li>Reduccion de MR % (ej: pasiva de Fiddlesticks)</li>
   <li>Reduccion de MR plana (ej: Abyssal Mask aura)</li>
@@ -464,23 +464,23 @@ export const FUNDAMENTALS = [
         },
       },
       {
-        title: { es: 'Golpe critico', en: 'Critical Strike' },
+        title: { es: 'Golpe crítico', en: 'Critical Strike' },
         content: {
-          es: `<p>Un <strong>golpe critico (critical strike)</strong> es un autoataque que hace dano extra. La probabilidad depende de tu stat de Crit Chance.</p>
-<p><strong>Multiplicador de critico base: x1.75</strong></p>
-<p>Es decir, un auto que normalmente hace 200 de dano, si critea hace 200 x 1.75 = <strong>350 de dano</strong>.</p>
-<p><strong>Infinity Edge:</strong> Una vez que tenes 60% o mas de crit chance, Infinity Edge cambia el multiplicador a <strong>x2.0 (anteriormente x2.1)</strong>. Entonces un auto de 200 critica por 200 x 2.0 = <strong>400 de dano</strong>.</p>
-<p><strong>DPS promedio con critico:</strong></p>
+          es: `<p>Un <strong>golpe crítico (critical strike)</strong> es un autoataque que hace daño extra. La probabilidad depende de tu stat de Crit Chance.</p>
+<p><strong>Multiplicador de crítico base: x1.75</strong></p>
+<p>Es decir, un auto que normalmente hace 200 de daño, si critea hace 200 x 1.75 = <strong>350 de daño</strong>.</p>
+<p><strong>Infinity Edge:</strong> Una vez que tenes 60% o mas de crit chance, Infinity Edge cambia el multiplicador a <strong>x2.0 (anteriormente x2.1)</strong>. Entonces un auto de 200 critica por 200 x 2.0 = <strong>400 de daño</strong>.</p>
+<p><strong>DPS promedio con crítico:</strong></p>
 <p>Tu DPS se calcula como: AD x AS x (1 + critChance x (critMultiplier - 1))</p>
 <ul>
   <li>25% crit (1 item): DPS extra promedio = +18.75% (sin IE)</li>
   <li>50% crit (2 items): DPS extra promedio = +37.5%</li>
   <li>75% crit (3 items): DPS extra promedio = +56.25%</li>
   <li>100% crit (4 items): DPS extra promedio = +75%</li>
-  <li>100% crit + IE: DPS extra promedio = +100% (el doble de dano)</li>
+  <li>100% crit + IE: DPS extra promedio = +100% (el doble de daño)</li>
 </ul>
 <p><strong>Yasuo y Yone:</strong> Su pasiva les da el <strong>doble de crit chance</strong>. Asi que con un solo item de 25% crit, ya tienen 50%. Con 2 items tienen 100% crit.</p>
-<p><strong>Nota sobre RNG:</strong> El crit en LoL NO es puramente aleatorio. Riot usa un sistema de "pseudo-random distribution" donde si no criteas en varios autos seguidos, la probabilidad del proximo auto de critear aumenta, y viceversa. Esto suaviza la varianza.</p>`,
+<p><strong>Nota sobre RNG:</strong> El crit en LoL NO es puramente aleatorio. Riot usa un sistema de "pseudo-random distribution" donde si no criteas en varios autos seguidos, la probabilidad del próximo auto de critear aumenta, y viceversa. Esto suaviza la varianza.</p>`,
           en: `<p>A <strong>critical strike</strong> is an auto-attack that deals bonus damage. The chance depends on your Crit Chance stat.</p>
 <p><strong>Base crit multiplier: x1.75</strong></p>
 <p>So an auto that normally deals 200 damage, if it crits deals 200 x 1.75 = <strong>350 damage</strong>.</p>
@@ -501,15 +501,15 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'HP Efectiva (EHP)', en: 'Effective HP (EHP)' },
         content: {
-          es: `<p>La <strong>HP Efectiva</strong> es la cantidad REAL de dano que tenes que recibir para morir. Combina tu HP con tus resistencias.</p>
-<p><strong>Formula: EHP = HP x (1 + Resistencia / 100)</strong></p>
+          es: `<p>La <strong>HP Efectiva</strong> es la cantidad REAL de daño que tenes que recibir para morir. Combina tu HP con tus resistencias.</p>
+<p><strong>Fórmula: EHP = HP x (1 + Resistencia / 100)</strong></p>
 <p><strong>Ejemplos:</strong></p>
 <table>
-  <tr><th>HP</th><th>Armadura</th><th>EHP vs Fisico</th><th>Explicacion</th></tr>
-  <tr><td>2000</td><td>0</td><td>2000</td><td>Sin armadura, 2000 de dano te mata</td></tr>
-  <tr><td>2000</td><td>50</td><td>3000</td><td>Necesitan hacer 3000 de dano fisico para matarte</td></tr>
-  <tr><td>2000</td><td>100</td><td>4000</td><td>Necesitan 4000 de dano fisico</td></tr>
-  <tr><td>2000</td><td>200</td><td>6000</td><td>Necesitan 6000 de dano fisico</td></tr>
+  <tr><th>HP</th><th>Armadura</th><th>EHP vs Físico</th><th>Explicacion</th></tr>
+  <tr><td>2000</td><td>0</td><td>2000</td><td>Sin armadura, 2000 de daño te mata</td></tr>
+  <tr><td>2000</td><td>50</td><td>3000</td><td>Necesitan hacer 3000 de daño físico para matarte</td></tr>
+  <tr><td>2000</td><td>100</td><td>4000</td><td>Necesitan 4000 de daño físico</td></tr>
+  <tr><td>2000</td><td>200</td><td>6000</td><td>Necesitan 6000 de daño físico</td></tr>
   <tr><td>3000</td><td>100</td><td>6000</td><td>Mas HP con misma armadura = misma EHP que menos HP con mas armadura</td></tr>
 </table>
 <p><strong>Por que esto importa para itemizacion:</strong></p>
@@ -520,12 +520,12 @@ export const FUNDAMENTALS = [
 </ul>
 <p><strong>Contrajuego:</strong></p>
 <ul>
-  <li><strong>HP sola es debil contra</strong> dano % HP (Vayne W, BOTRK, Liandry's). Estos ignoran tu HP apilada.</li>
+  <li><strong>HP sola es debil contra</strong> daño % HP (Vayne W, BOTRK, Liandry's). Estos ignoran tu HP apilada.</li>
   <li><strong>Armadura sola es debil contra</strong> penetracion (Lethality, Lord Dominik's, Void Staff). Estos ignoran tus resistencias.</li>
   <li><strong>La mejor defensa:</strong> HP + Armadura/MR balanceados. Por eso items como Randuin's Omen (HP + Armor + anti-crit) o Spirit Visage (HP + MR + healing amp) son tan buenos.</li>
 </ul>`,
           en: `<p><strong>Effective HP</strong> is the ACTUAL amount of damage needed to kill you. It combines your HP with your resistances.</p>
-<p><strong>Formula: EHP = HP x (1 + Resistance / 100)</strong></p>
+<p><strong>Fórmula: EHP = HP x (1 + Resistance / 100)</strong></p>
 <p><strong>Examples:</strong></p>
 <table>
   <tr><th>HP</th><th>Armor</th><th>EHP vs Physical</th><th>Explanation</th></tr>
@@ -602,15 +602,15 @@ export const FUNDAMENTALS = [
 <table>
   <tr><th>Tipo</th><th>Que hace</th><th>Ejemplos</th></tr>
   <tr><td><strong>Slow</strong></td><td>Reduce tu velocidad de movimiento. Es el CC mas comun del juego</td><td>Nasus W (wither, hasta 95%!), Ashe autos, Rylai's Crystal Scepter</td></tr>
-  <tr><td><strong>Cripple</strong></td><td>Reduce tu Attack Speed</td><td>Nasus W (tambien reduce AS), Malphite E, Randuin's Omen activo</td></tr>
+  <tr><td><strong>Cripple</strong></td><td>Reduce tu Attack Speed</td><td>Nasus W (también reduce AS), Malphite E, Randuin's Omen activo</td></tr>
   <tr><td><strong>Blind</strong></td><td>Tus autoataques fallan (missean). Tus habilidades NO fallan</td><td>Teemo Q (unica fuente confiable de blind)</td></tr>
   <tr><td><strong>Silence</strong></td><td>No podes usar habilidades, pero SI podes moverte y autoatacar</td><td>Garen Q, Soraka E, Cho'Gath W, Kassadin Q</td></tr>
   <tr><td><strong>Ground</strong></td><td>No podes usar habilidades de movimiento (dashes, blinks, flashes)</td><td>Cassiopeia W (Miasma), Singed W, Vex pasiva</td></tr>
   <tr><td><strong>Nearsight</strong></td><td>Reduce tu rango de vision drasticamente</td><td>Nocturne R (Paranoia), Graves W (Smoke Screen), Quinn Q</td></tr>
-  <tr><td><strong>Drowsy / Sleep</strong></td><td>Primero te pone somnoliento (slow), despues te duerme (stun). El siguiente dano te despierta</td><td>Zoe E, Lillia R</td></tr>
-  <tr><td><strong>Disarm</strong></td><td>No podes autoatacar</td><td>Lulu W (Polymorph, tambien silence + slow)</td></tr>
+  <tr><td><strong>Drowsy / Sleep</strong></td><td>Primero te pone somnoliento (slow), despues te duerme (stun). El siguiente daño te despierta</td><td>Zoe E, Lillia R</td></tr>
+  <tr><td><strong>Disarm</strong></td><td>No podes autoatacar</td><td>Lulu W (Polymorph, también silence + slow)</td></tr>
 </table>
-<p><strong>Tip:</strong> Muchos jugadores subestiman los slows fuertes. Un Nasus con W al maximo (95% slow + AS reduction) puede hacer que un ADC se sienta como si estuviera rooteado.</p>`,
+<p><strong>Tip:</strong> Muchos jugadores subestiman los slows fuertes. Un Nasus con W al máximo (95% slow + AS reduction) puede hacer que un ADC se sienta como si estuviera rooteado.</p>`,
           en: `<p><strong>Soft CC</strong> limits you but doesn't completely stop you. You can keep attacking and using abilities.</p>
 <table>
   <tr><th>Type</th><th>What it does</th><th>Examples</th></tr>
@@ -630,7 +630,7 @@ export const FUNDAMENTALS = [
         title: { es: 'Tenacity — Como funciona', en: 'Tenacity — How it works' },
         content: {
           es: `<p><strong>Tenacity</strong> reduce la <strong>duracion del CC</strong> que recibis. Mas tenacity = el CC te dura menos tiempo.</p>
-<p><strong>Formula: Nueva duracion = Duracion original x (1 - Tenacity / 100)</strong></p>
+<p><strong>Fórmula: Nueva duracion = Duracion original x (1 - Tenacity / 100)</strong></p>
 <p><strong>Ejemplo:</strong> Un stun de 2 segundos con 30% de Tenacity (Mercury's Treads):</p>
 <p>2 x (1 - 0.30) = 2 x 0.70 = <strong>1.4 segundos</strong></p>
 <p><strong>Fuentes de Tenacity:</strong></p>
@@ -650,7 +650,7 @@ export const FUNDAMENTALS = [
 </ul>
 <p><strong>Tip practico:</strong> Si el equipo enemigo tiene MUCHO CC pero es mayormente knock-ups (ej: Malphite + Yasuo + Alistar), comprar Mercury's Treads es desperdicio porque la mayoria de su CC no se reduce con Tenacity. Mejor comprar Plated Steelcaps o botas de movilidad.</p>`,
           en: `<p><strong>Tenacity</strong> reduces the <strong>duration of CC</strong> you receive. More tenacity = CC lasts shorter on you.</p>
-<p><strong>Formula: New duration = Original duration x (1 - Tenacity / 100)</strong></p>
+<p><strong>Fórmula: New duration = Original duration x (1 - Tenacity / 100)</strong></p>
 <p><strong>Example:</strong> A 2 second stun with 30% Tenacity (Mercury's Treads):</p>
 <p>2 x (1 - 0.30) = 2 x 0.70 = <strong>1.4 seconds</strong></p>
 <p><strong>Sources of Tenacity:</strong></p>
@@ -700,7 +700,7 @@ export const FUNDAMENTALS = [
 <ul>
   <li><strong>Gangplank W (Remove Scurvy):</strong> Funciona como Cleanse para CC. Remueve TODO el CC excepto suppression y airborne.</li>
   <li><strong>Olaf R (Ragnarok):</strong> Se vuelve INMUNE a todo tipo de CC durante la duracion. Incluso knock-ups y suppression.</li>
-  <li><strong>Morgana E (Black Shield):</strong> Bloquea todo dano magico y TODO el CC mientras el escudo aguante.</li>
+  <li><strong>Morgana E (Black Shield):</strong> Bloquea todo daño mágico y TODO el CC mientras el escudo aguante.</li>
 </ul>`,
           en: `<p>There are three main ways to <strong>remove CC</strong> in the game, and each has different rules:</p>
 <table>
@@ -741,7 +741,7 @@ export const FUNDAMENTALS = [
 <ol>
   <li><strong>Pasiva (Staggering Blow):</strong> Su primer auto contra un enemigo los rootea por <strong>0.75-1.5 seg</strong> (escala con nivel). Tiene un cooldown por campeon.</li>
   <li><strong>Q (Dredge Line):</strong> Hook que <strong>stunnea</strong> brevemente al impactar (~0.1 seg pull + mini stun).</li>
-  <li><strong>E (Riptide):</strong> Onda de dano que <strong>slowea</strong> a todos los enemigos cercanos (30-50% slow).</li>
+  <li><strong>E (Riptide):</strong> Onda de daño que <strong>slowea</strong> a todos los enemigos cercanos (30-50% slow).</li>
   <li><strong>R (Depth Charge):</strong> Proyectil que persigue a un enemigo y lo <strong>knock-upea</strong> por <strong>1.0 seg</strong>. Ademas, knock-upea a cualquier enemigo en el camino.</li>
 </ol>
 <p><strong>La cadena optima de CC de Nautilus:</strong></p>
@@ -795,8 +795,8 @@ export const FUNDAMENTALS = [
         content: {
           es: `<p>Cada <strong>30 segundos</strong> (empezando en 1:05), una oleada de minions sale de cada nexo. Cada oleada contiene:</p>
 <ul>
-  <li><strong>3 minions melee (cuerpo a cuerpo):</strong> Mas HP (~480), menos dano. Son los que llegan primero.</li>
-  <li><strong>3 minions caster (rango):</strong> Menos HP (~320), mas dano. Atacan desde atras.</li>
+  <li><strong>3 minions melee (cuerpo a cuerpo):</strong> Mas HP (~480), menos daño. Son los que llegan primero.</li>
+  <li><strong>3 minions caster (rango):</strong> Menos HP (~320), mas daño. Atacan desde atras.</li>
   <li><strong>1 minion cannon (catapulta):</strong> Aparece cada 3 oleadas antes del minuto 15, cada 2 oleadas entre min 15-25, y CADA oleada despues del minuto 25. Tiene mucha HP (~900+) y da mas oro.</li>
 </ul>
 <p><strong>Cuanto vale cada minion:</strong></p>
@@ -877,19 +877,19 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Fast push (hard push)', en: 'Fast push (hard push)' },
         content: {
-          es: `<p>El <strong>fast push</strong> (o hard push) es matar la wave lo mas rapido posible para que tus minions lleguen rapidamente a la torre enemiga.</p>
+          es: `<p>El <strong>fast push</strong> (o hard push) es matar la wave lo mas rápido posible para que tus minions lleguen rapidamente a la torre enemiga.</p>
 <p><strong>Como hacerlo:</strong> Usa todas tus habilidades y autoataques para limpiar la wave. Un mago con una habilidad AoE puede limpiar los casters de un solo cast.</p>
 <p><strong>Cuando usar fast push:</strong></p>
 <ul>
-  <li><strong>Despues de una kill en lane:</strong> Si matas al enemigo, pusha la wave rapido bajo su torre. Los minions se pierden en la torre, el enemigo pierde oro y XP. Esto es como sacar una <strong>segunda kill</strong> en terminos de ventaja.</li>
-  <li><strong>Antes de roamear:</strong> Empuja la wave rapido y rota a otra lane o al rio. Tu laner rival tiene que elegir entre seguirte (pierde CS) o quedarse (no te puede igualar).</li>
-  <li><strong>Cuando necesitas recallear urgente:</strong> Empuja rapido, recall, compra, y volves. El timing importa: si recalleas con la wave en el medio del lane, perdes todo cuando la wave enemiga llega a tu torre y tu torre la mata antes de que vuelvas.</li>
+  <li><strong>Despues de una kill en lane:</strong> Si matas al enemigo, pusha la wave rápido bajo su torre. Los minions se pierden en la torre, el enemigo pierde oro y XP. Esto es como sacar una <strong>segunda kill</strong> en terminos de ventaja.</li>
+  <li><strong>Antes de roamear:</strong> Empuja la wave rápido y rota a otra lane o al rio. Tu laner rival tiene que elegir entre seguirte (pierde CS) o quedarse (no te puede igualar).</li>
+  <li><strong>Cuando necesitas recallear urgente:</strong> Empuja rápido, recall, compra, y volves. El timing importa: si recalleas con la wave en el medio del lane, perdes todo cuando la wave enemiga llega a tu torre y tu torre la mata antes de que vuelvas.</li>
   <li><strong>Para resetear la wave:</strong> Si la wave esta en una posicion desfavorable (ej: empujando lentamente hacia el enemigo), fast pushear bajo torre la resetea a neutral.</li>
 </ul>
 <p><strong>Diferencia clave con slow push:</strong></p>
 <ul>
   <li><strong>Slow push:</strong> Acumulas minions, la wave crece, presiona fuerte pero tarda.</li>
-  <li><strong>Fast push:</strong> La wave es chica (solo 1 oleada) pero llega rapido. Te da <strong>tempo</strong> (tiempo para hacer cosas en el mapa).</li>
+  <li><strong>Fast push:</strong> La wave es chica (solo 1 oleada) pero llega rápido. Te da <strong>tempo</strong> (tiempo para hacer cosas en el mapa).</li>
 </ul>`,
           en: `<p><strong>Fast push</strong> (or hard push) is killing the wave as quickly as possible so your minions reach the enemy tower fast.</p>
 <p><strong>How to do it:</strong> Use all your abilities and auto-attacks to clear the wave. A mage with an AoE ability can clear the casters in one cast.</p>
@@ -910,7 +910,7 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Freeze — Congela la wave', en: 'Freeze — Freeze the wave' },
         content: {
-          es: `<p>El <strong>freeze</strong> es mantener la wave <strong>justo afuera del rango de tu torre</strong> (a 2-3 Teemos de la torre, aprox). Queres que la wave enemiga tenga un poco mas de minions que la tuya, asi empuja lentamente hacia vos pero nunca llega a tu torre.</p>
+          es: `<p>El <strong>freeze</strong> es mantener la wave <strong>justo afuera del rango de tu torre</strong> (a 2-3 Teemos de la torre, aprox). Queres que la wave enemiga tenga un poco mas de minions que la tuya, así empuja lentamente hacia vos pero nunca llega a tu torre.</p>
 <p><strong>Como hacerlo:</strong></p>
 <ol>
   <li>Necesitas que haya <strong>~4 minions enemigos de mas</strong> que los tuyos en la wave.</li>
@@ -955,14 +955,14 @@ export const FUNDAMENTALS = [
         },
       },
       {
-        title: { es: 'Dano de minions (no los subestimes)', en: 'Minion damage (don\'t underestimate them)' },
+        title: { es: 'Daño de minions (no los subestimes)', en: 'Minion damage (don\'t underestimate them)' },
         content: {
-          es: `<p>Los minions hacen <strong>mucho dano en los primeros niveles</strong>. Esto es algo que muchos jugadores no respetan, especialmente en trades agresivos.</p>
-<p><strong>Dano de minions nivel 1:</strong></p>
+          es: `<p>Los minions hacen <strong>mucho daño en los primeros niveles</strong>. Esto es algo que muchos jugadores no respetan, especialmente en trades agresivos.</p>
+<p><strong>Daño de minions nivel 1:</strong></p>
 <ul>
-  <li>Cada <strong>caster minion</strong> hace ~23 dano por ataque, ataca cada 1.0 seg</li>
-  <li>Cada <strong>melee minion</strong> hace ~12 dano por ataque, ataca cada 1.0 seg</li>
-  <li>Una <strong>oleada completa (3 melee + 3 caster)</strong> atacandote = ~105 dano por segundo</li>
+  <li>Cada <strong>caster minion</strong> hace ~23 daño por ataque, ataca cada 1.0 seg</li>
+  <li>Cada <strong>melee minion</strong> hace ~12 daño por ataque, ataca cada 1.0 seg</li>
+  <li>Una <strong>oleada completa (3 melee + 3 caster)</strong> atacandote = ~105 daño por segundo</li>
 </ul>
 <p><strong>Escenario comun:</strong> Vos atacas al enemigo nivel 1 y los 6 minions enemigos te empiezan a pegar. En 2 segundos perdes <strong>~210 HP</strong> solo por los minions. Eso puede ser la diferencia entre ganar y perder un trade.</p>
 <p><strong>Cuando los minions te agrean:</strong></p>
@@ -971,7 +971,7 @@ export const FUNDAMENTALS = [
   <li>Las <strong>habilidades NO atraen agro</strong> de minions. Podes pegar habilidades al enemigo sin que los minions te persigan</li>
   <li>Para <strong>quitar el agro</strong>: metete en un bush o alejate lo suficiente para que los minions elijan otro objetivo</li>
 </ul>
-<p><strong>Tip critico:</strong> Si el enemigo tiene una wave grande (6+ minions) y vos tenes pocos, <strong>NO tradees</strong>. Perdes el trade por el dano de los minions, aunque tus habilidades hagan mas dano que las de el. Siempre fijate la <strong>ventaja de minions</strong> antes de tradear.</p>`,
+<p><strong>Tip crítico:</strong> Si el enemigo tiene una wave grande (6+ minions) y vos tenes pocos, <strong>NO tradees</strong>. Perdes el trade por el daño de los minions, aunque tus habilidades hagan mas daño que las de el. Siempre fijate la <strong>ventaja de minions</strong> antes de tradear.</p>`,
           en: `<p>Minions deal <strong>a lot of damage in the early levels</strong>. This is something many players don't respect, especially during aggressive trades.</p>
 <p><strong>Level 1 minion damage:</strong></p>
 <ul>
@@ -1007,7 +1007,7 @@ export const FUNDAMENTALS = [
 <p><strong>Caracteristicas:</strong></p>
 <ul>
   <li><strong>Duracion:</strong> 90-120 segundos (dependiendo del nivel)</li>
-  <li><strong>Cargas:</strong> 2 cargas maximo del trinket (se recargan cada 90-120 seg)</li>
+  <li><strong>Cargas:</strong> 2 cargas máximo del trinket (se recargan cada 90-120 seg)</li>
   <li><strong>Invisibles:</strong> Solo se ven con Control Wards, Oracle Lens (trinket rojo), u habilidades que revelen (ej: Twisted Fate R)</li>
   <li><strong>Vida:</strong> 3 golpes para destruirlas (dan ~10g)</li>
   <li><strong>Rango de vision:</strong> ~900 unidades (bastante amplio)</li>
@@ -1015,7 +1015,7 @@ export const FUNDAMENTALS = [
 </ul>
 <p><strong>Dato importante:</strong> Los supports que compran un item de soporte reciben <strong>Stealth Wards extra</strong> al completar la mision del item (matar minions con el item o pokeando). Esto les da 4 cargas de ward en vez de 2, y las wards duran mas.</p>`,
           en: `<p><strong>Stealth Wards</strong> are <strong>invisible</strong> wards that provide vision of an area.</p>
-<p><strong>Characteristics:</strong></p>
+<p><strong>Charácteristics:</strong></p>
 <ul>
   <li><strong>Duration:</strong> 90-120 seconds (depending on level)</li>
   <li><strong>Charges:</strong> 2 max trinket charges (recharge every 90-120 sec)</li>
@@ -1072,7 +1072,7 @@ export const FUNDAMENTALS = [
           es: `<p>Los mejores spots de ward dependen de tu <strong>situacion en el juego</strong>:</p>
 <p><strong>Fase de linea — Proteccion de ganks:</strong></p>
 <ul>
-  <li><strong>River brush (arbusto del rio):</strong> El spot mas basico. Cubre la ruta principal de ganks del jungler.</li>
+  <li><strong>River brush (arbusto del rio):</strong> El spot mas básico. Cubre la ruta principal de ganks del jungler.</li>
   <li><strong>Pixel brush:</strong> El arbustito chiquito en el rio entre mid y bot/top. Da vision de roams y del jungler pasando.</li>
   <li><strong>Tri-bush:</strong> El arbusto triangular. Si estas en lado azul bot lane, el tri-bush de TU lado es crucial. Si estas en lado rojo, wardea el river en su lugar.</li>
   <li><strong>Entrada a la jungla enemiga:</strong> Si estas ganando lane, wardear la entrada a los raptores o lobos enemigos te da info del jungler enemigo sin necesidad de que este en el rio.</li>
@@ -1187,7 +1187,7 @@ export const FUNDAMENTALS = [
 </ul>
 <p><strong>Oro por destruir torres:</strong></p>
 <ul>
-  <li>Torre exterior: 250g (repartido) + 150g al que da el ultimo golpe</li>
+  <li>Torre exterior: 250g (repartido) + 150g al que da el último golpe</li>
   <li>Torre interior: 300g (repartido) + 150g</li>
   <li>Torre de inhibidor: 50g (repartido) + 50g</li>
   <li>First Blood tower (primera torre del juego): +150g bonus</li>
@@ -1231,12 +1231,12 @@ export const FUNDAMENTALS = [
 <p><strong>Tipos de Dragon y sus buffs:</strong></p>
 <table>
   <tr><th>Dragon</th><th>Buff por dragon</th><th>Alma (4to dragon)</th></tr>
-  <tr><td><strong>Infernal</strong></td><td>+4% AD y AP</td><td>Cada cierto tiempo, tu proximo ataque/habilidad explota en area</td></tr>
+  <tr><td><strong>Infernal</strong></td><td>+4% AD y AP</td><td>Cada cierto tiempo, tu próximo ataque/habilidad explota en area</td></tr>
   <tr><td><strong>Mountain</strong></td><td>+6% Armor y MR</td><td>Obtenes un escudo que se regenera fuera de combate</td></tr>
-  <tr><td><strong>Ocean</strong></td><td>Regeneracion de HP (% HP faltante)</td><td>Dano que haces cura un % de tu HP</td></tr>
+  <tr><td><strong>Ocean</strong></td><td>Regeneracion de HP (% HP faltante)</td><td>Daño que haces cura un % de tu HP</td></tr>
   <tr><td><strong>Hextech</strong></td><td>+5% AS y Ability Haste</td><td>Tus ataques y habilidades aplican un chain lightning</td></tr>
   <tr><td><strong>Cloud</strong></td><td>+3.5% Move Speed</td><td>Despues de usar tu ult, ganas MS y slow resistance</td></tr>
-  <tr><td><strong>Chemtech</strong></td><td>+5% Tenacity y Healing/Shielding power</td><td>Al llegar a bajos HP, ganas un burst de tenacity y dano</td></tr>
+  <tr><td><strong>Chemtech</strong></td><td>+5% Tenacity y Healing/Shielding power</td><td>Al llegar a bajos HP, ganas un burst de tenacity y daño</td></tr>
 </table>
 <p><strong>Dragon Soul:</strong> El equipo que mata al <strong>4to dragon</strong> obtiene el <strong>Dragon Soul</strong>, un buff permanente y MUY poderoso basado en el tipo de dragon dominante. El dragon soul puede definir el juego.</p>
 <p><strong>Elder Dragon:</strong></p>
@@ -1277,7 +1277,7 @@ export const FUNDAMENTALS = [
   <li>Aparece a las <strong>14:00</strong> en el pit de baron</li>
   <li>Segundo heraldo aparece a las <strong>19:45</strong></li>
   <li>Al matarlo, deja un <strong>ojo</strong> que podes recoger. Usalo para invocarlo y que cargue contra una torre.</li>
-  <li>Dano a la torre: saca <strong>2-3 placas</strong> (o ~40% de HP de una torre sin placas). Mas dano si carga directamente.</li>
+  <li>Daño a la torre: saca <strong>2-3 placas</strong> (o ~40% de HP de una torre sin placas). Mas daño si carga directamente.</li>
   <li><strong>Tip:</strong> Si el heraldo carga contra una placa, espera a que la placa caiga ANTES de atacar la torre vos. Asi la armadura de Bulwark no se aplica todavia.</li>
   <li><strong>Herald vs Dragon:</strong> Si solo podes tomar uno, generalmente el <strong>Herald es mejor en early game</strong> porque da mas oro inmediato (placas), pero si el dragon es Infernal, puede valer mas.</li>
 </ul>
@@ -1288,7 +1288,7 @@ export const FUNDAMENTALS = [
   <li><strong>Baron buff:</strong> Dura 3 minutos. Da:
     <ul>
       <li><strong>Empowered Recall:</strong> Tu recall tarda solo 4 segundos (en vez de 8)</li>
-      <li><strong>Buff a minions cercanos:</strong> Los minions ganan mas HP, dano, velocidad, y rango. Esto es como tener super minions en TODAS las lanes.</li>
+      <li><strong>Buff a minions cercanos:</strong> Los minions ganan mas HP, daño, velocidad, y rango. Esto es como tener super minions en TODAS las lanes.</li>
       <li>Bonus AD y AP a tu campeon</li>
     </ul>
   </li>
@@ -1340,7 +1340,7 @@ export const FUNDAMENTALS = [
           es: `<p>Los <strong>inhibidores</strong> son las estructuras que estan despues de las torres de inhibidor (la 3ra torre de cada lane).</p>
 <ul>
   <li>Cuando destruis un inhibidor, la lane correspondiente empieza a spawnear <strong>super minions</strong></li>
-  <li>Los super minions son MUY fuertes: tienen ~4000 HP, hacen mucho dano, y tienen mucha armadura/MR</li>
+  <li>Los super minions son MUY fuertes: tienen ~4000 HP, hacen mucho daño, y tienen mucha armadura/MR</li>
   <li>El inhibidor <strong>respawnea despues de 5 minutos</strong>. Cuando respawnea, los super minions dejan de aparecer</li>
   <li>Los inhibidores <strong>NO dan oro</strong> al destruirlos</li>
 </ul>
@@ -1351,7 +1351,7 @@ export const FUNDAMENTALS = [
   <li>Eso significa que el equipo enemigo pelea 4v5 en cualquier otro lugar del mapa.</li>
   <li>Podes usar esta presion para tomar Baron, el otro inhibidor, o forzar una pelea 5v4.</li>
 </ul>
-<p><strong>Si destruis los 3 inhibidores:</strong> Las 3 lanes spawnean super minions. El enemigo esta practicamente atrapado en la base. En este punto, ir al nexo es cuestion de tiempo.</p>
+<p><strong>Si destruis los 3 inhibidores:</strong> Las 3 lanes spawnean super minions. El enemigo esta prácticamente atrapado en la base. En este punto, ir al nexo es cuestion de tiempo.</p>
 <p><strong>Tip:</strong> No siempre hay que ir directamente al nexo despues de destruir un inhibidor. A veces es mejor <strong>retirarse, tomar Baron, y despues volver con Baron buff + super minions</strong>. Esa combinacion es imparable.</p>`,
           en: `<p><strong>Inhibitors</strong> are the structures after the inhibitor towers (the 3rd tower in each lane).</p>
 <ul>
@@ -1367,7 +1367,7 @@ export const FUNDAMENTALS = [
   <li>That means the enemy team fights 4v5 anywhere else on the map.</li>
   <li>You can use this pressure to take Baron, the other inhibitor, or force a 5v4 fight.</li>
 </ul>
-<p><strong>If you destroy all 3 inhibitors:</strong> All 3 lanes spawn super minions. The enemy is practically trapped in base. At this point, getting to the nexus is just a matter of time.</p>
+<p><strong>If you destroy all 3 inhibitors:</strong> All 3 lanes spawn super minions. The enemy is práctically trapped in base. At this point, getting to the nexus is just a matter of time.</p>
 <p><strong>Tip:</strong> You don't always have to go straight for the nexus after destroying an inhibitor. Sometimes it's better to <strong>back off, take Baron, and then come back with Baron buff + super minions</strong>. That combination is unstoppable.</p>`,
         },
       },
@@ -1389,7 +1389,7 @@ export const FUNDAMENTALS = [
 <p><strong>Prioridades:</strong></p>
 <ol>
   <li><strong>CS (Creep Score):</strong> Cada minion que matas te da oro. Apuntar a 7-8 CS/min en elos bajos, 9-10 CS/min en elos altos.</li>
-  <li><strong>Trading:</strong> Dano al enemigo para hacerle gastar pociones o sacarlo del lane. Tradear cuando tenes ventaja de minions.</li>
+  <li><strong>Trading:</strong> Daño al enemigo para hacerle gastar pociones o sacarlo del lane. Tradear cuando tenes ventaja de minions.</li>
   <li><strong>No morir:</strong> Cada muerte le da al rival 300g + XP + tempo. Morir es LO PEOR que podes hacer.</li>
   <li><strong>Vision:</strong> Wardear para no ser gankeado.</li>
 </ol>
@@ -1439,7 +1439,7 @@ export const FUNDAMENTALS = [
           es: `<p>El mid game empieza cuando las <strong>placas caen a las 14:00</strong>. Las lanes se abren, los jugadores empiezan a rotar, y el foco cambia a <strong>objetivos y teamfights</strong>.</p>
 <p><strong>Que cambia:</strong></p>
 <ul>
-  <li>Ya no hay placas, asi que sacar torres es menos lucrativo pero sigue siendo importante</li>
+  <li>Ya no hay placas, así que sacar torres es menos lucrativo pero sigue siendo importante</li>
   <li>Los bot laners (ADC + Support) generalmente rotan a mid despues de sacar torre bot</li>
   <li>Los junglers tienen que elegir entre farmear y estar presente para objetivos</li>
   <li>Las peleas alrededor de Dragon y Baron empiezan a definir el juego</li>
@@ -1489,7 +1489,7 @@ export const FUNDAMENTALS = [
 <p><strong>Que cambia en el late game:</strong></p>
 <ul>
   <li><strong>Death timers:</strong> Morir a las 30+ minutos = 45-60 seg muerto. Eso es tiempo suficiente para que el enemigo tome Baron, inhib, y posiblemente el nexo.</li>
-  <li><strong>Full build:</strong> Los carries tienen 5-6 items. El dano es ENORME. Un ADC full build puede matar a un tanque en 4-5 segundos.</li>
+  <li><strong>Full build:</strong> Los carries tienen 5-6 items. El daño es ENORME. Un ADC full build puede matar a un tanque en 4-5 segundos.</li>
   <li><strong>Una pelea decide todo:</strong> Si ganas una teamfight 5v5 a las 35 minutos con Baron, probablemente ganaste la partida.</li>
 </ul>
 <p><strong>Como jugar el late game:</strong></p>
@@ -1507,7 +1507,7 @@ export const FUNDAMENTALS = [
 </ul>
 <p><strong>Para support en late game:</strong></p>
 <ul>
-  <li>Tu trabajo es mantener vivo al carry. Si sos tank, parate delante y absorbe dano. Si sos enchanter, quédate atras y curá/escuda.</li>
+  <li>Tu trabajo es mantener vivo al carry. Si sos tank, parate delante y absorbe daño. Si sos enchanter, quédate atras y curá/escuda.</li>
   <li>Tener una control ward en todo momento. La vision en late game vale mas que cualquier item.</li>
   <li>Si tenes Mikael's, QSS activo, o Zhonya's, usalo en el momento correcto. Un Mikael's que salva al ADC de un stun puede ganar la pelea.</li>
 </ul>`,
@@ -1573,8 +1573,8 @@ export const FUNDAMENTALS = [
   <li><strong>Kill normal:</strong> 300g</li>
   <li><strong>First Blood (primera kill del juego):</strong> 400g</li>
   <li><strong>Assist:</strong> 150g</li>
-  <li><strong>Killing Spree (racha):</strong> El valor de la kill AUMENTA: 300 → 450 → 600 → 700 → 800 → 900 → 1000g (maximo)</li>
-  <li><strong>Feeder (muchas muertes seguidas):</strong> El valor de la kill BAJA: 300 → 274 → 220 → 176 → 140 → 112g (minimo)</li>
+  <li><strong>Killing Spree (racha):</strong> El valor de la kill AUMENTA: 300 → 450 → 600 → 700 → 800 → 900 → 1000g (máximo)</li>
+  <li><strong>Feeder (muchas muertes seguidas):</strong> El valor de la kill BAJA: 300 → 274 → 220 → 176 → 140 → 112g (mínimo)</li>
 </ul>
 <p><strong>Dato clave: 10 CS = 1 kill (~300g)</strong></p>
 <p>Si perdes 10 minions es como si le hubieras dado una kill gratis al enemigo. Si farmeas 10 CS mas que tu rival, ya tenes ventaja de una kill en oro. Por eso el CS importa TANTO.</p>`,
@@ -1619,7 +1619,7 @@ export const FUNDAMENTALS = [
   <tr><td>6 kills</td><td>+600g</td><td>900g</td></tr>
   <tr><td>7+ kills</td><td>+700g</td><td>1000g (max)</td></tr>
 </table>
-<p><strong>Nota:</strong> Las bounties tambien se acumulan por <strong>CS alto relativo al promedio del juego</strong>. Un jugador puede tener bounty sin haber matado a nadie, simplemente por farmear mucho.</p>
+<p><strong>Nota:</strong> Las bounties también se acumulan por <strong>CS alto relativo al promedio del juego</strong>. Un jugador puede tener bounty sin haber matado a nadie, simplemente por farmear mucho.</p>
 <p><strong>Objective Bounties (recompensas de objetivos):</strong></p>
 <p>Cuando un equipo esta perdiendo, se activan <strong>bounties en los objetivos</strong> para ayudar al equipo que va perdiendo a recuperarse:</p>
 <ul>
@@ -1655,7 +1655,7 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Eficiencia de oro (Gold efficiency)', en: 'Gold efficiency' },
         content: {
-          es: `<p>La <strong>eficiencia de oro</strong> es una forma de evaluar si un item vale lo que cuesta. Se compara el valor de las stats del item contra los items basicos mas baratos.</p>
+          es: `<p>La <strong>eficiencia de oro</strong> es una forma de evaluar si un item vale lo que cuesta. Se compara el valor de las stats del item contra los items básicos mas baratos.</p>
 <p><strong>Valores de referencia (cuanto cuesta cada stat):</strong></p>
 <table>
   <tr><th>Stat</th><th>Oro por unidad</th><th>Item de referencia</th></tr>
@@ -1672,7 +1672,7 @@ export const FUNDAMENTALS = [
 <ul>
   <li>Un item es <strong>100% gold efficient</strong> si el valor de sus stats en oro es igual a su costo</li>
   <li>Un item es <strong>>100% gold efficient</strong> si el valor de sus stats supera su costo (buen deal)</li>
-  <li>La mayoria de los items completos son >100% eficientes porque ademas dan un <strong>pasivo o activo</strong> que no se cuenta en el calculo</li>
+  <li>La mayoria de los items completos son >100% eficientes porque además dan un <strong>pasivo o activo</strong> que no se cuenta en el cálculo</li>
 </ul>
 <p><strong>Ejemplo:</strong> Infinity Edge cuesta 3400g y da 70 AD + 25% Crit. El valor en oro de las stats:</p>
 <ul>
@@ -1723,11 +1723,11 @@ export const FUNDAMENTALS = [
       {
         title: { es: 'Posicionamiento por rol', en: 'Positioning by role' },
         content: {
-          es: `<p>El posicionamiento en teamfights es <strong>la diferencia mas grande entre elos bajos y altos</strong>. Cada rol tiene un lugar especifico:</p>
+          es: `<p>El posicionamiento en teamfights es <strong>la diferencia mas grande entre elos bajos y altos</strong>. Cada rol tiene un lugar específico:</p>
 <p><strong>Frontline (Tanques/Bruisers): Sett, Malphite, Nautilus, Leona</strong></p>
 <ul>
   <li>Parate <strong>al frente del equipo</strong>, entre el enemigo y tus carries</li>
-  <li>Tu trabajo: <strong>absorber dano, CC a los carries enemigos, crear espacio</strong></li>
+  <li>Tu trabajo: <strong>absorber daño, CC a los carries enemigos, crear espacio</strong></li>
   <li>Buscar engages: Flash + R de Malphite, Hook de Nautilus, R de Sett</li>
   <li>Si no hay un buen engage, <strong>pelea al lado de tu carry y protegelo</strong> (peel)</li>
 </ul>
@@ -1736,7 +1736,7 @@ export const FUNDAMENTALS = [
   <li>Parate <strong>DETRAS de tus tanques</strong>. Nunca al frente.</li>
   <li>Tu trabajo: <strong>atacar al enemigo MAS CERCANO que sea seguro de atacar</strong></li>
   <li><strong>NO corras hacia el carry enemigo.</strong> Si tenes que caminar a traves del equipo enemigo para pegarle al ADC, estas MAL posicionado y te van a matar.</li>
-  <li>Ataca al tanque si es lo unico que podes pegar sin arriesgarte. Un ADC full build mata tanques en 4-5 seg. No es desperdicio.</li>
+  <li>Ataca al tanque si es lo único que podes pegar sin arriesgarte. Un ADC full build mata tanques en 4-5 seg. No es desperdicio.</li>
 </ul>
 <p><strong>Asesinos: Zed, Talon, Kha'Zix, Evelynn</strong></p>
 <ul>
@@ -1795,14 +1795,14 @@ export const FUNDAMENTALS = [
 <p><strong>Excepciones (cuando SI enfocas al carry):</strong></p>
 <ul>
   <li>Si sos un <strong>asesino</strong> (Zed, Talon, Kha'Zix): tu trabajo literal es matar al carry. Pero flanquea, no vayas de frente.</li>
-  <li>Si el carry enemigo <strong>esta fuera de posicion</strong> (adelante de su equipo sin proteccion): matalo rapido y la pelea es 5v4.</li>
+  <li>Si el carry enemigo <strong>esta fuera de posicion</strong> (adelante de su equipo sin proteccion): matalo rápido y la pelea es 5v4.</li>
   <li>Si tenes una habilidad de <strong>acceso directo</strong> al carry (Vi R, Malphite R, Camille R): podes ir directo porque tu kit lo permite.</li>
 </ul>
 <p><strong>Prioridad de amenaza real:</strong></p>
 <ol>
   <li><strong>Quien te esta pegando a vos AHORA.</strong> Si alguien te ataca, esa es tu prioridad.</li>
   <li><strong>Quien puede matar a tu carry.</strong> Si un Rengar salta a tu ADC, ignorar todo y pelear al Rengar.</li>
-  <li><strong>Quien esta haciendo mas dano.</strong> Si el enemigo tiene un Jinx 10/0, es prioridad si podes llegar a ella seguramente.</li>
+  <li><strong>Quien esta haciendo mas daño.</strong> Si el enemigo tiene un Jinx 10/0, es prioridad si podes llegar a ella seguramente.</li>
   <li><strong>Quien esta mas facil de matar.</strong> Si un mago enemigo esta a 50% HP sin Zhonya's, es un target facil.</li>
 </ol>
 <p><strong>El error mas comun:</strong> El ADC que corre a traves de 3 enemigos para pegarle al ADC enemigo. Muere instantaneamente. La solucion: <strong>ataca al que tengas adelante</strong>, y si tus tanques crean espacio, avanzá gradualmente.</p>`,
@@ -1847,7 +1847,7 @@ export const FUNDAMENTALS = [
 <ul>
   <li><strong>Desventaja numerica:</strong> Si son 4v5, no peleés. Retrocede, espera que tu companero respawnee/vuelva.</li>
   <li><strong>Sin vision:</strong> Si no sabes donde estan todos los enemigos, pueden estar en un bush esperando emboscarte.</li>
-  <li><strong>Tu ADC/carry no esta:</strong> Si tu fuente principal de dano esta en base comprando, no fuerces peleas.</li>
+  <li><strong>Tu ADC/carry no esta:</strong> Si tu fuente principal de daño esta en base comprando, no fuerces peleas.</li>
   <li><strong>Ults importantes en CD:</strong> Si tu Amumu no tiene R, tu engage es debil. Espera.</li>
   <li><strong>Bajo HP/mana:</strong> Si medio equipo esta a 50% HP, retrocede, cura, y volve con full HP.</li>
   <li><strong>Enemigo tiene Baron/Elder:</strong> Si el enemigo tiene Baron buff o Elder, evita peleas. Defiende bajo torre y espera que el buff se termine.</li>
@@ -1883,11 +1883,11 @@ export const FUNDAMENTALS = [
 <ol>
   <li>Mirá las composiciones. Si tu equipo tiene un Jinx (hypercarry late game) y un Lulu (enchanter), la win condition es <strong>proteger a Jinx y llegar al late game</strong>.</li>
   <li>Mirá quien esta fed. Si tu top Darius esta 4/0, la win condition puede ser <strong>jugar alrededor de Darius y dejarlo 1v5 en teamfights</strong>.</li>
-  <li>Mirá los power spikes. Si tu equipo tiene un Renekton (fuerte early) y un Lee Sin (fuerte early), la win condition es <strong>ganar early y cerrar rapido antes de que el enemigo escale</strong>.</li>
+  <li>Mirá los power spikes. Si tu equipo tiene un Renekton (fuerte early) y un Lee Sin (fuerte early), la win condition es <strong>ganar early y cerrar rápido antes de que el enemigo escale</strong>.</li>
 </ol>
 <p><strong>Ejemplos de win conditions:</strong></p>
 <ul>
-  <li><strong>"Protect the carry":</strong> Tu Kog'Maw/Jinx/Vayne es la unica fuente de dano. Todo el equipo juega alrededor de protegerlo. El jungler y support hacen peel, no engage.</li>
+  <li><strong>"Protect the carry":</strong> Tu Kog'Maw/Jinx/Vayne es la unica fuente de daño. Todo el equipo juega alrededor de protegerlo. El jungler y support hacen peel, no engage.</li>
   <li><strong>"Splitpush":</strong> Tu top laner (Fiora, Jax, Tryndamere) gana 1v1 contra cualquiera. El plan es: el splitpusher empuja una side lane, el equipo presiona otro lado, el enemigo no puede cubrir ambos.</li>
   <li><strong>"Engage y burst":</strong> Tu equipo tiene Malphite + Orianna + Miss Fortune. La win condition es un engage de Malphite, Orianna pone la bola en el, y R combo. Si pegás R en 3+ enemigos, ganas la pelea.</li>
   <li><strong>"Poke y siege":</strong> Tu equipo tiene Jayce, Lux, Ezreal. No peleés 5v5 de frente. Pokeen de lejos, bajen HP al enemigo, y despues enganchen cuando esten bajos.</li>
