@@ -1,8 +1,9 @@
 import { getDDragonChampionDetail, getVersion, getItems } from '../data/data-service.js'
-import { CHAMPION_IMG, CHAMPION_LOADING, SPELL_IMG, PASSIVE_IMG, ITEM_IMG, ROLES, STAT_COLORS } from '../data/constants.js'
+import { CHAMPION_IMG, SPELL_IMG, PASSIVE_IMG, ITEM_IMG, ROLES, STAT_COLORS } from '../data/constants.js'
 import { t, getLang } from '../data/i18n.js'
 import { el, append, clear, spinner, statAtLevel, formatStat } from '../utilities/utilities.js'
 import { openModal } from '../app.js'
+import { openItemPicker } from '../matchup/item-picker.js'
 
 export async function openChampionModal(champ, version) {
   openModal((content) => {
@@ -26,71 +27,63 @@ const ARCHETYPE_BUILDS = {
   Marksman: [
     {
       name: { es: 'ADC Critico', en: 'Crit ADC' },
-      items: ['Infinity Edge', 'Phantom Dancer', 'Bloodthirster', "Lord Dominik's Regards", 'Guardian Angel', "Berserker's Greaves"]
+      items: ['3031', '3094', '3085', '3072', '3036', '3006']
     },
     {
       name: { es: 'On-Hit', en: 'On-Hit' },
-      items: ['Blade of the Ruined King', "Guinsoo's Rageblade", "Wit's End", "Runaan's Hurricane", 'Guardian Angel', "Berserker's Greaves"]
+      items: ['3153', '3124', '3091', '3085', '3026', '3006']
     }
   ],
   Mage: [
     {
       name: { es: 'Burst', en: 'Burst' },
-      items: ["Luden's Tempest", 'Shadowflame', "Rabadon's Deathcap", 'Void Staff', "Zhonya's Hourglass", "Sorcerer's Shoes"]
+      items: ['3020', '4645', '3089', '3135', '3157', '3165']
     },
     {
-      name: { es: 'Utilidad', en: 'Utility' },
-      items: ['Rod of Ages', "Archangel's Staff", "Zhonya's Hourglass", "Banshee's Veil", "Rabadon's Deathcap", "Sorcerer's Shoes"]
+      name: { es: 'AP Asesino', en: 'AP Assassin' },
+      items: ['3152', '4645', '3089', '3157', '3135', '3020']
     }
   ],
   Assassin: [
     {
       name: { es: 'Letalidad', en: 'Lethality' },
-      items: ["Youmuu's Ghostblade", 'Edge of Night', "Serpent's Fang", 'Opportunity', 'Guardian Angel', 'Boots of Lucidity']
+      items: ['3142', '3814', '6701', '3071', '3026', '3158']
+    },
+    {
+      name: { es: 'AP Asesino', en: 'AP Assassin' },
+      items: ['3152', '4645', '3089', '3157', '3135', '3020']
     }
   ],
   Tank: [
     {
       name: { es: 'Full Tanque', en: 'Full Tank' },
-      items: ['Heartsteel', "Jak'Sho", 'Thornmail', 'Force of Nature', "Warmog's Armor", 'Plated Steelcaps']
+      items: ['6665', '3075', '3143', '3065', '3742', '3047']
     },
     {
-      name: { es: 'Engage', en: 'Engage' },
-      items: ['Sunfire Aegis', 'Thornmail', "Randuin's Omen", 'Spirit Visage', 'Gargoyle Stoneplate', "Mercury's Treads"]
+      name: { es: 'Bruiser Tanque', en: 'Tank Bruiser' },
+      items: ['3078', '3075', '3143', '3065', '3742', '3047']
     }
   ],
   Fighter: [
     {
       name: { es: 'Bruiser', en: 'Bruiser' },
-      items: ['Trinity Force', "Sterak's Gage", "Dead Man's Plate", 'Spirit Visage', 'Guardian Angel', 'Plated Steelcaps']
+      items: ['3078', '3053', '3742', '3065', '3026', '3047']
     },
     {
-      name: { es: 'Daño', en: 'Damage' },
-      items: ['Black Cleaver', "Death's Dance", 'Maw of Malmortius', "Sterak's Gage", 'Guardian Angel', 'Plated Steelcaps']
+      name: { es: 'AP Fighter', en: 'AP Fighter' },
+      items: ['3152', '3116', '3089', '3157', '3065', '3020']
     }
   ],
   Support: [
     {
       name: { es: 'Encantador', en: 'Enchanter' },
-      items: ['Moonstone Renewer', 'Ardent Censer', 'Staff of Flowing Water', 'Redemption', "Mikael's Blessing", 'Boots of Lucidity']
+      items: ['3504', '3107', '3222', '3011', '3158']
     },
     {
       name: { es: 'Tanque Soporte', en: 'Tank Support' },
-      items: ['Locket of the Iron Solari', "Knight's Vow", "Zeke's Convergence", 'Redemption', 'Wardstone', 'Boots of Lucidity']
+      items: ['3109', '3107', '3190', '3047']
     }
   ]
-}
-
-function findItemByName(name, itemsMap) {
-  const lower = name.toLowerCase()
-  for (const item of Object.values(itemsMap)) {
-    if ((item.name || '').toLowerCase() === lower) return item
-  }
-  // Partial match fallback
-  for (const item of Object.values(itemsMap)) {
-    if ((item.name || '').toLowerCase().includes(lower)) return item
-  }
-  return null
 }
 
 function getRecommendedBuilds(champion, itemsMap, lang) {
@@ -108,8 +101,8 @@ function getRecommendedBuilds(champion, itemsMap, lang) {
 
       const resolvedItems = []
       let totalGold = 0
-      for (const itemName of arch.items) {
-        const found = findItemByName(itemName, itemsMap)
+      for (const itemId of arch.items) {
+        const found = itemsMap[itemId]
         if (found) {
           resolvedItems.push(found)
           totalGold += found.shop?.prices?.total || 0
@@ -143,7 +136,7 @@ function renderModal(content, champ, version, dd) {
 
   // Tabs
   const tabsContainer = el('div', { cls: 'modal-tabs' })
-  const tabNames = [t('modalAbilities'), t('modalStats'), t('modalBuilds'), t('modalSkins')]
+  const tabNames = [t('modalAbilities'), t('modalStats'), t('modalBuilds')]
   if (dd?.lore) tabNames.push(t('modalAbout'))
 
   const tabContents = {}
@@ -172,9 +165,8 @@ function renderModal(content, champ, version, dd) {
 
     if (name === t('modalAbout')) renderAbout(div, dd)
     else if (name === t('modalAbilities')) renderAbilities(div, dd, version)
-    else if (name === t('modalStats')) renderStats(div, dd)
+    else if (name === t('modalStats')) renderStats(div, dd, version)
     else if (name === t('modalBuilds')) renderBuilds(div, champ, version)
-    else if (name === t('modalSkins')) renderSkins(div, dd, champ)
 
     append(content, div)
   })
@@ -304,7 +296,7 @@ function cleanTooltip(html, spell) {
   return text
 }
 
-function renderStats(container, dd) {
+function renderStats(container, dd, version) {
   const stats = dd?.stats
   if (!stats) {
     append(container, el('div', { cls: 'empty-state', text: t('statsNA') }))
@@ -324,52 +316,147 @@ function renderStats(container, dd) {
   const statsContainer = el('div')
   append(container, statsContainer)
 
+  // Item builder section
+  const itemsSection = el('div', { cls: 'stats-items-section' })
+  append(itemsSection, el('h3', { cls: 'stats-items-title', text: 'Items' }))
+  const itemSlotsContainer = el('div', { cls: 'stats-item-slots' })
+  append(itemsSection, itemSlotsContainer)
+  append(container, itemsSection)
+
+  const selectedItems = [null, null, null, null, null, null]
+  let currentVersion = version
+
+  // Load version if not provided
+  if (!currentVersion) {
+    getVersion().then(v => { currentVersion = v })
+  }
+
   const statConfig = [
-    { key: 'hp', perLvl: 'hpperlevel', label: t('statHealth'), max: 3000, color: STAT_COLORS.health },
-    { key: 'mp', perLvl: 'mpperlevel', label: t('statMana'), max: 2000, color: STAT_COLORS.mana },
-    { key: 'attackdamage', perLvl: 'attackdamageperlevel', label: t('statAD'), max: 180, color: STAT_COLORS.attackDamage },
-    { key: 'armor', perLvl: 'armorperlevel', label: t('statArmor'), max: 150, color: STAT_COLORS.armor },
-    { key: 'spellblock', perLvl: 'spellblockperlevel', label: t('statMR'), max: 100, color: STAT_COLORS.magicResistance },
-    { key: 'attackspeed', perLvl: 'attackspeedperlevel', label: t('statAS'), max: 1.2, color: STAT_COLORS.attackSpeed, isAS: true },
-    { key: 'movespeed', perLvl: null, label: t('statMS'), max: 400, color: STAT_COLORS.movespeed },
-    { key: 'attackrange', perLvl: null, label: t('statRange'), max: 650, color: STAT_COLORS.attackRange },
+    { key: 'hp', perLvl: 'hpperlevel', label: t('statHealth'), max: 3000, color: STAT_COLORS.health, itemStat: 'health' },
+    { key: 'mp', perLvl: 'mpperlevel', label: t('statMana'), max: 2000, color: STAT_COLORS.mana, itemStat: 'mana' },
+    { key: 'attackdamage', perLvl: 'attackdamageperlevel', label: t('statAD'), max: 180, color: STAT_COLORS.attackDamage, itemStat: 'attackDamage' },
+    { key: 'armor', perLvl: 'armorperlevel', label: t('statArmor'), max: 150, color: STAT_COLORS.armor, itemStat: 'armor' },
+    { key: 'spellblock', perLvl: 'spellblockperlevel', label: t('statMR'), max: 100, color: STAT_COLORS.magicResistance, itemStat: 'magicResistance' },
+    { key: 'attackspeed', perLvl: 'attackspeedperlevel', label: t('statAS'), max: 1.2, color: STAT_COLORS.attackSpeed, isAS: true, itemStat: 'attackSpeed' },
+    { key: 'movespeed', perLvl: null, label: t('statMS'), max: 400, color: STAT_COLORS.movespeed, itemStat: 'movespeed' },
+    { key: 'attackrange', perLvl: null, label: t('statRange'), max: 650, color: STAT_COLORS.attackRange, itemStat: null },
   ]
+
+  function getItemBonuses() {
+    const bonuses = {}
+    for (const item of selectedItems) {
+      if (!item?.stats) continue
+      for (const [statKey, val] of Object.entries(item.stats)) {
+        if (val) bonuses[statKey] = (bonuses[statKey] || 0) + val
+      }
+    }
+    return bonuses
+  }
 
   function updateStats() {
     const level = parseInt(slider.value)
     display.textContent = level
     clear(statsContainer)
 
-    statConfig.forEach(({ key, perLvl, label, max, color, isAS }) => {
+    const itemBonuses = getItemBonuses()
+
+    statConfig.forEach(({ key, perLvl, label, max, color, isAS, itemStat }) => {
       const base = stats[key]
       if (base === undefined) return
 
-      let value
+      let baseValue
       if (!perLvl) {
-        value = base
+        baseValue = base
       } else if (isAS) {
         const bonusPercent = stats[perLvl] || 0
         const growthFactor = (level - 1) * (0.7025 + 0.0175 * (level - 1))
-        value = base * (1 + (bonusPercent / 100) * growthFactor)
+        baseValue = base * (1 + (bonusPercent / 100) * growthFactor)
       } else {
-        value = statAtLevel(base, stats[perLvl] || 0, level)
+        baseValue = statAtLevel(base, stats[perLvl] || 0, level)
       }
 
-      const displayValue = isAS ? value.toFixed(3) : formatStat(Math.round(value * 10) / 10)
+      // Calculate item bonus for this stat
+      let itemBonus = 0
+      if (itemStat && itemBonuses[itemStat]) {
+        if (isAS) {
+          // Attack speed items give % bonus AS
+          itemBonus = base * itemBonuses[itemStat]
+        } else {
+          itemBonus = itemBonuses[itemStat]
+        }
+      }
+
+      const totalValue = baseValue + itemBonus
+      const baseDisplay = isAS ? baseValue.toFixed(3) : formatStat(Math.round(baseValue * 10) / 10)
 
       const row = el('div', { cls: 'stat-row' })
       append(row, el('span', { cls: 'stat-label', text: label }))
       const barBg = el('div', { cls: 'stat-bar-bg' })
+      // Bar shows total value
+      const adjustedMax = itemBonus > 0 ? Math.max(max, totalValue * 1.1) : max
       append(barBg, el('div', {
         cls: 'stat-bar-fill',
-        style: { width: `${Math.min((value / max) * 100, 100)}%`, background: color || '#666' }
+        style: { width: `${Math.min((totalValue / adjustedMax) * 100, 100)}%`, background: color || '#666' }
       }))
-      append(row, barBg, el('span', { cls: 'stat-value', text: displayValue }))
+      append(row, barBg)
+
+      // Value display: base (+bonus) = total
+      const valueContainer = el('span', { cls: 'stat-value' })
+      if (itemBonus > 0) {
+        const bonusDisplay = isAS ? itemBonus.toFixed(3) : formatStat(Math.round(itemBonus * 10) / 10)
+        const totalDisplay = isAS ? totalValue.toFixed(3) : formatStat(Math.round(totalValue * 10) / 10)
+        valueContainer.innerHTML = `${baseDisplay} <span style="color:#4caf50">+${bonusDisplay}</span> = ${totalDisplay}`
+      } else {
+        valueContainer.textContent = baseDisplay
+      }
+      append(row, valueContainer)
+
       append(statsContainer, row)
     })
   }
 
+  function renderItemSlots() {
+    clear(itemSlotsContainer)
+    selectedItems.forEach((item, idx) => {
+      const slot = el('div', {
+        cls: `stats-item-slot${item ? ' filled' : ''}`,
+        on: {
+          click: () => {
+            if (item) {
+              // Remove item on click if filled
+              selectedItems[idx] = null
+              renderItemSlots()
+              updateStats()
+            } else {
+              // Open item picker
+              openItemPicker({
+                onSelect: (picked) => {
+                  selectedItems[idx] = picked
+                  renderItemSlots()
+                  updateStats()
+                }
+              })
+            }
+          }
+        }
+      })
+
+      if (item) {
+        const v = currentVersion || ''
+        append(slot, el('img', {
+          cls: 'stats-item-img',
+          attrs: { src: ITEM_IMG(v, item.id), alt: item.name || '', title: item.name || '' }
+        }))
+      } else {
+        append(slot, el('span', { cls: 'stats-item-plus', text: '+' }))
+      }
+
+      append(itemSlotsContainer, slot)
+    })
+  }
+
   slider.addEventListener('input', updateStats)
+  renderItemSlots()
   updateStats()
 }
 
@@ -415,28 +502,4 @@ async function renderBuilds(container, champ, version) {
     clear(container)
     append(container, el('div', { cls: 'empty-state', text: t('errorItems') }))
   }
-}
-
-function renderSkins(container, dd, champ) {
-  if (!dd?.skins) {
-    append(container, el('div', { cls: 'empty-state', text: t('skinsNA') }))
-    return
-  }
-
-  const gallery = el('div', { cls: 'skins-gallery' })
-
-  dd.skins.forEach(skin => {
-    const card = el('div', { cls: 'skin-card' })
-    append(card, el('img', {
-      attrs: {
-        src: CHAMPION_LOADING(champ.id, skin.num),
-        alt: skin.name === 'default' ? champ.name : skin.name,
-        loading: 'lazy'
-      }
-    }))
-    append(card, el('p', { text: skin.name === 'default' ? t('skinDefault') : skin.name }))
-    append(gallery, card)
-  })
-
-  append(container, gallery)
 }

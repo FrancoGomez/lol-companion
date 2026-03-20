@@ -1,5 +1,6 @@
 import { getChampions, getVersion } from '../data/data-service.js'
 import { ROLES, ROLE_LIST, CHAMPION_IMG, CHAMPION_LOADING } from '../data/constants.js'
+import { POSITIONS, getChampionTier, TIER_COLORS, TIER_ORDER } from '../data/champion-tiers.js'
 import { t } from '../data/i18n.js'
 import { el, append, clear, spinner } from '../utilities/utilities.js'
 import { openChampionModal } from './champion-modal.js'
@@ -7,7 +8,7 @@ import { openChampionModal } from './champion-modal.js'
 let initialized = false
 let allChampions = []
 let version = ''
-let activeRoleFilter = null
+let activePositionFilter = null
 
 const container = document.getElementById('tab-champions')
 
@@ -33,17 +34,17 @@ export async function init() {
 
 function render() {
   clear(container)
-  activeRoleFilter = null
+  activePositionFilter = null
 
   const filterBar = el('div', { cls: 'filter-bar' })
   const allBtn = el('button', { cls: 'filter-btn active', text: t('filterAll'), on: { click: () => setFilter(null, allBtn) } })
   append(filterBar, allBtn)
 
-  ROLE_LIST.forEach(role => {
+  POSITIONS.forEach(pos => {
     const btn = el('button', {
       cls: 'filter-btn',
-      text: t(role),
-      on: { click: () => setFilter(role, btn) }
+      text: `${pos.icon} ${pos.label}`,
+      on: { click: () => setFilter(pos.id, btn) }
     })
     append(filterBar, btn)
   })
@@ -52,18 +53,33 @@ function render() {
 
   append(container, filterBar, grid)
 
-  function setFilter(role, btn) {
-    activeRoleFilter = role
+  function setFilter(position, btn) {
+    activePositionFilter = position
     filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'))
     btn.classList.add('active')
     renderGrid()
   }
 
   const renderGrid = () => {
-    const filtered = allChampions.filter(c => {
-      const matchRole = !activeRoleFilter || c.tags.includes(activeRoleFilter)
-      return matchRole
-    })
+    let filtered
+
+    if (!activePositionFilter) {
+      // "Todos" selected: all champions alphabetically
+      filtered = [...allChampions].sort((a, b) => a.name.localeCompare(b.name))
+    } else {
+      // Position selected: get champions with tier data, sort by tier
+      filtered = allChampions
+        .map(c => {
+          const tierData = getChampionTier(c.id, activePositionFilter)
+          return { ...c, _tier: tierData?.tier || null }
+        })
+        .filter(c => c._tier !== null)
+        .sort((a, b) => {
+          const tierDiff = TIER_ORDER.indexOf(a._tier) - TIER_ORDER.indexOf(b._tier)
+          if (tierDiff !== 0) return tierDiff
+          return a.name.localeCompare(b.name)
+        })
+    }
 
     clear(grid)
     if (filtered.length === 0) {
@@ -90,6 +106,16 @@ function render() {
       // Info bar at bottom
       const info = el('div', { cls: 'champ-card-info' })
       const name = el('div', { cls: 'champ-card-name', text: champ.name })
+
+      // Tier badge (only when a position filter is active)
+      if (activePositionFilter && champ._tier) {
+        const tierBadge = el('span', {
+          cls: 'champ-tier-badge',
+          text: champ._tier,
+          style: { background: TIER_COLORS[champ._tier] }
+        })
+        append(info, tierBadge)
+      }
 
       // Role badges
       const tags = el('div', { cls: 'champ-card-tags' })

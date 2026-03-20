@@ -212,6 +212,24 @@ body {
   flex-wrap: wrap;
 }
 
+.champ-tier-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #000;
+  z-index: 2;
+  text-shadow: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
 /* === Item Cards (keep original style) === */
 .card {
   background: var(--bg-card);
@@ -465,8 +483,63 @@ body {
   font-size: 0.75rem;
   color: var(--text-primary);
   font-weight: 600;
-  width: 50px;
+  min-width: 50px;
   text-align: right;
+  white-space: nowrap;
+}
+
+/* Stats item builder */
+.stats-items-section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.stats-items-title {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.stats-item-slots {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stats-item-slot {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg-main);
+}
+
+.stats-item-slot:hover {
+  border-color: var(--gold-dim);
+}
+
+.stats-item-slot.filled {
+  border-style: solid;
+  background: var(--bg-card);
+}
+
+.stats-item-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.stats-item-plus {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 /* Stats level slider */

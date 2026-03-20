@@ -44,10 +44,9 @@ const translations = {
     catBoots: 'Botas',
 
     // Champion modal
-    modalAbout: 'About',
+    modalAbout: 'Historia',
     modalAbilities: 'Habilidades',
     modalStats: 'Stats',
-    modalSkins: 'Skins',
     modalBuilds: 'Builds',
     passive: 'Pasiva',
     cd: 'CD',
@@ -278,10 +277,9 @@ const translations = {
     catMS: 'Movement',
     catBoots: 'Boots',
 
-    modalAbout: 'About',
+    modalAbout: 'Lore',
     modalAbilities: 'Abilities',
     modalStats: 'Stats',
-    modalSkins: 'Skins',
     modalBuilds: 'Builds',
     passive: 'Passive',
     cd: 'CD',
