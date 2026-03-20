@@ -477,6 +477,8 @@ export const COACHING_I18N = {
     climbingTipsTitle: 'Tips para Subir de Elo',
     noRoutesAvailable: 'No hay rutas disponibles para este campeon',
     supportGameplanTitle: 'Gameplan de Support',
+    eloGoalsTitle: 'Objetivos por Elo — Ruta de Progresión',
+    eloGoalsMetric: 'Métrica',
   },
   en: {
     tabCoaching: 'Coaching',
@@ -510,6 +512,8 @@ export const COACHING_I18N = {
     climbingTipsTitle: 'Climbing Tips',
     noRoutesAvailable: 'No routes available for this champion',
     supportGameplanTitle: 'Support Gameplan',
+    eloGoalsTitle: 'Elo Goals — Progression Path',
+    eloGoalsMetric: 'Metric',
   },
 }
 

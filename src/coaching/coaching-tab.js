@@ -16,6 +16,7 @@ import {
   ELO_BRACKETS,
   ROLE_OPTIONS,
 } from './coaching-data.js'
+import { ELO_GOALS } from './elo-goals-data.js'
 
 let initialized = false
 let version = ''
@@ -75,6 +76,9 @@ function render() {
   // Elo selector
   append(wrapper, buildEloSelector())
 
+  // Elo Goals
+  append(wrapper, buildEloGoals())
+
   // Champion pool
   append(wrapper, buildChampionPool())
 
@@ -83,8 +87,11 @@ function render() {
     append(wrapper, buildClearRoutes())
     append(wrapper, buildObjectives())
     append(wrapper, buildJungleGameplan())
-  } else {
+  } else if (selectedRole === 'support') {
     append(wrapper, buildSupportGameplan())
+    append(wrapper, buildObjectives())
+  } else {
+    // Top, Mid, ADC — show objectives (useful for all roles)
     append(wrapper, buildObjectives())
   }
 
@@ -145,6 +152,71 @@ function buildEloSelector() {
   })
 
   append(section, bar)
+  return section
+}
+
+// ─── Elo Goals ──────────────────────────────────────────────────────────────
+
+/** Map the 4 elo-selector brackets to which elo-goal cards should auto-open */
+const ELO_TO_GOALS = {
+  'iron-bronze':   ['iron-bronze', 'bronze-silver'],
+  'silver-gold':   ['silver-gold', 'gold-platinum'],
+  'plat-emerald':  ['platinum-emerald', 'emerald-diamond'],
+  'diamond-plus':  ['diamond-master'],
+}
+
+function buildEloGoals() {
+  const section = el('div', { cls: 'coaching-section' })
+  append(section, el('h3', { text: ct('eloGoalsTitle') }))
+
+  const autoOpen = ELO_TO_GOALS[selectedElo] || []
+
+  ELO_GOALS.forEach(goal => {
+    const isOpen = autoOpen.includes(goal.id)
+    const card = el('div', { cls: `elo-goal-card ${isOpen ? 'open' : ''}` })
+
+    // Header (clickable)
+    const header = el('div', { cls: 'elo-goal-header', on: {
+      click: () => {
+        card.classList.toggle('open')
+      },
+    }})
+
+    const tierText = `${goal.icon} ${loc(goal.from)} → ${loc(goal.to)}`
+    append(header, el('span', { cls: 'elo-goal-tier', text: tierText }))
+    append(header, el('span', { cls: 'elo-goal-focus', text: loc(goal.focus) }))
+    append(header, el('span', { cls: 'elo-goal-chevron', text: '▾' }))
+
+    append(card, header)
+
+    // Collapsible body
+    const body = el('div', { cls: 'elo-goal-body' })
+
+    // Description
+    append(body, el('p', { cls: 'elo-goal-desc', text: loc(goal.description) }))
+
+    // Key Insight (quote)
+    const insight = el('blockquote', { cls: 'elo-goal-insight' })
+    append(insight, el('span', { text: loc(goal.keyInsight) }))
+    append(body, insight)
+
+    // Tasks checklist
+    const taskList = el('ul', { cls: 'elo-goal-tasks' })
+    goal.tasks.forEach(task => {
+      append(taskList, el('li', { text: loc(task) }))
+    })
+    append(body, taskList)
+
+    // Metric
+    const metric = el('div', { cls: 'elo-goal-metric' })
+    append(metric, el('span', { cls: 'elo-goal-metric-label', text: `📊 ${ct('eloGoalsMetric')}: ` }))
+    append(metric, el('span', { text: loc(goal.metric) }))
+    append(body, metric)
+
+    append(card, body)
+    append(section, card)
+  })
+
   return section
 }
 
