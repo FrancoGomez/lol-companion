@@ -144,6 +144,7 @@ const translations = {
     tabLive: 'Live Game',
     tabProgress: 'Progreso',
     tabAcademy: 'Academia',
+    tabTracker: 'Seguimiento',
 
     // Auth
     loginGitHub: 'Login con GitHub',
@@ -372,6 +373,7 @@ const translations = {
     tabLive: 'Live Game',
     tabProgress: 'Progress',
     tabAcademy: 'Academy',
+    tabTracker: 'Tracker',
 
     // Auth
     loginGitHub: 'Login with GitHub',

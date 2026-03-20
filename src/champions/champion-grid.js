@@ -9,6 +9,7 @@ let initialized = false
 let allChampions = []
 let version = ''
 let activePositionFilter = null
+let activeClassFilter = null
 
 const container = document.getElementById('tab-champions')
 
@@ -35,27 +36,51 @@ export async function init() {
 function render() {
   clear(container)
   activePositionFilter = null
+  activeClassFilter = null
 
-  const filterBar = el('div', { cls: 'filter-bar' })
-  const allBtn = el('button', { cls: 'filter-btn active', text: t('filterAll'), on: { click: () => setFilter(null, allBtn) } })
-  append(filterBar, allBtn)
+  // Position filter bar (Top, Jungle, Mid, ADC, Support)
+  const posBar = el('div', { cls: 'filter-bar' })
+  const allPosBtn = el('button', { cls: 'filter-btn active', text: t('filterAll'), on: { click: () => setPositionFilter(null, allPosBtn) } })
+  append(posBar, allPosBtn)
 
   POSITIONS.forEach(pos => {
     const btn = el('button', {
       cls: 'filter-btn',
       text: `${pos.icon} ${pos.label}`,
-      on: { click: () => setFilter(pos.id, btn) }
+      on: { click: () => setPositionFilter(pos.id, btn) }
     })
-    append(filterBar, btn)
+    append(posBar, btn)
+  })
+
+  // Class filter bar (Fighter, Tank, Mage, Assassin, Marksman, Support)
+  const classBar = el('div', { cls: 'filter-bar filter-bar-secondary' })
+  const allClassBtn = el('button', { cls: 'filter-btn active', text: t('filterAll'), on: { click: () => setClassFilter(null, allClassBtn) } })
+  append(classBar, allClassBtn)
+
+  ROLE_LIST.forEach(role => {
+    const btn = el('button', {
+      cls: 'filter-btn',
+      text: t(role),
+      style: { borderColor: ROLES[role].color + '66' },
+      on: { click: () => setClassFilter(role, btn) }
+    })
+    append(classBar, btn)
   })
 
   const grid = el('div', { cls: 'card-grid' })
 
-  append(container, filterBar, grid)
+  append(container, posBar, classBar, grid)
 
-  function setFilter(position, btn) {
+  function setPositionFilter(position, btn) {
     activePositionFilter = position
-    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'))
+    posBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    renderGrid()
+  }
+
+  function setClassFilter(cls, btn) {
+    activeClassFilter = cls
+    classBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'))
     btn.classList.add('active')
     renderGrid()
   }
@@ -64,21 +89,30 @@ function render() {
     let filtered
 
     if (!activePositionFilter) {
-      // "Todos" selected: all champions alphabetically
-      filtered = [...allChampions].sort((a, b) => a.name.localeCompare(b.name))
+      filtered = [...allChampions]
     } else {
-      // Position selected: get champions with tier data, sort by tier
       filtered = allChampions
         .map(c => {
           const tierData = getChampionTier(c.id, activePositionFilter)
           return { ...c, _tier: tierData?.tier || null }
         })
         .filter(c => c._tier !== null)
-        .sort((a, b) => {
-          const tierDiff = TIER_ORDER.indexOf(a._tier) - TIER_ORDER.indexOf(b._tier)
-          if (tierDiff !== 0) return tierDiff
-          return a.name.localeCompare(b.name)
-        })
+    }
+
+    // Apply class filter
+    if (activeClassFilter) {
+      filtered = filtered.filter(c => c.tags?.includes(activeClassFilter))
+    }
+
+    // Sort
+    if (activePositionFilter) {
+      filtered.sort((a, b) => {
+        const tierDiff = TIER_ORDER.indexOf(a._tier) - TIER_ORDER.indexOf(b._tier)
+        if (tierDiff !== 0) return tierDiff
+        return a.name.localeCompare(b.name)
+      })
+    } else {
+      filtered.sort((a, b) => a.name.localeCompare(b.name))
     }
 
     clear(grid)
@@ -93,21 +127,18 @@ function render() {
         on: { click: () => openChampionModal(champ, version) }
       })
 
-      // Splash art background (loading screen image)
       const splash = el('div', { cls: 'champ-card-splash' })
       const img = el('img', {
         cls: 'champ-card-img',
         attrs: { src: CHAMPION_LOADING(champ.id, 0), alt: champ.name, loading: 'lazy' }
       })
-      // Gradient overlay
       const overlay = el('div', { cls: 'champ-card-overlay' })
       append(splash, img, overlay)
 
-      // Info bar at bottom
       const info = el('div', { cls: 'champ-card-info' })
       const name = el('div', { cls: 'champ-card-name', text: champ.name })
 
-      // Tier badge (only when a position filter is active)
+      // Tier badge
       if (activePositionFilter && champ._tier) {
         const tierBadge = el('span', {
           cls: 'champ-tier-badge',

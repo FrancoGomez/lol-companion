@@ -22,28 +22,15 @@ async function loadTab(name) {
       tabs[name] = m
       break
     }
-    case 'matchup': {
-      const m = await import('./matchup/team-builder.js')
-      tabs[name] = m
-      break
-    }
-    case 'coaching': {
-      const m = await import('./coaching/coaching-tab.js')
-      tabs[name] = m
-      break
-    }
-    case 'live': {
-      const m = await import('./live-game/live-game-tab.js')
-      tabs[name] = m
-      break
-    }
-    case 'progress': {
-      const m = await import('./progress/progress-tab.js')
-      tabs[name] = m
-      break
-    }
     case 'academy': {
-      const m = await import('./coaching/fundamentals-tab.js')
+      // Academy combines: fundamentals + coaching + elo goals
+      const m = await import('./coaching/academy-tab.js')
+      tabs[name] = m
+      break
+    }
+    case 'tracker': {
+      // Tracker combines: live game + progress
+      const m = await import('./tracker/tracker-tab.js')
       tabs[name] = m
       break
     }
@@ -131,23 +118,17 @@ function updateLangButton(btn) {
 }
 
 function updateUIStrings() {
-  // Update tab buttons
   document.querySelector('[data-tab="champions"]').textContent = t('tabChampions')
   document.querySelector('[data-tab="items"]').textContent = t('tabItems')
-  document.querySelector('[data-tab="matchup"]').textContent = t('tabMatchup')
-  document.querySelector('[data-tab="coaching"]').textContent = t('tabCoaching')
-  document.querySelector('[data-tab="live"]').textContent = t('tabLive')
-  document.querySelector('[data-tab="progress"]').textContent = t('tabProgress')
   document.querySelector('[data-tab="academy"]').textContent = t('tabAcademy')
+  document.querySelector('[data-tab="tracker"]').textContent = t('tabTracker')
   updatePlaceholder()
 }
 
 function reloadActiveTab() {
-  // Reset init flags so tabs re-render with new language data
   Object.keys(tabs).forEach(name => {
     if (tabs[name]?.reset) tabs[name].reset()
   })
-  // Re-init active tab
   loadTab(activeTab).then(m => {
     if (m.reset) m.reset()
     m.init?.()
