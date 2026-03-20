@@ -42,6 +42,11 @@ async function loadTab(name) {
       tabs[name] = m
       break
     }
+    case 'academy': {
+      const m = await import('./coaching/fundamentals-tab.js')
+      tabs[name] = m
+      break
+    }
   }
   return tabs[name]
 }
@@ -133,6 +138,7 @@ function updateUIStrings() {
   document.querySelector('[data-tab="coaching"]').textContent = t('tabCoaching')
   document.querySelector('[data-tab="live"]').textContent = t('tabLive')
   document.querySelector('[data-tab="progress"]').textContent = t('tabProgress')
+  document.querySelector('[data-tab="academy"]').textContent = t('tabAcademy')
   updatePlaceholder()
 }
 
