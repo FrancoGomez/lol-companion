@@ -512,7 +512,10 @@ async function renderBuilds(container, champ, version) {
         append(row, el('span', { cls: 'build-item-label', text: label }))
 
         const itemsContainer = el('div', { cls: 'build-path' })
-        ids.forEach(id => {
+        ids.forEach(entry => {
+          // Support both string IDs and {id, wr} objects
+          const id = typeof entry === 'object' ? entry.id : entry
+          const wr = typeof entry === 'object' ? entry.wr : null
           const item = itemsMap[id]
           const itemEl = el('div', {
             cls: 'build-path-item',
@@ -527,6 +530,7 @@ async function renderBuilds(container, champ, version) {
           })
           append(itemEl, el('img', { attrs: { src: ITEM_IMG(version, id), alt: item?.name || id } }))
           append(itemEl, el('span', { text: item?.name || id }))
+          if (wr) append(itemEl, el('span', { cls: 'build-item-wr', text: wr }))
           append(itemsContainer, itemEl)
         })
         append(row, itemsContainer)
@@ -535,11 +539,14 @@ async function renderBuilds(container, champ, version) {
 
       // Counters
       if (data.counters?.length > 0) {
-        const uniqueCounters = [...new Set(data.counters.map(c => c.name))].slice(0, 5)
-        append(section, el('div', {
-          cls: 'build-counters',
-          text: `${lang === 'es' ? 'Counters' : 'Counters'}: ${uniqueCounters.join(', ')}`,
-        }))
+        const weak = data.counters.filter(c => c.type === 'weak').map(c => c.name).slice(0, 3)
+        const strong = data.counters.filter(c => c.type === 'strong').map(c => c.name).slice(0, 3)
+        const counterParts = []
+        if (weak.length) counterParts.push(`${lang === 'es' ? 'Pierde vs' : 'Weak vs'}: ${weak.join(', ')}`)
+        if (strong.length) counterParts.push(`${lang === 'es' ? 'Gana vs' : 'Strong vs'}: ${strong.join(', ')}`)
+        if (counterParts.length > 0) {
+          append(section, el('div', { cls: 'build-counters', html: counterParts.join(' · ') }))
+        }
       }
 
       append(container, section)

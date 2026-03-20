@@ -82,27 +82,48 @@ async function scrapeChampionBuild(page, champId, position) {
       const brMatch = body.match(/(\d+\.\d+)%\s*Ban Rate/i)
       if (brMatch) result.banRate = brMatch[1] + '%'
 
+      // --- Matches count ---
+      // Pattern: "X,XXX\nGames" or "X,XXX Games" or "X.XK Games"
+      const matchesMatch = body.match(/([\d,]+(?:\.\d+)?[Kk]?)\s*\n?\s*Games/i)
+      if (matchesMatch) {
+        let raw = matchesMatch[1].replace(/,/g, '')
+        if (/[Kk]$/.test(raw)) {
+          raw = String(Math.round(parseFloat(raw.replace(/[Kk]/, '')) * 1000))
+        }
+        result.matches = parseInt(raw) || null
+      }
+
       // --- Tier ---
       const tierMatch = body.match(/([SABCDF][+-]?)\n\d+%/)
       if (tierMatch) result.tier = tierMatch[1]
 
-      // --- Items: extract from img src with item64/ pattern ---
+      // --- Items: extract from img src with item pattern ---
       const itemImgs = allImgs
         .filter(i => i.src.includes('/item'))
-        .map(i => ({
-          id: i.src.match(/\/(\d{4,5})\./)?.[1],
-          name: i.alt || '',
-          w: i.width
-        }))
+        .map(i => {
+          const id = i.src.match(/\/(\d{4,5})\./)?.[1]
+          // Walk up parent chain to find nearby WR text
+          let wr = null
+          let el = i.parentElement
+          for (let d = 0; d < 5 && el; d++) {
+            const txt = el.innerText || ''
+            const wrM = txt.match(/(\d+\.?\d*)%/)
+            if (wrM) {
+              wr = wrM[1] + '%'
+              break
+            }
+            el = el.parentElement
+          }
+          return { id, name: i.alt || '', w: i.width, wr }
+        })
         .filter(i => i.id)
 
       // Group items by page position (the first items shown are the recommended build)
       // Lolalytics shows: Starting Items, then Most Common/Highest WR core builds
       if (itemImgs.length > 0) {
         // Starting items are usually the first 2-3 (jungle pet + potion)
-        const startItems = itemImgs.filter(i =>
-          ['1101', '1102', '1103', '2003', '2031', '2033', '3850', '3854', '3858', '3862', '1055', '1054', '1056', '1083'].includes(i.id)
-        )
+        const startItemIds = ['1101', '1102', '1103', '2003', '2031', '2033', '3850', '3854', '3858', '3862', '1055', '1054', '1056', '1083']
+        const startItems = itemImgs.filter(i => startItemIds.includes(i.id))
         result.items.starting = [...new Set(startItems.map(i => i.id))].slice(0, 3)
 
         // Boots
@@ -112,25 +133,48 @@ async function scrapeChampionBuild(page, champId, position) {
 
         // Completed items (cost > 2000, not boots/starting)
         const completedItems = itemImgs
-          .filter(i => !startItems.some(s => s.id === i.id) && !bootIds.includes(i.id) && parseInt(i.id) > 2000)
-          .map(i => i.id)
-        const uniqueCompleted = [...new Set(completedItems)]
+          .filter(i => !startItemIds.includes(i.id) && !bootIds.includes(i.id) && parseInt(i.id) > 2000)
+          .map(i => ({ id: i.id, wr: i.wr }))
+        // Deduplicate keeping first occurrence (highest priority)
+        const seen = new Set()
+        const uniqueCompleted = []
+        for (const item of completedItems) {
+          if (!seen.has(item.id)) {
+            seen.add(item.id)
+            uniqueCompleted.push(item)
+          }
+        }
 
         // First few unique completed items are the core build
-        result.items.core = uniqueCompleted.slice(0, 3)
-        result.items.fourth = uniqueCompleted.slice(3, 6)
-        result.items.fifth = uniqueCompleted.slice(6, 9)
-        result.items.sixth = uniqueCompleted.slice(9, 12)
+        result.items.core = uniqueCompleted.slice(0, 3).map(i => ({ id: i.id, wr: i.wr }))
+        result.items.fourth = uniqueCompleted.slice(3, 6).map(i => ({ id: i.id, wr: i.wr }))
+        result.items.fifth = uniqueCompleted.slice(6, 9).map(i => ({ id: i.id, wr: i.wr }))
+        result.items.sixth = uniqueCompleted.slice(9, 12).map(i => ({ id: i.id, wr: i.wr }))
       }
 
       // --- Runes ---
+      // The first rune section uses parent with w-[120px] class (compact summary)
+      // Structure: primary tree has keystones (30x30) + 3 rows of 3 minor runes (26x26)
+      //            secondary tree has 3 rows of 3 minor runes (26x26)
       const runeImgs = allImgs
         .filter(i => i.src.includes('/rune'))
         .map(i => ({
           id: i.src.match(/\/(\d{4,5})\./)?.[1],
-          name: i.alt || ''
+          name: i.alt || '',
+          w: i.width,
+          isCompact: (() => {
+            let el = i.parentElement
+            for (let d = 0; d < 5 && el; d++) {
+              if (el.className && el.className.includes('w-[120px]')) return true
+              el = el.parentElement
+            }
+            return false
+          })()
         }))
         .filter(i => i.id && i.name)
+
+      // Use the compact (summary) rune section only
+      const compactRunes = runeImgs.filter(r => r.isCompact)
 
       // First rune with a keystone name is the keystone
       const keystoneNames = ['Press the Attack', 'Lethal Tempo', 'Fleet Footwork', 'Conqueror',
@@ -138,14 +182,51 @@ async function scrapeChampionBuild(page, champId, position) {
         'Summon Aery', 'Arcane Comet', 'Phase Rush',
         'Grasp of the Undying', 'Aftershock', 'Guardian',
         'Glacial Augment', 'Unsealed Spellbook', 'First Strike']
-      for (const r of runeImgs) {
+
+      const runesSource = compactRunes.length > 0 ? compactRunes : runeImgs
+
+      for (const r of runesSource) {
         if (keystoneNames.includes(r.name)) {
           result.runes.keystone = { id: r.id, name: r.name }
           break
         }
       }
-      // All runes
-      result.runes.primary = runeImgs.filter(r => !r.name.includes('statmod')).slice(0, 8).map(r => ({ id: r.id, name: r.name }))
+
+      // Compact runes: first ~13 are primary tree (4 keystones + 3 rows of 3 = 13)
+      // Then next ~9 are secondary tree (3 rows of 3)
+      // The primary keystones are 30x30, minor runes are 26x26
+      if (runesSource.length >= 13) {
+        // Primary: keystones + first 3 rows of minor runes
+        const primaryKeystones = runesSource.filter(r => r.w >= 30 || keystoneNames.includes(r.name))
+        const primaryMinor = runesSource.filter(r => r.w < 30 && !keystoneNames.includes(r.name))
+
+        // Primary tree = first 4 keystones + first 9 minor runes
+        const numKeystones = Math.min(primaryKeystones.length, 4)
+        result.runes.primary = [
+          ...primaryKeystones.slice(0, numKeystones).map(r => ({ id: r.id, name: r.name })),
+          ...primaryMinor.slice(0, 9).map(r => ({ id: r.id, name: r.name }))
+        ]
+
+        // Secondary tree = remaining minor runes after first 9
+        result.runes.secondary = primaryMinor.slice(9).map(r => ({ id: r.id, name: r.name }))
+      } else {
+        // Fallback: use all runes as primary
+        result.runes.primary = runesSource.slice(0, 13).map(r => ({ id: r.id, name: r.name }))
+      }
+
+      // --- Shards (statmods) ---
+      const statmodImgs = allImgs
+        .filter(i => i.src.includes('/statmod'))
+        .map(i => ({
+          id: i.src.match(/\/(\d{4,5})\./)?.[1]
+        }))
+        .filter(i => i.id)
+      // First 9 statmods are the summary section (3 rows of 3)
+      if (statmodImgs.length >= 9) {
+        result.runes.shards = statmodImgs.slice(0, 9).map(s => s.id)
+      } else {
+        result.runes.shards = statmodImgs.map(s => s.id)
+      }
 
       // --- Summoner Spells ---
       const spellImgs = allImgs
@@ -155,28 +236,63 @@ async function scrapeChampionBuild(page, champId, position) {
       result.summoners = [...new Set(spellImgs)].slice(0, 2)
 
       // --- Skill Priority ---
-      const skillImgs = allImgs
-        .filter(i => i.alt && /[QWER] Skill/.test(i.alt))
+      // The priority section uses 32x32 skill images, while header uses 26x26
+      const skillImgs32 = allImgs
+        .filter(i => i.alt && /[QWER] Skill/.test(i.alt) && i.width === 32 && i.height === 32)
         .map(i => i.alt.match(/([QWER]) Skill/)?.[1])
-        .filter(Boolean)
-      // The skill priority section shows 3 skills in order (excluding R)
-      const seenSkills = new Set()
-      for (const s of skillImgs) {
-        if (!seenSkills.has(s) && s !== 'P') {
-          seenSkills.add(s)
+        .filter(s => s && s !== 'R')
+
+      if (skillImgs32.length >= 3) {
+        // 32x32 images are in priority order
+        result.skillPriority = skillImgs32.slice(0, 3)
+      } else {
+        // Fallback: use all skill images, dedup preserving order
+        const skillImgsAll = allImgs
+          .filter(i => i.alt && /[QWER] Skill/.test(i.alt))
+          .map(i => i.alt.match(/([QWER]) Skill/)?.[1])
+          .filter(Boolean)
+        const seenSkills = new Set()
+        for (const s of skillImgsAll) {
+          if (!seenSkills.has(s) && s !== 'P' && s !== 'R') {
+            seenSkills.add(s)
+          }
         }
+        result.skillPriority = [...seenSkills].slice(0, 3)
       }
-      result.skillPriority = [...seenSkills].filter(s => s !== 'R').slice(0, 3)
 
       // --- Counters ---
-      // Lolalytics shows counters as champion images with names
-      const champImgs = allImgs
-        .filter(i => i.src.includes('/champ') && i.alt && i.alt.length > 2 && i.alt.length < 20 && i.width < 50)
-        .map(i => i.alt)
-      // Last ~10 champion images are usually counters
-      if (champImgs.length > 5) {
-        result.counters = champImgs.slice(-10).map(name => ({ name }))
+      // On the build page, counters are in the description text, not as images
+      // Pattern: "strong counter to X, Y & Z while Nocturne is countered most by A, B & C"
+      const strongMatch = body.match(/strong counter to\s+([^.]+?)(?:\s+while)/i)
+      const counteredMatch = body.match(/countered\s+(?:most\s+)?by\s+([^.]+)/i)
+
+      const parseChampList = (str) => {
+        if (!str) return []
+        return str
+          .split(/[,&]/)
+          .map(s => s.trim())
+          .filter(s => s.length > 1 && s.length < 25)
       }
+
+      const weakAgainst = parseChampList(counteredMatch?.[1])   // champs that counter us
+      const strongAgainst = parseChampList(strongMatch?.[1])     // champs we counter
+
+      // Deduplicate using Set
+      const counterSet = new Set()
+      const counters = []
+      for (const name of weakAgainst) {
+        if (!counterSet.has(name)) {
+          counterSet.add(name)
+          counters.push({ name, type: 'weak' })
+        }
+      }
+      for (const name of strongAgainst) {
+        if (!counterSet.has(name)) {
+          counterSet.add(name)
+          counters.push({ name, type: 'strong' })
+        }
+      }
+      result.counters = counters.slice(0, 10)
 
       return result
     })
