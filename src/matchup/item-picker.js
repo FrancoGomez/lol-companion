@@ -14,10 +14,20 @@ export async function openItemPicker(opts = {}) {
   if (allItems.length === 0) {
     version = await getVersion()
     const raw = await getItems()
-    allItems = Object.entries(raw)
+    const rawList = Object.entries(raw)
       .map(([id, item]) => ({ id, ...item }))
       .filter(item => !item.removed && !item.requiredChampion && item.inStore !== false && (item.shop?.prices?.total || 0) > 0)
       .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
+
+    // Deduplicate by name — keep highest cost version
+    const seen = new Map()
+    for (const item of rawList) {
+      const existing = seen.get(item.name)
+      if (!existing || (item.shop?.prices?.total || 0) > (existing.shop?.prices?.total || 0)) {
+        seen.set(item.name, item)
+      }
+    }
+    allItems = [...seen.values()].sort((a, b) => (a.name || '').localeCompare(b.name || ''))
   }
 
   openPicker()
