@@ -2745,4 +2745,708 @@ export const CHAMPION_IDENTITIES = {
     buildReasoning: { es: 'Trinity Force prockea con tu Q spam constante — Spellblade en cada Q. Manamune para resolver maná del spam. Infinity Edge para crit scaling.', en: 'Trinity Force procs with constant Q spam — Spellblade on every Q. Manamune to solve spam mana. Infinity Edge for crit scaling.' },
     skillOrder: { order: 'Q > W > E', es: 'Q primero SIEMPRE: es tu identidad, stacks y daño. W segundo: más poke. E último: escape no necesita niveles.', en: 'Q first ALWAYS: it\'s your identity, stacks and damage. W second: more poke. E last: escape doesn\'t need levels.' }
   },
+  Sona: {
+    playstyle: { es: 'Proteger', en: 'Protect' },
+    powerSpike: 'late',
+    identity: { es: 'Enchantera que buffa a TODO el equipo con auras. Q daño, W curación+shield, E speed. Escalás con habilidad haste. R stun AoE en línea. La support más fácil y más escalante.', en: 'Enchanter who buffs the ENTIRE team with auras. Q damage, W heal+shield, E speed. Scale with ability haste. R AoE line stun. Easiest and most scaling support.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q + auto empowered (pasiva). W para curar. E para speed. Tu early es débil — no pelees all-in. Pokeá segura y escalá.', en: 'Poke with Q + empowered auto (passive). W to heal. E for speed. Early is weak — don\'t all-in. Poke safely and scale.' },
+      mid: { es: 'Con Moonstone tus auras curan y shieldean constantemente. En teamfights, alterná Q-W-E para maximar buffs. R stun en línea para engage o counter-engage.', en: 'With Moonstone your auras heal and shield constantly. In teamfights, alternate Q-W-E to maximize buffs. R line stun for engage or counter-engage.' },
+      late: { es: 'Con CDR tus auras están constantemente activas. Tu equipo tiene más daño (Q), más curación (W) y más speed (E) que el enemigo. R flash para stun en grupo. Escalás infinitamente.', en: 'With CDR your auras are constantly active. Your team has more damage (Q), more healing (W) and more speed (E) than the enemy. R flash for group stun. Scale infinitely.' }
+    },
+    combo: {
+      basic: { keys: 'Q → AA(empowered) → W', es: 'Q poke + aura → Auto empowered → W curación. Trade simple.', en: 'Q poke + aura → Empowered auto → W heal. Simple trade.' },
+      advanced: { keys: 'Flash → R → Q → W → E', es: 'Flash → R stun en línea → Q daño aura → W curación AoE → E speed del equipo. El R flash es tu engage.', en: 'Flash → R line stun → Q damage aura → W AoE healing → E team speed. R flash is your engage.' }
+    },
+    buildReasoning: { es: 'Moonstone para curación constante con tus auras. Ardent + Staff para amplificar al equipo. Shurelya\'s alternativa para más speed. Purefaith Amulet para CDR.', en: 'Moonstone for constant healing with auras. Ardent + Staff to amplify team. Shurelya\'s alternative for more speed. Purefaith Amulet for CDR.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: poke y daño. W segundo: curación más fuerte. E último: speed es útil con un punto.', en: 'Q first: poke and damage. W second: stronger healing. E last: speed is useful with one point.' }
+  },
+  Soraka: {
+    playstyle: { es: 'Proteger', en: 'Protect' },
+    powerSpike: 'mid',
+    identity: { es: 'La healera definitiva. W cura aliados (cuesta tu propia vida). Q te cura a vos si pega. R cura a TODO el equipo globalmente. E silence zone. Si no te matan, tu equipo nunca muere.', en: 'The definitive healer. W heals allies (costs your own health). Q heals you if it hits. R heals your ENTIRE team globally. E silence zone. If they don\'t kill you, your team never dies.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q (te cura si pega). W cura al ADC pero te cuesta vida — aseguráte de Q antes para recuperar. E silence zone si el enemigo engagea. No te expongas mucho.', en: 'Poke with Q (heals you if it hits). W heals ADC but costs your health — make sure to Q first to recover. E silence zone if enemy engages. Don\'t overexpose.' },
+      mid: { es: 'Posicionate atrás y cura. W al carry constantemente. Q para recuperar vida. R global para salvar aliados en cualquier lane. E silence en el engage enemigo para interrumpir.', en: 'Position back and heal. Constant W on carry. Q to recover health. R global to save allies in any lane. E silence on enemy engage to interrupt.' },
+      late: { es: 'Tu curación es absurda. W cada 2 segundos, R global cuando el equipo está bajo. Grievous Wounds es tu mayor amenaza. Posicionate donde no te puedan matar — si vivís, tu equipo vive.', en: 'Your healing is absurd. W every 2 seconds, global R when team is low. Grievous Wounds is your biggest threat. Position where they can\'t kill you — if you live, your team lives.' }
+    },
+    combo: {
+      basic: { keys: 'Q → W(aliado)', es: 'Q para curarte → W para curar al aliado. Siempre Q antes de W para no quedar baja.', en: 'Q to heal yourself → W to heal ally. Always Q before W so you don\'t get low.' },
+      advanced: { keys: 'E(zona) → Q → W → R', es: 'E silence zone para interrumpir → Q para curación propia → W al carry → R global si el equipo necesita curación urgente.', en: 'E silence zone to interrupt → Q for self-heal → W to carry → R global if team needs urgent healing.' }
+    },
+    buildReasoning: { es: 'Moonstone amplifica tu curación constante. Ardent Censer para AS del carry cuando lo curás. Staff of Flowing Water para AP. Redemption para curación AoE extra.', en: 'Moonstone amplifies constant healing. Ardent Censer for carry AS when healing. Staff of Flowing Water for AP. Redemption for extra AoE healing.' },
+    skillOrder: { order: 'W > Q > E', es: 'W primero: curación más fuerte. Q segundo: más poke y auto-curación. E último: silence zone es buena con un punto.', en: 'W first: stronger healing. Q second: more poke and self-healing. E last: silence zone is good with one point.' }
+  },
+  Swain: {
+    playstyle: { es: 'Controlar', en: 'Control' },
+    powerSpike: 'mid',
+    identity: { es: 'Mago de batalla que drainea vida con R. Tu R te transforma en un demonio que drainea vida AoE. Cuanto más peleas, más fuerte te hacés. E root de largo alcance para picks.', en: 'Battle mage who drains life with R. R transforms you into a demon that AoE drains life. The longer you fight, the stronger you get. E long range root for picks.' },
+    gameplan: {
+      early: { es: 'E root de largo alcance → W zona de explosión → Q ráfaga → pasiva pull. Cada campeón rooteado te da un stack de alma (vida permanente). Farmeá stacks.', en: 'E long range root → W explosion zone → Q burst → passive pull. Each rooted champion gives a soul stack (permanent health). Farm stacks.' },
+      mid: { es: 'R transforma: draineas vida AoE constantemente. En peleas, R activada + Zhonya\'s = seguís draineando en stasis. Con Liandry\'s tu R quema a todos.', en: 'R transforms: constantly AoE drain life. In fights, active R + Zhonya\'s = keep draining in stasis. With Liandry\'s your R burns everyone.' },
+      late: { es: 'R activada en una teamfight drainea vida de todo el equipo. R2 para explotar el daño acumulado. Con suficientes almas tenés 4000+ HP de mago. Sos un frontliner mágico.', en: 'Active R in teamfight drains life from entire team. R2 to explode accumulated damage. With enough souls you have 4000+ HP mage. You\'re a magic frontliner.' }
+    },
+    combo: {
+      basic: { keys: 'E → pasiva(pull) → W → Q', es: 'E root → Pasiva pull al rooteado → W zona debajo → Q ráfaga. Root garantiza todo.', en: 'E root → Passive pull the rooted → W zone underneath → Q burst. Root guarantees everything.' },
+      advanced: { keys: 'E → pasiva(pull) → R → Q → W → Zhonya\'s → R2', es: 'E root → Pull → R transformación → Q burst → W → Zhonya\'s (R sigue draineando) → R2 explosión al salir.', en: 'E root → Pull → R transformation → Q burst → W → Zhonya\'s (R keeps draining) → R2 explosion on exit.' }
+    },
+    buildReasoning: { es: 'Liandry\'s para quema con tu R drain AoE. Zhonya\'s es core — R sigue activa en stasis. Rylai\'s para slow constante con R. Spirit Visage para más drain healing.', en: 'Liandry\'s for burn with R AoE drain. Zhonya\'s is core — R stays active in stasis. Rylai\'s for constant slow with R. Spirit Visage for more drain healing.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: burst principal. E segundo: menor CD del root. W último: zona de visión/daño es útil con un punto.', en: 'Q first: main burst. E second: lower root CD. W last: vision/damage zone is useful with one point.' }
+  },
+  Sylas: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Mago bruiser que ROBA la ulti del enemigo con R. Tu R copia la R de cualquier campeón. Imaginate un Sylas con la R de Malphite, o de Amumu, o de Cho\'Gath. Infinitas posibilidades.', en: 'Bruiser mage who STEALS enemy ult with R. Your R copies any champion\'s R. Imagine Sylas with Malphite R, or Amumu R, or Cho\'Gath R. Infinite possibilities.' },
+    gameplan: {
+      early: { es: 'Tradeá con E (dash + dash back que stunea) + pasiva (autos AoE después de cada habilidad) + Q. Tu sustain con W es fuerte (cura más cuanta menos vida tenés).', en: 'Trade with E (dash + stun dash back) + passive (AoE autos after each ability) + Q. Sustain with W is strong (heals more the lower your health).' },
+      mid: { es: 'Robá la mejor R del equipo enemigo. ¿Tienen Malphite? Robá su R. ¿Tienen Amumu? Robá su R. Adaptate a cada teamfight robando la ulti más impactante.', en: 'Steal the best R from enemy team. They have Malphite? Steal his R. Amumu? Steal his R. Adapt to each teamfight by stealing the most impactful ult.' },
+      late: { es: 'Tu flexibilidad es insana. Podés ser engage (robando R de engage), burst (robando R de burst), o protección (robando R de support). Siempre pensá qué R es la mejor para la situación.', en: 'Your flexibility is insane. You can be engage (stealing engage R), burst (stealing burst R), or protection (stealing support R). Always think which R is best for the situation.' }
+    },
+    combo: {
+      basic: { keys: 'E1 → E2 → Q → AA(pasiva) → W', es: 'E1 dash → E2 dash + stun → Q detonación → Auto pasiva AoE → W curación. Weaveá pasiva entre cada habilidad.', en: 'E1 dash → E2 dash + stun → Q detonation → Passive AoE auto → W heal. Weave passive between each ability.' },
+      advanced: { keys: 'E1 → R(robada) → E2 → Q → AA → W → AA', es: 'E1 dash → R robada (ej: Malphite R para engage) → E2 stun → Q → Auto pasiva → W heal → Auto pasiva. El R robado cambia todo.', en: 'E1 dash → Stolen R (e.g.: Malphite R for engage) → E2 stun → Q → Passive auto → W heal → Passive auto. Stolen R changes everything.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst. Lich Bane para pasiva de autos empowered (synergiza con tu pasiva). Zhonya\'s para sobrevivir post-engage. Rabadon\'s para escalar.', en: 'Luden\'s for burst. Lich Bane for empowered auto passive (synergizes with your passive). Zhonya\'s to survive post-engage. Rabadon\'s to scale.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: waveclear y daño principal. W segundo: más curación y menor CD (tu sustain). E último: dash no necesita niveles.', en: 'Q first: waveclear and main damage. W second: more healing and lower CD (your sustain). E last: dash doesn\'t need levels.' }
+  },
+  Syndra: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'Maga de burst puro. Q coloca esferas, W levanta y tira, E empuja esferas para stun. R lanza TODAS las esferas al target para burst masivo. Cuantas más esferas, más daño de R.', en: 'Pure burst mage. Q places spheres, W picks up and throws, E pushes spheres for stun. R launches ALL spheres at target for massive burst. More spheres = more R damage.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q esferas en el enemigo. E empuja esferas para stun si se alinean. Tu burst nivel 6 con muchas esferas + R es letal. Farmeá esferas en la lane para preparar R.', en: 'Poke with Q spheres on enemy. E pushes spheres for stun if aligned. Level 6 burst with many spheres + R is lethal. Farm spheres in lane to prepare R.' },
+      mid: { es: 'Poné Q esferas → E para empujarlas y stun → W para tirar → R con 6-7 esferas = one-shot. El daño de R escala con esferas en el campo. Más Q usás, más fuerte es R.', en: 'Place Q spheres → E to push and stun → W to throw → R with 6-7 spheres = one-shot. R damage scales with spheres on field. More Q you use, stronger R.' },
+      late: { es: 'Tu R con items full one-shotea a cualquier squishy. E stun AoE es tu CC principal. Buscá pillar gente con E stun → Q → W → R. El burst es imposible de sobrevivir.', en: 'Your R with full items one-shots any squishy. E AoE stun is your main CC. Look to catch people with E stun → Q → W → R. Burst is impossible to survive.' }
+    },
+    combo: {
+      basic: { keys: 'Q → E', es: 'Q esfera → E empuja la esfera para stun. El stun sale rápido si Q está cerca.', en: 'Q sphere → E pushes sphere for stun. Stun comes out fast if Q is nearby.' },
+      advanced: { keys: 'Q → Q → Q → E → W → R', es: 'Q×3 para poner esferas en el campo → E empuja todas para stun AoE → W para más daño → R lanza todas las esferas. Con 7 esferas R hace daño nuclear.', en: 'Q×3 to place spheres on field → E pushes all for AoE stun → W for more damage → R launches all spheres. With 7 spheres R deals nuclear damage.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst y pen mágica. Shadowflame para más pen. Rabadon\'s para multiplicar tu burst. Banshee\'s para seguridad (sos inmóvil, necesitás protección).', en: 'Luden\'s for burst and magic pen. Shadowflame for more pen. Rabadon\'s to multiply burst. Banshee\'s for safety (you\'re immobile, need protection).' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: más esferas, más daño, más R damage. W segundo: más burst. E último: stun es bueno con un punto.', en: 'Q first: more spheres, more damage, more R damage. W second: more burst. E last: stun is good with one point.' }
+  },
+  TahmKench: {
+    playstyle: { es: 'Proteger', en: 'Protect' },
+    powerSpike: 'mid',
+    identity: { es: 'Tanque con la habilidad más troll de protección: W te traga a un aliado para protegerlo (o traga a un enemigo para secuestrarlo). Q stun a 3 stacks. R es un teleport de corto alcance.', en: 'Tank with the most troll protection ability: W swallows an ally to protect (or swallows an enemy to kidnap). Q stuns at 3 stacks. R is a short range teleport.' },
+    gameplan: {
+      early: { es: 'Tradeá con Q tongue + autos para stackear pasiva (3 stacks = Q stun). Tu daño es sorprendentemente alto con autos + Q. W para tragar minions y escupirlos como poke o tragar aliados.', en: 'Trade with Q tongue + autos to stack passive (3 stacks = Q stun). Your damage is surprisingly high with autos + Q. W to swallow minions and spit as poke or swallow allies.' },
+      mid: { es: 'W en tu carry cuando lo diveán = lo salvás completamente. W en un enemigo para secuestrarlo. Q stun a 3 stacks. Sos un bodyguard absurdo.', en: 'W on your carry when they get dived = you completely save them. W on enemy to kidnap them. Q stun at 3 stacks. You\'re an absurd bodyguard.' },
+      late: { es: 'Tu W protección es game-changing — tu ADC puede jugar agresivo porque si lo pillan lo tragás y lo escupís en un lugar seguro. R para flanqueos o escapes.', en: 'Your W protection is game-changing — ADC can play aggressive because if caught you swallow and spit them to safety. R for flanks or escapes.' }
+    },
+    combo: {
+      basic: { keys: 'Q → AA → AA → AA → Q(stun)', es: 'Q para stack + slow → 2 autos (llega a 3 stacks) → Q stun. Cadena de CC con auto stacks.', en: 'Q for stack + slow → 2 autos (reach 3 stacks) → Q stun. CC chain with auto stacks.' },
+      advanced: { keys: 'Q → AA → AA → W(tragar enemigo) → escupir hacia tu equipo', es: 'Q slow → Autos para stacks → W tragar al enemigo → Caminar hacia tu equipo → Escupir. Secuestro completo.', en: 'Q slow → Autos for stacks → W swallow enemy → Walk toward team → Spit. Complete kidnap.' }
+    },
+    buildReasoning: { es: 'Heartsteel para HP stacking. Hollow Radiance para AoE. Warmog\'s para regen. Tu Q y AA escalan con vida máxima así que más vida = más daño.', en: 'Heartsteel for HP stacking. Hollow Radiance for AoE. Warmog\'s for regen. Q and AA scale with max health so more health = more damage.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: daño, slow y stun. W segundo: menor CD de tragar/proteger. E último: el shield escala con daño recibido.', en: 'Q first: damage, slow and stun. W second: lower swallow/protect CD. E last: shield scales with damage taken.' }
+  },
+  Taliyah: {
+    playstyle: { es: 'Controlar', en: 'Control' },
+    powerSpike: 'mid',
+    identity: { es: 'Maga de control con R que crea un MURO GIGANTE que cruza el mapa. Q ráfaga de piedras, W knockup/push, E campo de minas. Excelente zone control y roaming con R.', en: 'Control mage with R that creates a GIANT WALL that crosses the map. Q stone burst, W knockup/push, E minefield. Excellent zone control and roaming with R.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q ráfaga de piedras. W knockup + E minas = combo de burst. Nivel 6 tu R muro gigante te deja roamear a cualquier lane instantáneamente surfing sobre el muro.', en: 'Poke with Q stone burst. W knockup + E mines = burst combo. Level 6 your R giant wall lets you roam to any lane instantly surfing on the wall.' },
+      mid: { es: 'R para crear muros que corten el mapa — separar al equipo enemigo en objetivos. W+E combo para zone control. Q para DPS constante.', en: 'R to create walls that cut the map — separate enemy team at objectives. W+E combo for zone control. Q for constant DPS.' },
+      late: { es: 'R muro en baron/elder corta al equipo enemigo en dos. W empuja a enemigos dentro de E minas para daño masivo. Tu zone control decide peleas.', en: 'R wall at baron/elder cuts enemy team in two. W pushes enemies into E mines for massive damage. Your zone control decides fights.' }
+    },
+    combo: {
+      basic: { keys: 'W → E → Q', es: 'W knockup → E minas debajo (explotan cuando los empujan) → Q ráfaga. W empuja a los enemigos sobre las minas.', en: 'W knockup → E mines underneath (explode when pushed over) → Q burst. W pushes enemies onto mines.' },
+      advanced: { keys: 'E → W(empujar sobre minas) → Q', es: 'E campo de minas → W empujar al enemigo sobre las minas (explotan todas) → Q ráfaga para rematar. El daño de minas es nuclear.', en: 'E minefield → W push enemy onto mines (all explode) → Q burst to finish. Mine damage is nuclear.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst y pen. Rylai\'s para slow con Q y minas. Shadowflame para pen. Rabadon\'s para escalar.', en: 'Luden\'s for burst and pen. Rylai\'s for slow with Q and mines. Shadowflame for pen. Rabadon\'s to scale.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: DPS principal. W segundo: menor CD del knockup. E último: minas no necesitan niveles.', en: 'Q first: main DPS. W second: lower knockup CD. E last: mines don\'t need levels.' }
+  },
+  Talon: {
+    playstyle: { es: 'Cazar', en: 'Hunt' },
+    powerSpike: 'mid',
+    identity: { es: 'Assassin AD de mid con la mejor movilidad del mapa — saltás paredes con E. R te hace invisible + daño AoE. Roameás más rápido que cualquier otro mid laner.', en: 'Mid AD assassin with the best map mobility — jump walls with E. R makes you invisible + AoE damage. You roam faster than any other mid laner.' },
+    gameplan: {
+      early: { es: 'Nivel 2 W+Q es un trade fuerte (W ida+vuelta + Q salto). Pasiva: 3 stacks = bleed que hace mucho daño. Nivel 3 pokeá y busca all-in. Post-6 roameá con R invisible + E por paredes.', en: 'Level 2 W+Q is a strong trade (W there+back + Q leap). Passive: 3 stacks = bleed that deals lots of damage. Level 3 poke and look for all-in. Post-6 roam with R invisible + E over walls.' },
+      mid: { es: 'Pusheá wave con W → E por paredes para roamear a bot/top. Tu velocidad de roam es la más rápida del juego. R invisible para picks y escapes.', en: 'Push wave with W → E over walls to roam bot/top. Your roam speed is the fastest in the game. R invisible for picks and escapes.' },
+      late: { es: 'Flanqueá por paredes con E y buscá al carry. R invisible → burst → Q al carry. Si fallás, E por paredes para escapar. Tu movilidad por el mapa es tu mayor ventaja.', en: 'Flank over walls with E and find the carry. R invisible → burst → Q to carry. If you fail, E over walls to escape. Map mobility is your greatest advantage.' }
+    },
+    combo: {
+      basic: { keys: 'W → Q → AA', es: 'W navajas (ida + vuelta) → Q salto melee → Auto. 3 hits activan pasiva bleed.', en: 'W blades (there + back) → Q melee leap → Auto. 3 hits activate passive bleed.' },
+      advanced: { keys: 'R → Q → AA → W → R(vuelven navajas)', es: 'R invisible + navajas salen → Q salto al carry → Auto → W navajas → R navajas vuelven (doble R daño). Todo el burst en un instante.', en: 'R invisible + blades out → Q leap to carry → Auto → W blades → R blades return (double R damage). All burst in an instant.' }
+    },
+    buildReasoning: { es: 'Profane Hydra para AoE burst + lethality. Youmuu\'s para MS y lethality. Opportunity para burst. Serylda\'s para slow y pen.', en: 'Profane Hydra for AoE burst + lethality. Youmuu\'s for MS and lethality. Opportunity for burst. Serylda\'s for slow and pen.' },
+    skillOrder: { order: 'W > Q > E', es: 'W primero: waveclear y poke principal. Q segundo: menor CD del salto. E último: parkour no necesita niveles.', en: 'W first: main waveclear and poke. Q second: lower leap CD. E last: parkour doesn\'t need levels.' }
+  },
+  Taric: {
+    playstyle: { es: 'Proteger', en: 'Protect' },
+    powerSpike: 'mid',
+    identity: { es: 'Support tanque con R de invulnerabilidad AoE. Tu R hace invulnerables a vos y aliados cercanos por 2.5 segundos. W linkea a un aliado (tus habilidades salen de ambos). E stun.', en: 'Tank support with AoE invulnerability R. R makes you and nearby allies invulnerable for 2.5 seconds. W links to ally (abilities cast from both). E stun.' },
+    gameplan: {
+      early: { es: 'E stun en línea (sale de vos Y del aliado linkeado con W). Q curación + autos reset pasiva. Tu early es decente con E stun bien coordinado con tu ADC.', en: 'E line stun (fires from you AND ally linked with W). Q heal + passive auto resets. Early is decent with well-coordinated E stun with ADC.' },
+      mid: { es: 'R de invulnerabilidad tiene delay — anticipá el burst enemigo. W linkeá al carry/engager para que tus habilidades salgan desde su posición. R → tu equipo es invencible por 2.5s.', en: 'R invulnerability has delay — anticipate enemy burst. W link to carry/engager so abilities fire from their position. R → your team is invincible for 2.5s.' },
+      late: { es: 'R timing perfecto = teamfight ganada. Si tu equipo es invulnerable cuando explota el burst enemigo, ganan automáticamente. La coordinación con el linkeado por W es todo.', en: 'Perfect R timing = won teamfight. If team is invulnerable when enemy burst goes off, you automatically win. Coordination with W link is everything.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA → AA → Q → AA → AA', es: 'E stun → 2 autos (pasiva reduce CD) → Q curación → 2 autos. La pasiva de Taric reduce CDs con autos.', en: 'E stun → 2 autos (passive reduces CD) → Q heal → 2 autos. Taric passive reduces CDs with autos.' },
+      advanced: { keys: 'R → W(engager) → E(desde engager) → Q', es: 'R invulnerabilidad → W link al engager → E stun sale desde el engager → Q curación. El engager entra invulnerable con stun.', en: 'R invulnerability → W link to engager → E stun fires from engager → Q heal. Engager enters invulnerable with stun.' }
+    },
+    buildReasoning: { es: 'Locket para más shield de equipo. Frozen Heart para CDR + armadura (más autos = más CDs reducidos). Redemption para curación AoE extra.', en: 'Locket for more team shield. Frozen Heart for CDR + armor (more autos = more CDs reduced). Redemption for extra AoE healing.' },
+    skillOrder: { order: 'E > Q > W', es: 'E primero: stun es tu herramienta principal. Q segundo: más curación. W último: link es bueno con un punto.', en: 'E first: stun is your main tool. Q second: more healing. W last: link is good with one point.' }
+  },
+  Teemo: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'El terror del top lane. Ranged contra melee con veneno en autos. R pone setas invisibles por el mapa que explotan para daño + slow. Si jugás contra Teemo, sufrís.', en: 'The terror of top lane. Ranged against melee with poison on autos. R places invisible mushrooms across the map that explode for damage + slow. Playing against Teemo is suffering.' },
+    gameplan: {
+      early: { es: 'Abusá tu rango con autos envenenados. Q ciega al enemigo (miss todos los autos). Contra melee tops sos un bully total. Pasiva te hace invisible si estás quieto.', en: 'Abuse range with poison autos. Q blinds enemy (miss all autos). Against melee tops you\'re a total bully. Passive makes you invisible if stationary.' },
+      mid: { es: 'Poné setas (R) en TODOS lados — bushes, caminos, entradas de objetivos. Cada seta es una trampa que hace daño y slowa. El control de mapa es tu mayor fortaleza.', en: 'Place mushrooms (R) EVERYWHERE — bushes, paths, objective entrances. Each mushroom is a trap that damages and slows. Map control is your greatest strength.' },
+      late: { es: 'Tu setas convierten el mapa en un campo minado. El enemigo no puede moverse sin pisar setas. En teamfight, Q ciega al ADC enemigo y tus autos envenenan a todos.', en: 'Your mushrooms turn the map into a minefield. Enemy can\'t move without stepping on mushrooms. In teamfight, Q blinds enemy ADC and your autos poison everyone.' }
+    },
+    combo: {
+      basic: { keys: 'AA → Q → AA', es: 'Auto envenenado → Q ciega → Auto. Trade simple que el melee no puede devolver (está ciego).', en: 'Poison auto → Q blind → Auto. Simple trade that melee can\'t return (they\'re blinded).' },
+      advanced: { keys: 'R(en camino) → AA → Q → AA → W(huir)', es: 'R setas en el path → Autos + Q cuando persigan → W para MS y huir → El enemigo pisa setas persiguiéndote. Kiting perfecto.', en: 'R mushrooms on path → Autos + Q when they chase → W for MS and run → Enemy steps on mushrooms chasing you. Perfect kiting.' }
+    },
+    buildReasoning: { es: 'Nashor\'s para on-hit AP con tus autos constantes. Liandry\'s para quema de setas y autos envenenados. Rylai\'s para slow extra. Riftmaker para sustain.', en: 'Nashor\'s for AP on-hit with constant autos. Liandry\'s for mushroom burn and poison autos. Rylai\'s for extra slow. Riftmaker for sustain.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: ciega y daño. E segundo: más veneno en autos. W último: MS es útil con un punto.', en: 'Q first: blind and damage. E second: more poison on autos. W last: MS is useful with one point.' }
+  },
+  Thresh: {
+    playstyle: { es: 'Cazar', en: 'Hunt' },
+    powerSpike: 'mid',
+    identity: { es: 'Support con el kit más completo del juego. Q hook, W lantern (salva aliados tirándoles un escape), E push/pull, R caja de slows. Infinitas posibilidades si lo dominás.', en: 'Support with the most complete kit in the game. Q hook, W lantern (saves allies by throwing an escape), E push/pull, R slow box. Infinite possibilities if mastered.' },
+    gameplan: {
+      early: { es: 'Q hook es tu engage principal. E tiene pasiva que carga autos (más daño cuanto más esperás). W lantern para salvar al jungler en ganks o salvar a tu ADC. Nivel 2 Q+E es letal.', en: 'Q hook is your main engage. E has auto charge passive (more damage the longer you wait). W lantern to save jungler on ganks or save ADC. Level 2 Q+E is lethal.' },
+      mid: { es: 'W lantern sobre paredes para sacar aliados de problemas o meter aliados en peleas. Q hook en fog → segundo cast para ir al target. R caja de slows en chokes.', en: 'W lantern over walls to extract allies from trouble or bring allies into fights. Q hook from fog → second cast to go to target. R slow box in chokes.' },
+      late: { es: 'Tu playmaking es infinito. Q pick al carry → W lantern para que tu equipo engage → E para posicionar → R caja para zone. Cada habilidad tiene 100 usos.', en: 'Your playmaking is infinite. Q pick on carry → W lantern for team to engage → E to position → R box for zone. Every ability has 100 uses.' }
+    },
+    combo: {
+      basic: { keys: 'Q → Q(recast) → E → AA', es: 'Q hook → Q segundo cast (te lleva al target) → E push/pull → Auto con pasiva cargada.', en: 'Q hook → Q second cast (takes you to target) → E push/pull → Auto with charged passive.' },
+      advanced: { keys: 'Q → W(lantern a aliado) → Q(recast) → E → R', es: 'Q hook → W lantern al aliado (el aliado clickea para dashear a vos) → Q segundo cast → E → R caja. Metés a tu aliado en la pelea con lantern.', en: 'Q hook → W lantern to ally (ally clicks to dash to you) → Q second cast → E → R box. Bring ally into fight with lantern.' }
+    },
+    buildReasoning: { es: 'Locket para shield de equipo. Mobi Boots para roaming. Zeke\'s para amplificar al carry. Después tanque items. Tu valor está en el kit, no en items.', en: 'Locket for team shield. Mobi Boots for roaming. Zeke\'s to amplify carry. Then tank items. Your value is in the kit, not items.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: menor CD del hook. E segundo: más daño y mejor push/pull. W último: lantern shield no necesita niveles.', en: 'Q first: lower hook CD. E second: more damage and better push/pull. W last: lantern shield doesn\'t need levels.' }
+  },
+  Tristana: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'ADC con el mayor rango de late game (crece por nivel) y burst de bomba (E). W salta largo y resetea en kills. R knockback. Fuerte en all-in nivel 2-3 y en late game.', en: 'ADC with the highest late game range (grows per level) and bomb burst (E). W long jump that resets on kills. R knockback. Strong in level 2-3 all-in and late game.' },
+    gameplan: {
+      early: { es: 'Nivel 2 all-in con E bomba + W salto es brutal. E en el enemigo → autos para stackear bomba → W para seguir → bomba explota. Tu burst nivel 2-3 es de los mejores.', en: 'Level 2 all-in with E bomb + W jump is brutal. E on enemy → autos to stack bomb → W to follow → bomb explodes. Your level 2-3 burst is among the best.' },
+      mid: { es: 'Tu rango sigue creciendo. E en torres hace daño masivo (podés tomar torres sola rápido). W resetea en kills así que en peleas saltás de target en target.', en: 'Range keeps growing. E on towers deals massive damage (can take towers alone fast). W resets on kills so in fights you jump from target to target.' },
+      late: { es: 'Tu rango a nivel 18 es 661 — el más largo de cualquier ADC. E bomba + autos de crit hace daño absurdo. W para reposicionar o perseguir. R para auto-peel knockback.', en: 'Your range at level 18 is 661 — longest of any ADC. E bomb + crit autos deal absurd damage. W to reposition or chase. R for self-peel knockback.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA → AA → AA → AA(bomba explota)', es: 'E bomba en el target → 4 autos para stackear → Bomba explota. Cada auto reduce E CD.', en: 'E bomb on target → 4 autos to stack → Bomb explodes. Each auto reduces E CD.' },
+      advanced: { keys: 'E → AA → AA → W(encima) → AA → AA → R', es: 'E bomba → 2 autos → W saltar sobre el target (stackea bomba) → Autos → R knockback (stackea bomba). Máximo burst.', en: 'E bomb → 2 autos → W jump on target (stacks bomb) → Autos → R knockback (stacks bomb). Maximum burst.' }
+    },
+    buildReasoning: { es: 'Infinity Edge core para crit que amplifica el burst de E bomba. Phantom Dancer para AS. Navori para menor CD. Lord Dominik\'s vs tanques.', en: 'Infinity Edge core for crit that amplifies E bomb burst. Phantom Dancer for AS. Navori for lower CD. Lord Dominik\'s vs tanks.' },
+    skillOrder: { order: 'E > Q > W', es: 'E primero: bomba es tu burst. Q segundo: más AS steroid. W último: salto no necesita niveles para el reset.', en: 'E first: bomb is your burst. Q second: more AS steroid. W last: jump doesn\'t need levels for the reset.' }
+  },
+  Trundle: {
+    playstyle: { es: 'Splitpush', en: 'Splitpush' },
+    powerSpike: 'mid',
+    identity: { es: 'Bruiser anti-tanque de top/jungla. R roba % de armadura y MR del enemigo — cuanto más gordo el tanque, más te beneficiás. Q roba AD. W te da AS y MS. Pilar E bloquea caminos.', en: 'Anti-tank bruiser top/jungle. R steals % armor and MR from enemy — the fatter the tank, the more you benefit. Q steals AD. W gives AS and MS. E pillar blocks paths.' },
+    gameplan: {
+      early: { es: 'Q roba AD del enemigo (vos ganás, él pierde). W zona de velocidad. En trades, Q auto reset + W AS domina muchos matchups. Tu sustain con pasiva (cura cuando mueren unidades cerca) es fuerte.', en: 'Q steals AD from enemy (you gain, they lose). W speed zone. In trades, Q auto reset + W AS dominates many matchups. Sustain with passive (heal on nearby unit deaths) is strong.' },
+      mid: { es: 'Splitpusheá y nadie te 1v1 con tu R activa (robás sus stats). R al tanque más gordo = vos te hacés tanque y él se vuelve papel. E pilar para cortar escapes.', en: 'Splitpush and nobody 1v1s you with R active (steal their stats). R the fattest tank = you become tanky and they become paper. E pillar to cut escapes.' },
+      late: { es: 'R al tanque frontliner = le sacás la mitad de sus resistencias. Ahora tu equipo lo mata fácil y vos sos ultra tanque. E pilar en chokepoints bloquea equipos enteros.', en: 'R the frontline tank = take half their resistances. Now your team kills them easily and you\'re ultra tanky. E pillar in chokepoints blocks entire teams.' }
+    },
+    combo: {
+      basic: { keys: 'W → Q → AA → AA', es: 'W zona de AS → Q auto reset que roba AD → Autos rápidos. Simple y efectivo.', en: 'W AS zone → Q auto reset that steals AD → Fast autos. Simple and effective.' },
+      advanced: { keys: 'E(bloquear escape) → R(al tanque) → W → Q → AA', es: 'E pilar para cortar escape → R robar stats del tanque → W zona → Q robar AD → Autos. Ahora vos sos el tanque.', en: 'E pillar to block escape → R steal tank stats → W zone → Q steal AD → Autos. Now you\'re the tank.' }
+    },
+    buildReasoning: { es: 'BOTRK es core — on-hit + AS con tu W y Q = DPS anti-tanque insano. Trinity para Spellblade con Q. Sterak\'s para más HP con los stats robados de R.', en: 'BOTRK is core — on-hit + AS with W and Q = insane anti-tank DPS. Trinity for Spellblade with Q. Sterak\'s for more HP with stolen R stats.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: más AD robado y menor CD. W segundo: más AS y MS. E último: pilar es bueno con un punto.', en: 'Q first: more AD stolen and lower CD. W second: more AS and MS. E last: pillar is good with one point.' }
+  },
+  Tryndamere: {
+    playstyle: { es: 'Splitpush', en: 'Splitpush' },
+    powerSpike: 'mid',
+    identity: { es: 'El splitpusher más agresivo. Tu R te hace NO PODER MORIR por 5 segundos. Críticos random en autos. Spinneás con E. Apretás R, pegás 5 segundos más y matás todo.', en: 'The most aggressive splitpusher. Your R makes you UNABLE TO DIE for 5 seconds. Random crits on autos. Spin with E. Press R, hit for 5 more seconds and kill everything.' },
+    gameplan: {
+      early: { es: 'Cargá furia con autos a minions → tradeá con furia llena (más crit chance). Si el trade va mal, Q para curar (usa la furia acumulada). E spin para escape o engage.', en: 'Charge fury with minion autos → trade with full fury (more crit chance). If trade goes bad, Q to heal (uses accumulated fury). E spin for escape or engage.' },
+      mid: { es: 'Splitpush sin parar. Si te gankean, R → 5 segundos más de vida → E spin para escapar. Si te mandan solo a uno, lo matás. Matá torres con tu alto crit DPS.', en: 'Splitpush non-stop. If ganked, R → 5 more seconds of life → E spin to escape. If they send one, kill them. Kill towers with high crit DPS.' },
+      late: { es: 'Splitpush es tu ÚNICO juego. No teamfightees — splitpusheá y forzá recursos. R te hace invencible 5 segundos. Matá towers, matá inhibidores. Si te mandan 2, tu equipo toma algo.', en: 'Splitpush is your ONLY game. Don\'t teamfight — split and force resources. R makes you invincible for 5 seconds. Kill towers, kill inhibitors. If they send 2, your team takes something.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA → AA → AA', es: 'E spin al target → Autos con crit. Simple: spinneá y pegá.', en: 'E spin to target → Autos with crit. Simple: spin and hit.' },
+      advanced: { keys: 'E → AA → AA → R(al borde de morir) → AA → AA → AA → E', es: 'E engage → Autos → R cuando estás a 1 HP (5 segundos invencible) → Autos con todo → E spin para escapar antes de que termine R. Timing de R es la clave.', en: 'E engage → Autos → R when at 1 HP (5 seconds invincible) → All-out autos → E spin to escape before R ends. R timing is key.' }
+    },
+    buildReasoning: { es: 'Kraken Slayer para true damage. Infinity Edge para crit (tu identidad). Phantom Dancer para AS. Navori para menor CD de E spin. Full crit.', en: 'Kraken Slayer for true damage. Infinity Edge for crit (your identity). Phantom Dancer for AS. Navori for lower E spin CD. Full crit.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero en top para sustain. E segundo: menor CD del spin. W último: AS slow es útil con un punto.', en: 'Q first in top for sustain. E second: lower spin CD. W last: AS slow is useful with one point.' }
+  },
+  TwistedFate: {
+    playstyle: { es: 'Controlar', en: 'Control' },
+    powerSpike: 'mid',
+    identity: { es: 'Mago de mid con R que revela a TODOS los enemigos y te deja teleportarte a cualquier lugar visible. W pick-a-card elige entre stun (dorada), mana (azul) y AoE (roja). El roamer definitivo.', en: 'Mid mage with R that reveals ALL enemies and lets you teleport to any visible location. W pick-a-card chooses between stun (gold), mana (blue) and AoE (red). The definitive roamer.' },
+    gameplan: {
+      early: { es: 'Farmeá con Q cartas y W azul (devuelve maná). W dorada para stun si el jungler gankea. Nivel 6 tu R cambia todo — teleportarte a cualquier lane para ganks garantizados.', en: 'Farm with Q cards and W blue (refunds mana). W gold for stun if jungler ganks. Level 6 your R changes everything — teleport to any lane for guaranteed ganks.' },
+      mid: { es: 'Pusheá wave con Q → R a la lane que esté peleando → W dorada stun → pick. Tu R revela a todos así que sabés dónde está cada enemigo. Presión de mapa insana.', en: 'Push wave with Q → R to whichever lane is fighting → W gold stun → pick. R reveals everyone so you know where each enemy is. Insane map pressure.' },
+      late: { es: 'R para flanqueos con W dorada stun al carry. En teamfights, W dorada repetida cada pocos segundos = stun constante. Tu presión de mapa obliga al enemigo a jugar diferente.', en: 'R for flanks with W gold stun on carry. In teamfights, repeated W gold every few seconds = constant stun. Your map pressure forces enemy to play differently.' }
+    },
+    combo: {
+      basic: { keys: 'W(dorada) → AA → Q', es: 'W seleccionar carta dorada → Auto stun → Q cartas. El stun garantiza Q.', en: 'W select gold card → Auto stun → Q cards. Stun guarantees Q.' },
+      advanced: { keys: 'R(teleport) → W(dorada) → AA → Q → E(pasiva)', es: 'R teleport a la lane → W dorada stun al llegar → Auto stun → Q burst. El gank perfecto de TF.', en: 'R teleport to lane → W gold stun on arrival → Auto stun → Q burst. The perfect TF gank.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst y pen. Rapid Firecannon extiende el rango del auto con W dorada — stun de largo alcance sorpresa. Lich Bane para Spellblade en W autos. Rabadon\'s para escalar.', en: 'Luden\'s for burst and pen. Rapid Firecannon extends auto range with W gold — surprise long range stun. Lich Bane for Spellblade on W autos. Rabadon\'s to scale.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: waveclear y poke. W segundo: menor CD de stun. E último: AS y daño extra pasivo.', en: 'Q first: waveclear and poke. W second: lower stun CD. E last: AS and passive extra damage.' }
+  },
+  Twitch: {
+    playstyle: { es: 'Farmear', en: 'Farm' },
+    powerSpike: 'late',
+    identity: { es: 'ADC invisible con el mayor teamfight damage potencial. Q te hace invisible → aparecés con AS boost. R da rango enorme y tus autos atraviesan a todos en línea. Pentakill machine.', en: 'Invisible ADC with the highest potential teamfight damage. Q makes you invisible → appear with AS boost. R gives enormous range and autos pierce through everyone in line. Pentakill machine.' },
+    gameplan: {
+      early: { es: 'Tu early es débil. Farmeá y buscá oportunidades con Q invisible para roamear a mid. E expunge (saca el veneno para burst). Con support agresivo podés pillar gente.', en: 'Early is weak. Farm and look for opportunities with Q invisible to roam mid. E expunge (pulls poison for burst). With aggressive support you can catch people.' },
+      mid: { es: 'Q invisible para roamear y buscar picks. Con Runaan\'s tu R atraviesa y aplica on-hit a TODO el equipo. Buscá posiciones de flanco con Q stealth.', en: 'Q invisible to roam and look for picks. With Runaan\'s your R pierces and applies on-hit to ENTIRE team. Look for flank positions with Q stealth.' },
+      late: { es: 'Q invisible → aparecé desde un flanco → R para rango + pierce → tus autos pasan a través de todo el equipo. Con IE + Runaan\'s tu DPS AoE es el más alto del juego. Pentakill territory.', en: 'Q invisible → appear from a flank → R for range + pierce → autos pass through entire team. With IE + Runaan\'s your AoE DPS is the highest in the game. Pentakill territory.' }
+    },
+    combo: {
+      basic: { keys: 'Q(stealth) → AA → AA → AA → E', es: 'Q invisible → Autos para stackear veneno → E expunge para burst. Cada auto stackea veneno, E lo explota todo.', en: 'Q invisible → Autos to stack poison → E expunge for burst. Each auto stacks poison, E explodes it all.' },
+      advanced: { keys: 'Q → (posicionar) → R → AA → AA → AA → AA → E', es: 'Q stealth → Posicionate en el flanco → R para rango + pierce → Autos que penetran a todos → E expunge con stacks máximos en todo el equipo.', en: 'Q stealth → Position on flank → R for range + pierce → Autos that penetrate everyone → E expunge with max stacks on entire team.' }
+    },
+    buildReasoning: { es: 'Infinity Edge para crit que amplifica pierce de R. Runaan\'s para bolts extra que también piercean con R. BOTRK para on-hit. Collector para ejecución.', en: 'Infinity Edge for crit that amplifies R pierce. Runaan\'s for extra bolts that also pierce with R. BOTRK for on-hit. Collector for execution.' },
+    skillOrder: { order: 'E > Q > W', es: 'E primero: burst de expunge. Q segundo: menor CD de stealth. W último: slow zone es útil con un punto.', en: 'E first: expunge burst. Q second: lower stealth CD. W last: slow zone is useful with one point.' }
+  },
+  Udyr: {
+    playstyle: { es: 'Farmear', en: 'Farm' },
+    powerSpike: 'mid',
+    identity: { es: 'Jungler que cambia entre 4 stances (no tiene R como tal). Q trueno, W escudo/curación, E dash/stun, R fénix AoE. Awaken (doble cast) potencia cada stance. Versátil y rápido.', en: 'Jungler who switches between 4 stances (no R per se). Q lightning, W shield/heal, E dash/stun, R phoenix AoE. Awaken (double cast) empowers each stance. Versatile and fast.' },
+    gameplan: {
+      early: { es: 'Clear rápido con R fénix AoE o Q trueno. Gankeá con E (dash + stun). Tu flexibilidad de stances te deja adaptar: Q para burst, W para sustain, E para CC, R para clear.', en: 'Fast clear with R phoenix AoE or Q lightning. Gank with E (dash + stun). Stance flexibility lets you adapt: Q for burst, W for sustain, E for CC, R for clear.' },
+      mid: { es: 'En peleas, cambiá stances constantemente para maximizar pasiva. E stun → Q burst → W shield → R AoE. Con Iceborn/Jak\'Sho sos un bruiser tanque incansable.', en: 'In fights, switch stances constantly to maximize passive. E stun → Q burst → W shield → R AoE. With Iceborn/Jak\'Sho you\'re a tireless bruiser tank.' },
+      late: { es: 'Sos un tanque bruiser que corre hacia el backline con E stun. Q trueno burst, W para tanquear, R AoE constante. Cambiando stances sos difícil de matar y hacés DPS constante.', en: 'You\'re a bruiser tank that runs at backline with E stun. Q lightning burst, W to tank, R constant AoE. Switching stances makes you hard to kill and deal constant DPS.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA(stun) → Q → AA → W → AA', es: 'E dash+stun → Auto → Q trueno → Auto → W shield → Auto. Cambiá entre stances para maximizar pasiva.', en: 'E dash+stun → Auto → Q lightning → Auto → W shield → Auto. Switch stances to maximize passive.' },
+      advanced: { keys: 'E(awaken) → AA(stun) → Q(awaken) → AA → R → W → AA', es: 'E empowered dash+stun → Auto → Q empowered trueno burst → Auto → R AoE → W shield → Auto. Awaken da versiones más fuertes.', en: 'E empowered dash+stun → Auto → Q empowered lightning burst → Auto → R AoE → W shield → Auto. Awaken gives stronger versions.' }
+    },
+    buildReasoning: { es: 'Iceborn Gauntlet para slow field en cada stance change. Jak\'Sho para tanqueo que escala en peleas. Frozen Heart vs AD. Spirit Visage para más curación de W.', en: 'Iceborn Gauntlet for slow field on each stance change. Jak\'Sho for tankiness that scales in fights. Frozen Heart vs AD. Spirit Visage for more W healing.' },
+    skillOrder: { order: 'R > Q > W > E (o Q > R)', es: 'R si querés AoE clear/damage. Q si querés burst. Ambos funcionan. W y E con puntos menores para sustain y CC.', en: 'R for AoE clear/damage. Q for burst. Both work. W and E with lesser points for sustain and CC.' }
+  },
+  Urgot: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Bruiser ranged de top con piernas que disparan (pasiva tiene 6 cargas alrededor). R ejecuta a targets bajo 25% HP con drill que los trae hacia vos y los mata. El carnicero del top.', en: 'Ranged top bruiser with firing legs (passive has 6 charges around). R executes targets under 25% HP with drill that drags them in and kills. The top lane butcher.' },
+    gameplan: {
+      early: { es: 'Tradeá activando piernas de pasiva (cada dirección tiene un CD). E flip al enemigo → autos con piernas → Q slow. Tu DPS es alto si activás todas las piernas.', en: 'Trade by activating passive legs (each direction has a CD). E flip enemy → autos with legs → Q slow. DPS is high if you activate all legs.' },
+      mid: { es: 'Con Black Cleaver tu daño + piernas shredean armadura rápido. R a los que estén bajo 25% — el drill los ejecuta sin importar cuánta vida les quede. E flip para engage.', en: 'With Black Cleaver your damage + legs shred armor fast. R those under 25% — drill executes regardless of remaining health. E flip for engage.' },
+      late: { es: 'R ejecución bajo 25% es game-changing — fear a los enemigos que ven a su aliado dragged. En teamfights, E flip + piernas + W toggle (autos automáticos) = DPS constante.', en: 'R execution under 25% is game-changing — fears enemies who see ally dragged. In teamfights, E flip + legs + W toggle (automatic autos) = constant DPS.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA → Q → AA → W → AA', es: 'E flip (activa pierna frontal) → Auto → Q slow → Auto → W toggle autos → Autos con piernas. Las piernas hacen % HP daño.', en: 'E flip (activates front leg) → Auto → Q slow → Auto → W toggle autos → Autos with legs. Legs deal % HP damage.' },
+      advanced: { keys: 'E → Flash → Q → W → AA → AA → R', es: 'E flip → Flash para extender rango → Q slow → W autos automáticos → Las piernas destruyen → R cuando esté bajo 25% para ejecutar.', en: 'E flip → Flash to extend range → Q slow → W automatic autos → Legs destroy → R when under 25% to execute.' }
+    },
+    buildReasoning: { es: 'Black Cleaver core — tu W autos + piernas stackean cleaver instantáneamente. Titanic Hydra para más AoE con piernas. Sterak\'s para shield. Death\'s Dance para sustain.', en: 'Black Cleaver core — W autos + legs stack cleaver instantly. Titanic Hydra for more AoE with legs. Sterak\'s for shield. Death\'s Dance for sustain.' },
+    skillOrder: { order: 'W > E > Q', es: 'W primero: toggle de autos automáticos con piernas (tu DPS). E segundo: menor CD del flip. Q último: slow es útil con un punto.', en: 'W first: auto toggle with legs (your DPS). E second: lower flip CD. Q last: slow is useful with one point.' }
+  },
+  Varus: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'ADC de poke con Q de largo alcance que se carga para más daño. W marca targets, Q/E detonan marcas para % HP. R root que se extiende entre enemigos cercanos. Versátil: lethality poke o on-hit DPS.', en: 'Poke ADC with long range Q that charges for more damage. W marks targets, Q/E detonate marks for % HP. R root that spreads between nearby enemies. Versatile: lethality poke or on-hit DPS.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q cargado a distancia. W pasiva stackea con autos, Q/E detonan para % HP daño. E para AoE slow. En lethality build, Q pokea por 40% de vida.', en: 'Poke with charged Q at range. W passive stacks with autos, Q/E detonate for % HP damage. E for AoE slow. In lethality build, Q pokes for 40% health.' },
+      mid: { es: 'R root que se extiende — si pegas a uno, los cercanos también se rootean. R en un grupo es devastador. Lethality: Q snipe. On-hit: W stacks + DPS sostenido.', en: 'R root that spreads — hit one and nearby also get rooted. R on a group is devastating. Lethality: Q snipe. On-hit: W stacks + sustained DPS.' },
+      late: { es: 'R en un grupo = root masivo spread. Q con lethality items mata squishies desde pantalla. On-hit con Guinsoo\'s drena tanques. Sin escape así que posicionamiento es vida o muerte.', en: 'R on group = massive spread root. Q with lethality items kills squishies from screen away. On-hit with Guinsoo\'s drains tanks. No escape so positioning is life or death.' }
+    },
+    combo: {
+      basic: { keys: 'AA → AA → AA → Q(cargado)', es: 'Autos para stackear W → Q cargado para detonar marks (% HP). Cuantos más stacks, más daño la detonación.', en: 'Autos to stack W → Charged Q to detonate marks (% HP). More stacks = more detonation damage.' },
+      advanced: { keys: 'R → E → Q(cargado)', es: 'R root spread → E AoE slow + detona W → Q cargado para detona W de nuevo. Doble detonación de marcas.', en: 'R spread root → E AoE slow + detonates W → Charged Q to detonate W again. Double mark detonation.' }
+    },
+    buildReasoning: { es: 'Lethality (Youmuu\'s + Collector): Q poke desde lejos one-shotea. On-hit (Guinsoo\'s + BOTRK): DPS constante contra tanques. Muramana en ambos para maná y daño.', en: 'Lethality (Youmuu\'s + Collector): Q poke from range one-shots. On-hit (Guinsoo\'s + BOTRK): constant DPS vs tanks. Muramana in both for mana and damage.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: poke principal. W segundo: más % HP daño. E último: slow útil con un punto.', en: 'Q first: main poke. W second: more % HP damage. E last: slow useful with one point.' }
+  },
+  Vayne: {
+    playstyle: { es: 'Farmear', en: 'Farm' },
+    powerSpike: 'late',
+    identity: { es: 'ADC hypercarry anti-tanque. W hace % vida TRUE damage cada 3 autos — no hay forma de contrarrestarlo con armadura. Q dash corto, E condemn contra pared para stun, R stealth. La tank-killer definitiva.', en: 'Anti-tank hypercarry ADC. W deals % health TRUE damage every 3 autos — no way to counter with armor. Q short dash, E condemn against wall for stun, R stealth. The definitive tank-killer.' },
+    gameplan: {
+      early: { es: 'Tu early es DÉBIL. Farmeá y sobreviví. Q para reposicionar, E para auto-peel. No pelees — la mayoría de ADCs te ganan temprano. Tu power está en el scaling.', en: 'Your early is WEAK. Farm and survive. Q to reposition, E for self-peel. Don\'t fight — most ADCs beat you early. Your power is in scaling.' },
+      mid: { es: 'Con BOTRK + crit empezás a ser peligrosa. W true damage destruye tanques. R te da AD + Q te hace invisible + MS. Buscá peleas donde puedas kittear.', en: 'With BOTRK + crit you start being dangerous. W true damage destroys tanks. R gives AD + Q makes you invisible + MS. Look for fights where you can kite.' },
+      late: { es: 'Sos la ADC más fuerte del late contra tanques — 14% true damage cada 3 autos no se mitiga con nada. R para stealth + DPS. Posicionate bien y matá a cualquiera en 6 autos.', en: 'You\'re the strongest late ADC against tanks — 14% true damage every 3 autos can\'t be mitigated. R for stealth + DPS. Position well and kill anyone in 6 autos.' }
+    },
+    combo: {
+      basic: { keys: 'AA → AA → Q → AA(W proc)', es: 'Auto → Auto → Q dash + auto (3er hit = W proc true damage). Q resets auto para el proc rápido.', en: 'Auto → Auto → Q dash + auto (3rd hit = W proc true damage). Q resets auto for quick proc.' },
+      advanced: { keys: 'R → AA → AA → Q(stealth) → AA → E(condemn pared)', es: 'R para stealth + AD → 2 autos → Q stealth + auto (W proc) → E condemn contra pared para stun → Más autos. DPS + outplay.', en: 'R for stealth + AD → 2 autos → Q stealth + auto (W proc) → E condemn against wall for stun → More autos. DPS + outplay.' }
+    },
+    buildReasoning: { es: 'BOTRK core — on-hit + % HP con tu W proc es anti-tanque perfecto. Guinsoo\'s si querés on-hit puro (W proc más seguido). IE para crit build. Phantom Dancer para AS + shield.', en: 'BOTRK core — on-hit + % HP with W proc is perfect anti-tank. Guinsoo\'s for pure on-hit (more frequent W proc). IE for crit build. Phantom Dancer for AS + shield.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: menor CD del dash/stealth. W segundo: más % true damage. E último: condemn no necesita niveles.', en: 'Q first: lower dash/stealth CD. W second: more % true damage. E last: condemn doesn\'t need levels.' }
+  },
+  Veigar: {
+    playstyle: { es: 'Farmear', en: 'Farm' },
+    powerSpike: 'late',
+    identity: { es: 'Mago que stackea AP infinitamente. Cada Q que mata algo da AP permanente. R es un misil que escala con TU AP + el % de vida perdida del target. En late game, R one-shotea sin combo.', en: 'Mage who stacks AP infinitely. Each Q that kills something gives permanent AP. R is a missile that scales with YOUR AP + target\'s % missing health. Late game, R one-shots without combo.' },
+    gameplan: {
+      early: { es: 'FARMEÁ con Q — cada minion matado con Q = 1 AP permanente, cada campeón = 5 AP. E caja de stun para self-peel. Tu early es débil pero cada Q te acerca al late game nuclear.', en: 'FARM with Q — each minion killed with Q = 1 permanent AP, each champion = 5 AP. E stun box for self-peel. Early is weak but each Q brings you closer to nuclear late game.' },
+      mid: { es: 'E caja de stun + W zona = combo de burst. Con 200+ stacks tu Q empieza a doler. R ejecuta targets bajos de vida — cuanta más vida perdida y más AP tenés, más daño hace R.', en: 'E stun box + W zone = burst combo. With 200+ stacks your Q starts hurting. R executes low health targets — more missing health and more AP = more R damage.' },
+      late: { es: 'Con 500+ stacks tu R literalmente one-shotea squishies sin combo. E caja en una teamfight zonea a todo el equipo. Sos el mago que más escala del juego.', en: 'With 500+ stacks your R literally one-shots squishies without combo. E box in a teamfight zones the entire team. You\'re the highest scaling mage in the game.' }
+    },
+    combo: {
+      basic: { keys: 'E → W → Q', es: 'E caja de stun → W zona de daño donde están stunneados → Q para daño + stacks.', en: 'E stun box → W damage zone where stunned → Q for damage + stacks.' },
+      advanced: { keys: 'E → W → Q → R', es: 'E stun → W burst → Q burst → R ejecutar. Con AP suficiente, R sola hace 1500+. El combo completo no deja sobrevivientes.', en: 'E stun → W burst → Q burst → R execute. With enough AP, R alone does 1500+. Full combo leaves no survivors.' }
+    },
+    buildReasoning: { es: 'Rabadon\'s lo antes posible — multiplica tus stacks de AP infinitos (multiplicador × stacks = daño absurdo). Luden\'s para burst. Shadowflame para pen. Void Staff vs MR.', en: 'Rabadon\'s ASAP — multiplies your infinite AP stacks (multiplier × stacks = absurd damage). Luden\'s for burst. Shadowflame for pen. Void Staff vs MR.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: stacking y daño principal. W segundo: más burst AoE. E último: stun caja es buena con un punto (duración sube pero no es prioridad).', en: 'Q first: stacking and main damage. W second: more AoE burst. E last: stun box is good with one point (duration increases but not priority).' }
+  },
+  Velkoz: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'Mago de artillería con R laser que desintegra. Q se split en ángulos, W zona de AoE, E knockup. R es un laser que channeleás y hace true damage con pasiva completa. Poke machine.', en: 'Artillery mage with disintegrating R laser. Q splits at angles, W AoE zone, E knockup. R is a channeled laser that deals true damage with full passive. Poke machine.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q (se parte en ángulo para hit desde posiciones inesperadas). W+E para trades. Tu pasiva investiga: 3 hits = daño true extra. Farmeá y pokeá constantemente.', en: 'Poke with Q (splits at angle for hits from unexpected positions). W+E for trades. Passive researches: 3 hits = extra true damage. Farm and poke constantly.' },
+      mid: { es: 'R laser es devastador en chokepoints. E knockup → W → Q → R laser. Con 3 stacks de pasiva, R hace true damage. Posicionate seguro y usá tu rango enorme.', en: 'R laser is devastating in chokepoints. E knockup → W → Q → R laser. With 3 passive stacks, R deals true damage. Position safely and use your enormous range.' },
+      late: { es: 'R laser con items full one-shotea a todo lo que agarre. E knockup → R laser en el grupo = equipo destruido. Tu poke de Q antes de la pelea chunka a todos.', en: 'R laser with full items one-shots everything it catches. E knockup → R laser on group = team destroyed. Q poke before fight chunks everyone.' }
+    },
+    combo: {
+      basic: { keys: 'E → W → Q', es: 'E knockup → W zona AoE → Q split. Pasiva se stackea con los 3 hits.', en: 'E knockup → W AoE zone → Q split. Passive stacks with the 3 hits.' },
+      advanced: { keys: 'E → W → Q → R', es: 'E knockup → W → Q (ya tienen 3 stacks de pasiva) → R laser con true damage. El laser dura 2.5 segundos y hace daño nuclear.', en: 'E knockup → W → Q (already have 3 passive stacks) → R laser with true damage. Laser lasts 2.5 seconds and deals nuclear damage.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst y pen. Shadowflame para pen. Rabadon\'s para multiplicar el laser. Void Staff porque tu pasiva true damage escala con AP.', en: 'Luden\'s for burst and pen. Shadowflame for pen. Rabadon\'s to multiply laser. Void Staff because passive true damage scales with AP.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: poke principal y menor CD. W segundo: más AoE. E último: knockup no necesita niveles.', en: 'Q first: main poke and lower CD. W second: more AoE. E last: knockup doesn\'t need levels.' }
+  },
+  Vex: {
+    playstyle: { es: 'Engagear', en: 'Engage' },
+    powerSpike: 'mid',
+    identity: { es: 'Maga anti-dash con R que la lanza al target desde lejos (resetea en kill). Pasiva fear a quienes dashean cerca. Tu R es un misil que te lleva volando al target — engage de maga.', en: 'Anti-dash mage with R that launches her to target from afar (resets on kill). Passive fears those who dash nearby. R is a missile that flies you to target — mage engage.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q+W. Tu pasiva marca a quien dashea cerca de vos — el fear es automático. Contra assassins con dashes sos un counter natural. Nivel 6 R es un engage de largo alcance.', en: 'Poke with Q+W. Passive marks whoever dashes near you — fear is automatic. Against assassins with dashes you\'re a natural counter. Level 6 R is a long range engage.' },
+      mid: { es: 'R misil → si pega, R2 para volar al target → Q+W+E burst. Si matás con R, reseta. Buscá targets solos para R picks. Tu pasiva fear counter dashers.', en: 'R missile → if it hits, R2 to fly to target → Q+W+E burst. If you kill with R, it resets. Look for solo targets for R picks. Passive fear counters dashers.' },
+      late: { es: 'R al carry desde lejos → R2 fly in → burst → kill → R resetea → R al siguiente target. En teamfights tu R resets te dejan ir de carry en carry.', en: 'R carry from range → R2 fly in → burst → kill → R resets → R next target. In teamfights R resets let you go carry to carry.' }
+    },
+    combo: {
+      basic: { keys: 'Q → W → AA(pasiva fear)', es: 'Q poke → W AoE → Auto con pasiva (fear si está disponible). El fear es tu herramienta anti-assassin.', en: 'Q poke → W AoE → Auto with passive (fear if available). Fear is your anti-assassin tool.' },
+      advanced: { keys: 'R → R2(volar) → W → Q → E', es: 'R misil al target → R2 volar → W AoE + shield → Q burst → E para más daño/slow. Si matás, R de nuevo al siguiente.', en: 'R missile to target → R2 fly → W AoE + shield → Q burst → E for more damage/slow. If you kill, R again to next.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst + pen. Shadowflame para más pen contra squishy dashers. Rabadon\'s para one-shot. Zhonya\'s para después del R engage.', en: 'Luden\'s for burst + pen. Shadowflame for more pen vs squishy dashers. Rabadon\'s to one-shot. Zhonya\'s for after R engage.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: poke y burst principal. W segundo: AoE + shield. E último: slow/daño extra.', en: 'Q first: main poke and burst. W second: AoE + shield. E last: slow/extra damage.' }
+  },
+  Vi: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Jungler bruiser con R imparable que te lleva volando al target. R es point-and-click — no se puede esquivar. Q carga para dash+knockup. Engage directo e inevitable.', en: 'Bruiser jungler with unstoppable R that flies you to target. R is point-and-click — can\'t be dodged. Q charges for dash+knockup. Direct and inevitable engage.' },
+    gameplan: {
+      early: { es: 'Clear rápido con E auto resets. Gankeá con Q cargado (dash + knockup). Tu burst nivel 3 es fuerte. Post-6 tu R point-and-click garantiza kills en ganks.', en: 'Fast clear with E auto resets. Gank with charged Q (dash + knockup). Level 3 burst is strong. Post-6 your point-and-click R guarantees kills on ganks.' },
+      mid: { es: 'R al carry enemigo es una sentencia. R es imparable — nada la cancela. Q para engage extra. E para DPS. Buscá el carry fuera de posición y R.', en: 'R on enemy carry is a death sentence. R is unstoppable — nothing cancels it. Q for extra engage. E for DPS. Find carry out of position and R.' },
+      late: { es: 'Flash + R o Q + R al carry en teamfights. El carry no puede evitar tu R. Después burst con Q+E+autos. Sterak\'s y Death\'s Dance te mantienen viva después del dive.', en: 'Flash + R or Q + R the carry in teamfights. Carry can\'t avoid your R. Then burst with Q+E+autos. Sterak\'s and Death\'s Dance keep you alive after dive.' }
+    },
+    combo: {
+      basic: { keys: 'Q(cargar) → AA → E → AA', es: 'Q cargado dash knockup → Auto → E auto reset → Auto. Burst rápido.', en: 'Charged Q dash knockup → Auto → E auto reset → Auto. Quick burst.' },
+      advanced: { keys: 'R → AA → Q → AA → E → AA', es: 'R al carry (imparable) → Auto → Q knockup extra → Auto → E reset → Auto. El target está CC\'d y muerto.', en: 'R to carry (unstoppable) → Auto → Q extra knockup → Auto → E reset → Auto. Target is CC\'d and dead.' }
+    },
+    buildReasoning: { es: 'Eclipse para burst y sustain. Black Cleaver para pen con tus múltiples hits. Sterak\'s para shield. Death\'s Dance para sobrevivir el dive.', en: 'Eclipse for burst and sustain. Black Cleaver for pen with multiple hits. Sterak\'s for shield. Death\'s Dance to survive the dive.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: más daño y menor CD del dash/knockup. E segundo: más auto resets. W último: shield/AS es útil con un punto.', en: 'Q first: more damage and lower dash/knockup CD. E second: more auto resets. W last: shield/AS is useful with one point.' }
+  },
+  Viego: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Jungler que posee el cuerpo de enemigos muertos. Cuando matás a alguien, te convertís en ellos con todas sus habilidades. R resetea en posesión. El camaleón del juego.', en: 'Jungler who possesses dead enemies\' bodies. When you kill someone, you become them with all abilities. R resets on possession. The game\'s chameleon.' },
+    gameplan: {
+      early: { es: 'Q poke + curación con autos pasivos. W es un dash + stun cargable. Tu duelo temprano es decente con BOTRK rush. Gankeá con W stun.', en: 'Q poke + healing with passive autos. W is a chargeable dash + stun. Early dueling is decent with BOTRK rush. Gank with W stun.' },
+      mid: { es: 'En skirmishes, mata a alguien → poseélo → usá sus habilidades → R para resetear y ejecutar al siguiente. Cada posesión te da vida llena y sus habilidades. El snowball es insano.', en: 'In skirmishes, kill someone → possess them → use their abilities → R to reset and execute the next. Each possession gives full health and their abilities. Snowball is insane.' },
+      late: { es: 'En teamfights, matá a alguien → posesión → vida completa → R al siguiente → posesión → vida completa. Si la cadena de resets funciona, hacés pentakill. Sos un monstruo de resets.', en: 'In teamfights, kill someone → possess → full health → R to next → possess → full health. If the reset chain works, you get a pentakill. You\'re a reset monster.' }
+    },
+    combo: {
+      basic: { keys: 'W(cargar) → Q → AA → AA', es: 'W stun → Q poke → Autos con pasiva (curan). Simple y efectivo.', en: 'W stun → Q poke → Autos with passive (heal). Simple and effective.' },
+      advanced: { keys: 'W → Q → AA → (kill) → posesión → habilidades robadas → R → siguiente target', es: 'W stun → Q → Autos → Kill → Poseer al muerto → Usar sus habilidades → R ejecutar al siguiente → Repetir la cadena.', en: 'W stun → Q → Autos → Kill → Possess the dead → Use their abilities → R execute next → Repeat chain.' }
+    },
+    buildReasoning: { es: 'BOTRK core — on-hit + AS + sustain con tu pasiva de autos que curan. Trinity para Spellblade con Q. Sterak\'s para sobrevivir entre posesiones.', en: 'BOTRK core — on-hit + AS + sustain with passive healing autos. Trinity for Spellblade with Q. Sterak\'s to survive between possessions.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: tu daño y curación. W segundo: menor CD del stun. E último: la niebla es útil con un punto.', en: 'Q first: your damage and healing. W second: lower stun CD. E last: mist is useful with one point.' }
+  },
+  Viktor: {
+    playstyle: { es: 'Controlar', en: 'Control' },
+    powerSpike: 'late',
+    identity: { es: 'Mago de control con habilidades que se MEJORAN comprando el Hex Core. E rayo laser es tu poke principal. R tormenta AoE que sigue a los enemigos. Escalás como un monstruo.', en: 'Control mage with abilities that UPGRADE by buying Hex Core. E laser beam is your main poke. R AoE storm that follows enemies. You scale like a monster.' },
+    gameplan: {
+      early: { es: 'Farmeá con E laser (pase a través de la wave). Primer recall comprá el upgrade de E — ahora tu laser explota en AoE y tu waveclear es instantánea. Q para trades cortos (shield + MS).', en: 'Farm with E laser (passes through wave). First recall buy E upgrade — now laser explodes in AoE and your waveclear is instant. Q for short trades (shield + MS).' },
+      mid: { es: 'E upgrade + Luden\'s = wave clear instantánea + poke masivo. W gravity field para zone control. R tormenta que sigue a los enemigos y hace daño constante.', en: 'E upgrade + Luden\'s = instant waveclear + massive poke. W gravity field for zone control. R storm that follows enemies and deals constant damage.' },
+      late: { es: 'Con upgrades completos y items, tu burst y DPS son absurdos. E laser one-shotea waves y pokea. R tormenta sobre el equipo enemigo es caótica. W gravity field stunea a los que se quedan.', en: 'With complete upgrades and items, your burst and DPS are absurd. E laser one-shots waves and pokes. R storm on enemy team is chaotic. W gravity field stuns those who stay.' }
+    },
+    combo: {
+      basic: { keys: 'E → Q → AA', es: 'E laser poke → Q shield + empowered auto → Auto. Trade simple y seguro.', en: 'E laser poke → Q shield + empowered auto → Auto. Simple safe trade.' },
+      advanced: { keys: 'W → E → R → Q → AA', es: 'W gravity field para zoning → E laser AoE → R tormenta encima → Q para shield + burst → Auto empowered. El daño combinado es nuclear.', en: 'W gravity field for zoning → E laser AoE → R storm on top → Q for shield + burst → Empowered auto. Combined damage is nuclear.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst + pen. Shadowflame para más pen. Rabadon\'s para escalar (tus upgrades + AP = daño absurdo). Lich Bane para Q empowered auto.', en: 'Luden\'s for burst + pen. Shadowflame for more pen. Rabadon\'s to scale (upgrades + AP = absurd damage). Lich Bane for Q empowered auto.' },
+    skillOrder: { order: 'E > Q > W', es: 'E primero: waveclear y poke principal (upgrade E es prioridad). Q segundo: más shield y burst. W último: gravity field es útil con un punto.', en: 'E first: main waveclear and poke (E upgrade is priority). Q second: more shield and burst. W last: gravity field is useful with one point.' }
+  },
+  Vladimir: {
+    playstyle: { es: 'Farmear', en: 'Farm' },
+    powerSpike: 'late',
+    identity: { es: 'Mago de batalla que usa vida en vez de maná. W pool te hace untargeteable (zambullirte en sangre). R amplifica todo el daño en targets afectados. En late game tu sustain + daño es obsceno.', en: 'Battle mage who uses health instead of mana. W pool makes you untargetable (dive into blood). R amplifies all damage on affected targets. Late game your sustain + damage is obscene.' },
+    gameplan: {
+      early: { es: 'Farmeá con Q (cura). Cada 3er Q es empowered (más daño + más curación). E cuesta vida pero hace daño AoE. Tu early es débil — no pelees, farmeá y esperá items.', en: 'Farm with Q (heals). Every 3rd Q is empowered (more damage + more heal). E costs health but deals AoE damage. Early is weak — don\'t fight, farm and wait for items.' },
+      mid: { es: 'Con Rabadon\'s tu Q empowered cura por 400+. E cargado + Q = trade que ganás siempre porque te curás todo de vuelta. W pool para esquivar ganks (untargeteable).', en: 'With Rabadon\'s your empowered Q heals for 400+. Charged E + Q = trade you always win because you heal it all back. W pool to dodge ganks (untargetable).' },
+      late: { es: 'R amplifica daño → Flash → E cargado → Q empowered = one-shot. W pool para sobrevivir. Después Q para curarte full. Sos un mago unkillable con daño de assassin.', en: 'R amplifies damage → Flash → charged E → empowered Q = one-shot. W pool to survive. Then Q to heal full. You\'re an unkillable mage with assassin damage.' }
+    },
+    combo: {
+      basic: { keys: 'E(cargar) → Q(empowered)', es: 'E cargado para burst AoE → Q empowered (cada 3er cast) para daño + curación masiva.', en: 'Charged E for AoE burst → Empowered Q (every 3rd cast) for damage + massive healing.' },
+      advanced: { keys: 'R → Flash → E(cargar) → Q → W', es: 'R para amplificar daño en el grupo → Flash al grupo → E cargado AoE → Q empowered → W pool para ser untargeteable mientras R hace daño tick.', en: 'R to amplify damage on group → Flash into group → Charged E AoE → Empowered Q → W pool to be untargetable while R does tick damage.' }
+    },
+    buildReasoning: { es: 'Rabadon\'s rush porque tu pasiva convierte AP en HP y HP en AP — Rabadon\'s te da ambos. Shadowflame para pen. Void Staff vs MR. Spirit Visage para amplificar curación de Q.', en: 'Rabadon\'s rush because passive converts AP to HP and HP to AP — Rabadon\'s gives both. Shadowflame for pen. Void Staff vs MR. Spirit Visage to amplify Q healing.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: sustain y daño principal. E segundo: más burst AoE. W último: pool CD baja pero es tu escape, un punto alcanza.', en: 'Q first: main sustain and damage. E second: more AoE burst. W last: pool CD drops but it\'s your escape, one point is enough.' }
+  },
+  Volibear: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'early',
+    identity: { es: 'Tanque bruiser de top/jungla con R que deshabilita torres. Corré al enemigo con Q (stun), W para bite, E para shield + slow. R te hace saltar y deshabilitar la torre — ideal para dives.', en: 'Tank bruiser top/jungle with R that disables towers. Run at enemy with Q (stun), W for bite, E for shield + slow. R makes you jump and disable tower — ideal for dives.' },
+    gameplan: {
+      early: { es: 'Corré al enemigo con Q (MS + stun al llegar). W bite cura si el target está bajo. E slow + shield. Tu all-in nivel 1-3 es brutal. R para dives de torre (la deshabilita).', en: 'Run at enemy with Q (MS + stun on arrival). W bite heals if target is low. E slow + shield. Level 1-3 all-in is brutal. R for tower dives (disables it).' },
+      mid: { es: 'R para dives agresivos — la torre se deshabilita temporalmente. Q stun + W bite + E shield. Buscá peleas y dives constantemente. Tu R también hace daño AoE al caer.', en: 'R for aggressive dives — tower temporarily disabled. Q stun + W bite + E shield. Look for fights and dives constantly. R also deals AoE damage on landing.' },
+      late: { es: 'R sigue deshabilitando torres — útil para siege. En teamfights, R al grupo → Q stun → W bite para sustain → E shield. Sos un frontliner sólido con CC y sustain.', en: 'R still disables towers — useful for siege. In teamfights, R into group → Q stun → W bite for sustain → E shield. Solid frontliner with CC and sustain.' }
+    },
+    combo: {
+      basic: { keys: 'Q → AA(stun) → W → E', es: 'Q correr + stun → Auto stun → W bite → E shield. Simple y agresivo.', en: 'Q run + stun → Auto stun → W bite → E shield. Simple and aggressive.' },
+      advanced: { keys: 'R → Q → AA(stun) → W → E → W(segundo bite)', es: 'R saltar (deshabilita torre) → Q stun → Auto → W bite → E shield → W bite de nuevo (cura más si está bajo). Dive perfecto.', en: 'R jump (disables tower) → Q stun → Auto → W bite → E shield → W bite again (heals more if low). Perfect dive.' }
+    },
+    buildReasoning: { es: 'Iceborn Gauntlet para slow field. Sunfire para AoE pasivo. Jak\'Sho para resistencias scaling. Nashor\'s si querés AP bruiser (autos + W pegan más).', en: 'Iceborn Gauntlet for slow field. Sunfire for passive AoE. Jak\'Sho for scaling resistances. Nashor\'s for AP bruiser (autos + W hit harder).' },
+    skillOrder: { order: 'W > Q > E', es: 'W primero: más bite daño y curación. Q segundo: menor CD del stun. E último: shield y slow son útiles con un punto.', en: 'W first: more bite damage and healing. Q second: lower stun CD. E last: shield and slow are useful with one point.' }
+  },
+  Warwick: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Jungler bruiser que caza heridos. Tu W pasiva te da MS hacia enemigos bajos de vida y los muestra. R es un salto que suprime. Q heal, E fear AoE. El depredador de low HP.', en: 'Bruiser jungler who hunts the wounded. W passive gives MS toward low health enemies and reveals them. R is a leap that suppresses. Q heal, E AoE fear. The low HP predator.' },
+    gameplan: {
+      early: { es: 'Tu clear es sano con Q heal. Gankeá enemigos bajos de vida — tu W te revela hacia dónde ir y te da MS masivo. Nivel 6 tu R es un salto supresor de largo alcance.', en: 'Healthy clear with Q heal. Gank low health enemies — W reveals where to go and gives massive MS. Level 6 R is a long range suppressing leap.' },
+      mid: { es: 'Buscá enemigos heridos — tu W los marca y corrés hacia ellos a velocidad absurda. R salto para pillarlos. En peleas, E fear AoE es muy disruptivo. Tu sustain con Q es brutal.', en: 'Look for wounded enemies — W marks them and you run at them at absurd speed. R leap to catch them. In fights, E AoE fear is very disruptive. Q sustain is brutal.' },
+      late: { es: 'Tu R engage es bueno. E fear en el grupo enemigo es muy valioso. Q sustain te mantiene vivo. Pero caés un poco — tu valor está en el CC y el chase, no el DPS.', en: 'R engage is good. E fear on enemy group is very valuable. Q sustain keeps you alive. But you fall off a bit — your value is in CC and chase, not DPS.' }
+    },
+    combo: {
+      basic: { keys: 'R → Q → AA → E → E(fear)', es: 'R salto supresor → Q heal → Auto → E activar → E soltar para fear AoE. CC masivo.', en: 'R suppressing leap → Q heal → Auto → E activate → E release for AoE fear. Massive CC.' },
+      advanced: { keys: 'E → R → Q → AA → E(fear)', es: 'E activar antes → R salto con E activa → Q heal → Auto → E fear al aterrizar. El fear pega a todos alrededor.', en: 'E activate first → R leap with E active → Q heal → Auto → E fear on landing. Fear hits everyone around.' }
+    },
+    buildReasoning: { es: 'BOTRK para on-hit + sustain que stackea con tu Q. Sundered Sky para más burst y sustain. Spirit Visage para amplificar toda tu curación (Q + BOTRK + etc).', en: 'BOTRK for on-hit + sustain that stacks with Q. Sundered Sky for more burst and sustain. Spirit Visage to amplify all healing (Q + BOTRK + etc).' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: curación y daño. W segundo: más AS cuando detectás heridos. E último: fear es útil con un punto.', en: 'Q first: healing and damage. W second: more AS when detecting wounded. E last: fear is useful with one point.' }
+  },
+  MonkeyKing: {
+    playstyle: { es: 'Engagear', en: 'Engage' },
+    powerSpike: 'mid',
+    identity: { es: 'Wukong bruiser con clon (W) y R de doble knockup. Tu R spinneas 2 veces (se puede castear de nuevo) para knockup masivo en teamfights. W clon confunde. E dash al target.', en: 'Wukong bruiser with clone (W) and double knockup R. R spins twice (can recast) for massive teamfight knockup. W clone confuses. E dashes to target.' },
+    gameplan: {
+      early: { es: 'Tradeá con E dash → Q empowered → W clon para salir (el clon puede confundir). Tu pasiva da armadura por cada enemigo cerca. Nivel 6 tu R doble knockup es muy fuerte.', en: 'Trade with E dash → Q empowered → W clone to exit (clone can confuse). Passive gives armor per nearby enemy. Level 6 double knockup R is very strong.' },
+      mid: { es: 'R es el mejor engage en teamfights — spinneas una vez (knockup) → segunda R (knockup de nuevo). E para cerrar distancia. W clon para confundir o esquivar habilidades.', en: 'R is the best engage in teamfights — spin once (knockup) → second R (knockup again). E to close distance. W clone to confuse or dodge abilities.' },
+      late: { es: 'Buscá R en el grupo enemigo para doble knockup AoE. Tu equipo followea mientras están knocked up dos veces. W invisible + clon para flanquear y llegar al backline.', en: 'Look for R on enemy group for double AoE knockup. Team follows while they\'re knocked up twice. W invisible + clone to flank and reach backline.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA → Q → W', es: 'E dash → Auto → Q empowered → W clon para salir. Trade rápido y seguro.', en: 'E dash → Auto → Q empowered → W clone to exit. Quick safe trade.' },
+      advanced: { keys: 'E → R → R(segunda) → Q', es: 'E dash al grupo → R primer knockup → R2 segundo knockup → Q para rematar. Doble knockup es devastador.', en: 'E dash into group → R first knockup → R2 second knockup → Q to finish. Double knockup is devastating.' }
+    },
+    buildReasoning: { es: 'Sunderer o Trinity para Spellblade con Q. Black Cleaver stackea rápido con tu R multi-hit. Sterak\'s para shield. Death\'s Dance para sustain en el medio del equipo.', en: 'Sunderer or Trinity for Spellblade with Q. Black Cleaver stacks fast with R multi-hit. Sterak\'s for shield. Death\'s Dance for sustain in the middle of the team.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: daño y armor shred. E segundo: menor CD del dash y más AS. W último: clon es útil con un punto.', en: 'Q first: damage and armor shred. E second: lower dash CD and more AS. W last: clone is useful with one point.' }
+  },
+  Xayah: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'ADC que tira plumas y las recoge con E para root AoE. R te hace untargeteable. Con Rakan tenés sinergia especial. Las plumas en el suelo son tu zone control.', en: 'ADC who throws feathers and recalls them with E for AoE root. R makes you untargetable. Special synergy with Rakan. Feathers on ground are your zone control.' },
+    gameplan: {
+      early: { es: 'Poné plumas con Q y autos (W activa da AS y tira plumas extra). E recoge todas las plumas — si 3+ plumas pasan por un enemigo, lo rootea. Nivel 2-3 con W+Q+E burst es fuerte.', en: 'Place feathers with Q and autos (active W gives AS and throws extra feathers). E recalls all feathers — if 3+ pass through an enemy, root. Levels 2-3 W+Q+E burst is strong.' },
+      mid: { es: 'En peleas, poné muchas plumas detrás del enemigo con W activa + Q → E para rootear a todos. Tu R te hace untargeteable y tira plumas — úsala para esquivar burst.', en: 'In fights, place many feathers behind enemy with active W + Q → E to root everyone. R makes you untargetable and throws feathers — use to dodge burst.' },
+      late: { es: 'Tu E con muchas plumas rootea y hace daño masivo. R para esquivar burst + plumas + E root = combo letal. Posicionate para que las plumas queden detrás del equipo enemigo.', en: 'Your E with many feathers roots and deals massive damage. R to dodge burst + feathers + E root = lethal combo. Position so feathers end up behind enemy team.' }
+    },
+    combo: {
+      basic: { keys: 'W → AA → Q → AA → AA → E', es: 'W para AS + plumas extra → Autos → Q plumas → Más autos → E recoge todo (root si 3+ pasan). Cuantas más plumas, más root.', en: 'W for AS + extra feathers → Autos → Q feathers → More autos → E recalls all (root if 3+ pass). More feathers = more root.' },
+      advanced: { keys: 'R → W → Q → AA → AA → E', es: 'R para untargeteable + plumas → W AS → Q → Autos → E recoge TODAS las plumas (R+Q+autos = muchas). Root masivo.', en: 'R for untargetable + feathers → W AS → Q → Autos → E recalls ALL feathers (R+Q+autos = many). Massive root.' }
+    },
+    buildReasoning: { es: 'Infinity Edge core para crit. Navori para menor CD de E (E es tu burst). Phantom Dancer para AS. Rapid Firecannon para rango extra.', en: 'Infinity Edge core for crit. Navori for lower E CD (E is your burst). Phantom Dancer for AS. Rapid Firecannon for extra range.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: más plumas y daño. E segundo: más burst al recoger. W último: AS boost es útil con un punto.', en: 'Q first: more feathers and damage. E second: more burst on recall. W last: AS boost is useful with one point.' }
+  },
+  Xerath: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'Mago de artillería puro. TODAS tus habilidades son de largo alcance. Q se carga para más rango. R son 3-5 disparos globales. Pokeás desde tan lejos que no te pueden tocar.', en: 'Pure artillery mage. ALL abilities are long range. Q charges for more range. R is 3-5 global shots. Poke from so far they can\'t touch you.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q (cargar para más rango) y W (zona AoE). Pasiva: autos restauran maná. Farmeá y pokeá constantemente. Nivel 6 tu R puede snipear desde cualquier lado.', en: 'Poke with Q (charge for more range) and W (AoE zone). Passive: autos restore mana. Farm and poke constantly. Level 6 R can snipe from anywhere.' },
+      mid: { es: 'R para ejecutar enemigos bajos en otras lanes (3-5 disparos desde lejos). W+E para CC si se acercan. Tu poke constante hace que el enemigo no pueda teamfightear con vida completa.', en: 'R to execute low enemies in other lanes (3-5 shots from afar). W+E for CC if they approach. Constant poke means enemy can\'t teamfight at full health.' },
+      late: { es: 'Tu poke de Q+W antes de peleas chunka a todos. R para ejecutar los que escapan. E stun a los que se acercan. Tu rango es tan largo que rara vez te tocan.', en: 'Q+W poke before fights chunks everyone. R to execute those who escape. E stun those who approach. Your range is so long they rarely touch you.' }
+    },
+    combo: {
+      basic: { keys: 'W → Q(cargado)', es: 'W zona AoE (slow) → Q cargado a través de los slowed. El slow de W te deja aterrizar Q más fácil.', en: 'W AoE zone (slow) → Charged Q through the slowed. W slow lets you land Q easier.' },
+      advanced: { keys: 'E → W → Q → R → R → R', es: 'E stun si se acercan → W AoE → Q cargado → R×3-5 para ejecutar. El rango de todo es absurdo.', en: 'E stun if they approach → W AoE → Charged Q → R×3-5 to execute. Range on everything is absurd.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst y pen de poke. Shadowflame para más pen. Rabadon\'s para que Q y R hagan daño nuclear. Horizon Focus para daño extra a targets CC\'d por E.', en: 'Luden\'s for poke burst and pen. Shadowflame for more pen. Rabadon\'s so Q and R deal nuclear damage. Horizon Focus for extra damage on E CC\'d targets.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: poke principal. W segundo: más AoE. E último: stun es útil con un punto.', en: 'Q first: main poke. W second: more AoE. E last: stun is useful with one point.' }
+  },
+  XinZhao: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'early',
+    identity: { es: 'Jungler bruiser de early game con engage directo. Q da 3 autos empowered (el tercero knockea), W poke, E dash. R bloquea daño de fuera del círculo. All-in desde nivel 2.', en: 'Early game bruiser jungler with direct engage. Q gives 3 empowered autos (third knocks up), W poke, E dash. R blocks damage from outside circle. All-in from level 2.' },
+    gameplan: {
+      early: { es: 'Gankeá nivel 2-3 — E dash + Q knock-up en el tercer auto es CC garantizado. Tu duelo temprano es de los mejores del juego. Invadí si el jungler enemigo es débil.', en: 'Gank levels 2-3 — E dash + Q knock-up on third auto is guaranteed CC. Early dueling is among the best in the game. Invade if enemy jungler is weak.' },
+      mid: { es: 'E al carry → Q para knock-up → R para bloquear daño de fuera (el equipo enemigo que está lejos no te puede dañar). W para poke. Peleas 1v1 o 2v2 donde brillás.', en: 'E to carry → Q for knock-up → R to block damage from outside (distant enemy team can\'t damage you). W for poke. 1v1 or 2v2 fights where you shine.' },
+      late: { es: 'Caés en late. Tu R sigue siendo útil para aislar al carry (solo daño de dentro del círculo te afecta). E para engage. Q para CC. Pero no sos el carry — sos el facilitador.', en: 'Fall off late. R is still useful to isolate carry (only damage from inside circle affects you). E for engage. Q for CC. But you\'re not the carry — you\'re the facilitator.' }
+    },
+    combo: {
+      basic: { keys: 'E → AA → AA → AA(Q knockup)', es: 'E dash → Q activo → 3 autos empowered (tercero knockea). Simple y efectivo.', en: 'E dash → Q active → 3 empowered autos (third knocks up). Simple and effective.' },
+      advanced: { keys: 'E → Q → AA → AA → AA(knockup) → R → W', es: 'E dash → Q → 3 autos para knock-up → R para bloquear daño externo → W poke. Aislás al target dentro de tu R.', en: 'E dash → Q → 3 autos for knock-up → R to block external damage → W poke. Isolate target inside your R.' }
+    },
+    buildReasoning: { es: 'Eclipse para burst y sustain. BOTRK para on-hit DPS. Sterak\'s para shield. Death\'s Dance para sobrevivir. Black Cleaver si hay tanques.', en: 'Eclipse for burst and sustain. BOTRK for on-hit DPS. Sterak\'s for shield. Death\'s Dance to survive. Black Cleaver vs tanks.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: más daño de autos empowered. E segundo: menor CD del dash. W último: poke es útil con un punto.', en: 'Q first: more empowered auto damage. E second: lower dash CD. W last: poke is useful with one point.' }
+  },
+  Yasuo: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Samurai melee ADC con windwall que bloquea proyectiles y R que suspende knockeados. Q×3 da tornado knockup. E dash entre minions/campeones. El 0/10 powerspike es real — siempre escala.', en: 'Melee samurai ADC with windwall that blocks projectiles and R that suspends knocked-up targets. Q×3 gives tornado knockup. E dashes between minions/champions. The 0/10 powerspike is real — always scales.' },
+    gameplan: {
+      early: { es: 'Nivel 1-2 Q×3 para tornado knockup → trade. E a través de minions para esquivar y posicionar. W windwall para bloquear habilidades clave. Tu early depende del matchup — contra melees sos fuerte.', en: 'Levels 1-2 Q×3 for tornado knockup → trade. E through minions to dodge and position. W windwall to block key abilities. Early depends on matchup — against melee you\'re strong.' },
+      mid: { es: 'Con IE + crit tu daño explota. Tornado + R suspende y da crit gratis. Buscá knockups aliados (Malphite, Vi, etc) para R desde lejos. Tu DPS melee crit es absurdo.', en: 'With IE + crit your damage explodes. Tornado + R suspends and gives free crit. Look for allied knockups (Malphite, Vi, etc) for R from range. Your melee crit DPS is absurd.' },
+      late: { es: 'Con 2 items de crit tenés 100% crit (pasiva dobla crit%). R en cualquier knockup del equipo = DPS free. Windwall bloquea todo lo ranged. Si escalaste, sos imparable.', en: 'With 2 crit items you have 100% crit (passive doubles crit%). R on any team knockup = free DPS. Windwall blocks all ranged. If you scaled, you\'re unstoppable.' }
+    },
+    combo: {
+      basic: { keys: 'Q → Q → Q(tornado) → R', es: 'Q×3 para tornado → Tornado knockup → R suspender. El combo core de Yasuo.', en: 'Q×3 for tornado → Tornado knockup → R suspend. Yasuo\'s core combo.' },
+      advanced: { keys: 'E → Q(en E) → Flash → R', es: 'E dash + Q durante el dash (AoE knockup alrededor tuyo) → Flash para extender → R suspender. EQ es un knockup circular que sorprende.', en: 'E dash + Q during dash (AoE knockup around you) → Flash to extend → R suspend. EQ is a circular knockup that surprises.' }
+    },
+    buildReasoning: { es: 'Infinity Edge core — tu pasiva dobla crit así que solo necesitás 2 items de crit para 100%. BOTRK para sustain y on-hit. Phantom Dancer para AS.', en: 'Infinity Edge core — passive doubles crit so you only need 2 crit items for 100%. BOTRK for sustain and on-hit. Phantom Dancer for AS.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: daño y tornado más rápido (AS reduce CD de Q). E segundo: menor CD del dash. W último: windwall es bueno con un punto.', en: 'Q first: damage and faster tornado (AS reduces Q CD). E second: lower dash CD. W last: windwall is good with one point.' }
+  },
+  Yone: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'Hermano de Yasuo pero con engage. E te manda una "sombra" — pegas todo el daño y después volvés. R es un dash largo que knockea. Daño mixto 50/50 físico y mágico. Imposible de itemizar contra.', en: 'Yasuo\'s brother but with engage. E sends a "shadow" — deal all damage then snap back. R is a long dash that knocks up. Mixed 50/50 physical and magic damage. Impossible to itemize against.' },
+    gameplan: {
+      early: { es: 'Q×3 para tornado knockup (igual que Yasuo). E para tradear seguro — entrás, hacés daño, y volvés a tu posición original. W shield para trades. Nivel 1-3 farmeá con Q.', en: 'Q×3 for tornado knockup (same as Yasuo). E for safe trading — go in, deal damage, snap back to original position. W shield for trades. Levels 1-3 farm with Q.' },
+      mid: { es: 'E → todo tu combo → volver. R para engage de largo alcance (knockup). Con IE + BOTRK tu daño mixto es imposible de tanquear. Buscá flanqueos con R.', en: 'E → all your combo → snap back. R for long range engage (knockup). With IE + BOTRK your mixed damage is impossible to tank. Look for flanks with R.' },
+      late: { es: 'R→E es un engage de largo alcance devastador. Tu daño mixto 50/50 significa que no pueden stackear solo armadura o solo MR. Con crit items sos un hypercarry melee.', en: 'R→E is a devastating long range engage. Your 50/50 mixed damage means they can\'t stack just armor or just MR. With crit items you\'re a melee hypercarry.' }
+    },
+    combo: {
+      basic: { keys: 'Q → Q → E → Q(tornado) → AA → snap back', es: 'Q×2 stack → E sombra → Q3 tornado → Autos → snap back a posición segura. Trade sin riesgo.', en: 'Q×2 stack → E shadow → Q3 tornado → Autos → snap back to safe position. Risk-free trade.' },
+      advanced: { keys: 'E → R → Q3(tornado) → W → AA → AA → snap back', es: 'E sombra → R engage largo → Q3 tornado → W shield → Autos → Snap back. El engage + snap back te hace insanamente seguro.', en: 'E shadow → R long engage → Q3 tornado → W shield → Autos → Snap back. Engage + snap back makes you insanely safe.' }
+    },
+    buildReasoning: { es: 'IE core — pasiva dobla crit (igual que Yasuo). BOTRK para sustain y on-hit. Phantom Dancer para AS. Tu daño es 50% mágico así que pen mágica no te ayuda (es del pasiva).', en: 'IE core — passive doubles crit (same as Yasuo). BOTRK for sustain and on-hit. Phantom Dancer for AS. Your damage is 50% magic so magic pen doesn\'t help you (it\'s from passive).' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: daño y tornado. W segundo: shield más grande. E último: snap back no necesita niveles.', en: 'Q first: damage and tornado. W second: bigger shield. E last: snap back doesn\'t need levels.' }
+  },
+  Yorick: {
+    playstyle: { es: 'Splitpush', en: 'Splitpush' },
+    powerSpike: 'mid',
+    identity: { es: 'Splitpusher con army de ghouls y Maiden (R). Tus ghouls y Maiden pushean lanes por vos. Nadie te puede 1v1 con Maiden + ghouls. Tomás torres mientras tu equipo pelea en otro lado.', en: 'Splitpusher with ghoul army and Maiden (R). Ghouls and Maiden push lanes for you. Nobody can 1v1 with Maiden + ghouls. Take towers while your team fights elsewhere.' },
+    gameplan: {
+      early: { es: 'Farmeá y juntá graves (cada minion que muere puede dejar una grave). Q para spawnear ghouls de las graves. E para marcar targets (ghouls saltan al marcado). W cage para atrapar.', en: 'Farm and collect graves (each dying minion can leave a grave). Q to spawn ghouls from graves. E to mark targets (ghouls leap to marked). W cage to trap.' },
+      mid: { es: 'R Maiden + ghouls pushean una lane solas mientras vos vas a otra. O splitpush con Maiden — nadie te para en 1v1 con tus minions. W cage atrapa al enemigo con vos y tus ghouls.', en: 'R Maiden + ghouls push a lane alone while you go to another. Or splitpush with Maiden — nobody stops you in 1v1 with your minions. W cage traps enemy with you and ghouls.' },
+      late: { es: 'Maiden en una sidelane pushea sola hasta inhib. Vos podés ir a pelear 5v4 o splitpush la otra sidelane. La presión de mapa con Maiden es brutal. W cage en teamfights aísla gente.', en: 'Maiden in a sidelane pushes alone to inhib. You can go fight 5v4 or splitpush the other sidelane. Map pressure with Maiden is brutal. W cage in teamfights isolates people.' }
+    },
+    combo: {
+      basic: { keys: 'E → Q → AA → W', es: 'E marca → Q spawn ghouls que saltan al marcado → Auto → W cage para encerrar. Los ghouls hacen el trabajo.', en: 'E mark → Q spawn ghouls that leap to marked → Auto → W cage to trap. Ghouls do the work.' },
+      advanced: { keys: 'R → E → W → Q → AA', es: 'R Maiden → E marca → W cage encerrar → Q spawn ghouls → Auto. Maiden + 4 ghouls + vos en un cage = muerte segura.', en: 'R Maiden → E mark → W cage trap → Q spawn ghouls → Auto. Maiden + 4 ghouls + you in a cage = certain death.' }
+    },
+    buildReasoning: { es: 'Trinity Force para Spellblade con Q. Titanic Hydra para AoE con ghouls. Sterak\'s para shield. Hullbreaker para splitpush puro.', en: 'Trinity Force for Spellblade with Q. Titanic Hydra for AoE with ghouls. Sterak\'s for shield. Hullbreaker for pure splitpush.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: spawn ghouls y daño. E segundo: menor CD de marca. W último: cage es útil con un punto.', en: 'Q first: spawn ghouls and damage. E second: lower mark CD. W last: cage is useful with one point.' }
+  },
+  Yuumi: {
+    playstyle: { es: 'Proteger', en: 'Protect' },
+    powerSpike: 'late',
+    identity: { es: 'Enchantera que se SUBE a un aliado y es untargeteable. Curás, das stats y R desde arriba del carry. No se te puede matar mientras estás montada. El carry con Yuumi es 2x más fuerte.', en: 'Enchanter who ATTACHES to an ally and becomes untargetable. Heal, give stats and R from on top of carry. Can\'t be killed while attached. Carry with Yuumi is 2x stronger.' },
+    gameplan: {
+      early: { es: 'Bajá de vez en cuando para auto (pasiva da shield y maná). Después subíte al ADC. Q para poke desde el ADC. W para cambiar de aliado. Tu early es débil — no te expongas.', en: 'Hop off occasionally to auto (passive gives shield and mana). Then attach to ADC. Q for poke from ADC. W to switch allies. Early is weak — don\'t expose yourself.' },
+      mid: { es: 'Subíte al carry más fed (puede ser mid, top, jungler). Le das AP, AD, curación constante. Tu R desde arriba del carry es un root AoE. El carry se vuelve unkillable.', en: 'Attach to the most fed carry (can be mid, top, jungler). Give them AP, AD, constant healing. R from on top of carry is AoE root. Carry becomes unkillable.' },
+      late: { es: 'El carry + Yuumi es la combo más fuerte del late game. Tu curación, stats y R hacen que el carry sea un monstruo. Cambiá de aliado con W si el carry actual está muriendo.', en: 'Carry + Yuumi is the strongest late game combo. Your healing, stats and R make the carry a monster. Switch allies with W if current carry is dying.' }
+    },
+    combo: {
+      basic: { keys: 'W(montar) → Q → E', es: 'W subírte al carry → Q poke desde el carry → E curación constante. Todo desde la seguridad de estar montada.', en: 'W attach to carry → Q poke from carry → E constant healing. All from the safety of being attached.' },
+      advanced: { keys: 'R → R → R (waves de root)', es: 'R desde arriba del carry — lanza 3 waves que rootean si pegan todas. El carry corre al enemigo mientras vos tirás R. El slow/root es masivo.', en: 'R from on top of carry — launches 3 waves that root if all hit. Carry runs at enemy while you cast R. Slow/root is massive.' }
+    },
+    buildReasoning: { es: 'Moonstone para curación amplificada. Ardent Censer para AS del carry. Staff of Flowing Water para AP del carry. Redemption para más curación AoE.', en: 'Moonstone for amplified healing. Ardent Censer for carry AS. Staff of Flowing Water for carry AP. Redemption for more AoE healing.' },
+    skillOrder: { order: 'E > Q > W', es: 'E primero: curación más fuerte. Q segundo: más poke. W último: el attach no necesita niveles.', en: 'E first: stronger healing. Q second: more poke. W last: attach doesn\'t need levels.' }
+  },
+  Zac: {
+    playstyle: { es: 'Engagear', en: 'Engage' },
+    powerSpike: 'mid',
+    identity: { es: 'Tanque jungler con el engage de mayor rango del juego. E se carga para un salto GIGANTE de media pantalla. Pasiva: cuando morís, te separás en 4 blobs — si sobreviven, revivís.', en: 'Tank jungler with the longest range engage in the game. E charges for a GIANT half-screen leap. Passive: when you die, split into 4 blobs — if they survive, you revive.' },
+    gameplan: {
+      early: { es: 'Clear con W (AoE daño % HP). Gankeá con E — el salto cargado tiene rango absurdo desde ángulos que nadie espera. Recogé blobs para curarte (caen de tus habilidades).', en: 'Clear with W (AoE % HP damage). Gank with E — charged leap has absurd range from angles nobody expects. Pick up blobs to heal (drop from abilities).' },
+      mid: { es: 'E engage de largo alcance en peleas de objetivos. R agarra al equipo enemigo y los bounceas (desplaza a todos). Tu CC es masivo: E knockup + R bouncing displacement.', en: 'Long range E engage in objective fights. R grabs enemy team and bounces them (displaces everyone). Your CC is massive: E knockup + R bouncing displacement.' },
+      late: { es: 'E desde fog of war con rango máximo → R bouncing sobre el grupo = CC total por 4+ segundos. Tu pasiva de revive te da una segunda oportunidad. Sos el engage tanque definitivo.', en: 'E from fog of war at max range → R bouncing on group = total CC for 4+ seconds. Revive passive gives second chance. You\'re the definitive engage tank.' }
+    },
+    combo: {
+      basic: { keys: 'E(cargar) → W → Q', es: 'E salto largo knockup → W AoE → Q stretch punch. Simple.', en: 'E long leap knockup → W AoE → Q stretch punch. Simple.' },
+      advanced: { keys: 'E(max range) → R → Q → W', es: 'E salto máximo knockup → R agarrar y bouncear al grupo (3 bounces de displacement) → Q stretch → W AoE. CC masivo durante 4+ segundos.', en: 'E max range leap knockup → R grab and bounce group (3 bounces of displacement) → Q stretch → W AoE. Massive CC for 4+ seconds.' }
+    },
+    buildReasoning: { es: 'Sunfire para AoE pasivo. Jak\'Sho para resistencias scaling. Spirit Visage para amplificar curación de blobs. Warmog\'s para regen entre engages.', en: 'Sunfire for passive AoE. Jak\'Sho for scaling resistances. Spirit Visage to amplify blob healing. Warmog\'s for regen between engages.' },
+    skillOrder: { order: 'E > W > Q', es: 'E primero: menor CD del salto y más daño. W segundo: más AoE. Q último: stretch no necesita niveles.', en: 'E first: lower leap CD and more damage. W second: more AoE. Q last: stretch doesn\'t need levels.' }
+  },
+  Zed: {
+    playstyle: { es: 'Cazar', en: 'Hunt' },
+    powerSpike: 'mid',
+    identity: { es: 'Assassin AD con sombras. W crea una sombra, R marca con Death Mark (explota por % del daño hecho). Hacés burst y la marca explota 3 segundos después. El assassin AD más iconic.', en: 'AD assassin with shadows. W creates shadow, R marks with Death Mark (explodes for % of damage dealt). Burst and mark explodes 3 seconds later. The most iconic AD assassin.' },
+    gameplan: {
+      early: { es: 'Pokeá con W+Q (la sombra tira Q también — doble shuriken). W+E+Q combo desde distancia segura. Nivel 6 tu R es un all-in que marca para daño diferido.', en: 'Poke with W+Q (shadow also throws Q — double shuriken). W+E+Q combo from safe distance. Level 6 R is an all-in that marks for deferred damage.' },
+      mid: { es: 'R al carry → burst → la marca explota y lo mata. R te deja volver a tu sombra original para escapar. W para más movilidad. Buscá picks en la jungla y rotaciones.', en: 'R the carry → burst → mark explodes and kills. R lets you return to original shadow to escape. W for more mobility. Look for picks in jungle and rotations.' },
+      late: { es: 'R al carry → combo completo → volver a la sombra. Si tu combo es suficiente para que la marca mate, el carry muere 3 segundos después sin importar cuánto lo curen.', en: 'R the carry → full combo → return to shadow. If your combo is enough for mark to kill, carry dies 3 seconds later regardless of how much they heal.' }
+    },
+    combo: {
+      basic: { keys: 'W → E → Q', es: 'W sombra → E slow (sombra E también) → Q doble shuriken (tuya + sombra). Poke seguro.', en: 'W shadow → E slow (shadow E too) → Q double shuriken (yours + shadow). Safe poke.' },
+      advanced: { keys: 'R → E → AA → Q → W → E → Q → R(volver)', es: 'R marca Death Mark → E slow → Auto → Q burst → W segunda sombra → E+Q de sombra → R volver a tu posición original. Máximo daño para la marca.', en: 'R Death Mark → E slow → Auto → Q burst → W second shadow → shadow E+Q → R back to original position. Maximum damage for the mark.' }
+    },
+    buildReasoning: { es: 'Profane Hydra para AoE burst + lethality. Youmuu\'s para movilidad y lethality. Collector para ejecución (synergiza con Death Mark). Edge of Night para spellshield.', en: 'Profane Hydra for AoE burst + lethality. Youmuu\'s for mobility and lethality. Collector for execution (synergizes with Death Mark). Edge of Night for spellshield.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: daño de shuriken principal. W segundo: menor CD de sombra. E último: slow es útil con un punto.', en: 'Q first: main shuriken damage. W second: lower shadow CD. E last: slow is useful with one point.' }
+  },
+  Zeri: {
+    playstyle: { es: 'Pelear', en: 'Fight' },
+    powerSpike: 'mid',
+    identity: { es: 'ADC que dispara con Q (su auto es un skillshot). R te da speed y chain lightning en autos. Ultra móvil con E que cruza paredes. Tu DPS en movimiento es altísimo — kiteás como nadie.', en: 'ADC who shoots with Q (auto is a skillshot). R gives speed and chain lightning on autos. Ultra mobile with E that crosses walls. Your DPS while moving is very high — kite like nobody else.' },
+    gameplan: {
+      early: { es: 'Q spam como auto (es un skillshot — tené buena puntería). E para cruzar paredes y reposicionar. Tu early es decente pero no el más fuerte. Farmeá con Q.', en: 'Q spam as auto (it\'s a skillshot — aim well). E to cross walls and reposition. Early is decent but not strongest. Farm with Q.' },
+      mid: { es: 'R te da speed masivo + chain lightning en tus Q autos. En peleas, R para speed → Q spam → E para reposicionar. Tu DPS en movimiento es insano.', en: 'R gives massive speed + chain lightning on Q autos. In fights, R for speed → Q spam → E to reposition. Your DPS while moving is insane.' },
+      late: { es: 'Con R activa sos un ADC que corre a 600 MS mientras hace DPS AoE. E cruza paredes para posicionamiento imposible. Tu kiting es el mejor del juego con R activa.', en: 'With R active you\'re an ADC running at 600 MS while doing AoE DPS. E crosses walls for impossible positioning. Your kiting is the best in the game with R active.' }
+    },
+    combo: {
+      basic: { keys: 'Q → Q → Q → E → Q → Q', es: 'Q spam constante (es tu auto attack). E para reposicionar entre Qs. Mantenete moviendo siempre.', en: 'Constant Q spam (it\'s your auto attack). E to reposition between Qs. Keep moving always.' },
+      advanced: { keys: 'R → Q → Q → E(pared) → Q → Q → Q', es: 'R para speed + chain lightning → Q spam → E a través de pared para flank → Q spam. Con R activa cada Q hace lightning AoE.', en: 'R for speed + chain lightning → Q spam → E through wall for flank → Q spam. With R active each Q does AoE lightning.' }
+    },
+    buildReasoning: { es: 'Trinity Force prockea con cada Q (que funciona como auto). Runaan\'s para más bolts con chain lightning de R. Phantom Dancer para AS y MS. Infinity Edge para crit.', en: 'Trinity Force procs with every Q (works as auto). Runaan\'s for more bolts with R chain lightning. Phantom Dancer for AS and MS. Infinity Edge for crit.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero siempre: ES tu auto attack. E segundo: menor CD del dash/wall-cross. W último: poke es útil con un punto.', en: 'Q first always: IS your auto attack. E second: lower dash/wall-cross CD. W last: poke is useful with one point.' }
+  },
+  Ziggs: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'Mago de artillería con poke y demolición. Q bouncing bomb pokea, W satchel destruye torres bajo 25%. E minas de slow. R bomba global de largo alcance. El siege master.', en: 'Artillery mage with poke and demolition. Q bouncing bomb pokes, W satchel destroys towers under 25%. E slow mines. R long range global bomb. The siege master.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q bouncing bomb. E minas para zone. W para self-peel (te empuja a vos mismo). Tu pasiva da autos empowered. Farmeá y pokeá constantemente.', en: 'Poke with Q bouncing bomb. E mines for zone. W for self-peel (pushes you). Passive gives empowered autos. Farm and poke constantly.' },
+      mid: { es: 'W satchel DESTRUYE TORRES bajo 25% HP — podés tomar torres cuando nadie más puede. R bomba global para ayudar peleas. Tu siege es el mejor del juego.', en: 'W satchel DESTROYS TOWERS under 25% HP — you can take towers when nobody else can. R global bomb to help fights. Your siege is the best in the game.' },
+      late: { es: 'Q poke constante antes de peleas. E minas en chokepoints. R global para ejecutar grupos bajos. W para destruir torres = cerrar partidas. Tu siegeo es imparable.', en: 'Constant Q poke before fights. E mines in chokepoints. R global to execute low groups. W to destroy towers = close games. Your siege is unstoppable.' }
+    },
+    combo: {
+      basic: { keys: 'Q → AA(pasiva)', es: 'Q bouncing bomb → Auto empowered de pasiva. Poke simple y constante.', en: 'Q bouncing bomb → Passive empowered auto. Simple constant poke.' },
+      advanced: { keys: 'E → Q → W → R', es: 'E minas para slow → Q bounce → W para empujar al enemigo a las minas o autoemplajar → R global bomb para ejecutar. Zone control total.', en: 'E mines for slow → Q bounce → W to push enemy onto mines or self-launch → R global bomb to execute. Total zone control.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst y pen en poke. Shadowflame para más pen. Rabadon\'s para multiplicar. Liandry\'s alternativa para quema.', en: 'Luden\'s for poke burst and pen. Shadowflame for more pen. Rabadon\'s to multiply. Liandry\'s alternative for burn.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: poke principal. E segundo: más minas. W último: satchel es útil con un punto.', en: 'Q first: main poke. E second: more mines. W last: satchel is useful with one point.' }
+  },
+  Zilean: {
+    playstyle: { es: 'Proteger', en: 'Protect' },
+    powerSpike: 'mid',
+    identity: { es: 'Support/mid con R que REVIVE aliados. Tu R da una segunda vida al target — si muere, revive con vida. W reduce CDs de todo. E speed o slow masivo. El guardian del tiempo.', en: 'Support/mid with R that REVIVES allies. R gives target a second life — if they die, they revive with health. W reduces all CDs. E massive speed or slow. The time guardian.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q bomba (doble Q stunea — Q → W → Q para double bomb stun). E speed al ADC o slow al enemigo. Tu XP pasiva ayuda al carry a levelear más rápido.', en: 'Poke with Q bomb (double Q stuns — Q → W → Q for double bomb stun). E speed ADC or slow enemy. XP passive helps carry level faster.' },
+      mid: { es: 'R al carry cuando está por morir = revive con vida. Es la habilidad de protección definitiva. Double bomb stun para CC. E speed para rotaciones del equipo.', en: 'R the carry when about to die = revives with health. It\'s the ultimate protection ability. Double bomb stun for CC. E speed for team rotations.' },
+      late: { es: 'R con CD corto revive al carry cada pelea. El ADC puede jugar ultra agresivo porque tiene una segunda vida. Double bomb stun + E slow/speed dan control masivo.', en: 'Short CD R revives carry every fight. ADC can play ultra aggressive because they have a second life. Double bomb stun + E slow/speed give massive control.' }
+    },
+    combo: {
+      basic: { keys: 'Q → W → Q(stun)', es: 'Q bomba → W resetea Q → Q segunda bomba = stun AoE. El double bomb es tu CC principal.', en: 'Q bomb → W resets Q → Q second bomb = AoE stun. Double bomb is your main CC.' },
+      advanced: { keys: 'Q → W → Q(stun) → E(slow enemigo) → R(carry si lo focusean)', es: 'Double bomb stun → E slow al amenaza → R al carry si lo focusean para revive. Timing de R es todo.', en: 'Double bomb stun → E slow the threat → R carry if they get focused for revive. R timing is everything.' }
+    },
+    buildReasoning: { es: 'Shurelya\'s para speed del equipo con tu E. Ardent/Staff para amplificar al carry que revivís. CDR máximo para tener R en cada pelea.', en: 'Shurelya\'s for team speed with your E. Ardent/Staff to amplify the carry you revive. Max CDR to have R every fight.' },
+    skillOrder: { order: 'Q > W > E', es: 'Q primero: daño de bomba y stun. W segundo: más CD reducido (más double bombs). E último: speed/slow es útil con un punto.', en: 'Q first: bomb damage and stun. W second: more CD reduction (more double bombs). E last: speed/slow is useful with one point.' }
+  },
+  Zoe: {
+    playstyle: { es: 'Pokear', en: 'Poke' },
+    powerSpike: 'mid',
+    identity: { es: 'Maga de burst con Q que hace más daño cuanto más lejos viaja. E es un sleep de largo alcance (a través de paredes). W te deja usar summoner spells e items activos que otros dropean. One-shot queen.', en: 'Burst mage with Q that deals more damage the farther it travels. E is a long range sleep (through walls). W lets you use summoner spells and active items others drop. One-shot queen.' },
+    gameplan: {
+      early: { es: 'Pokeá con Q (lanzá lejos para más daño). E sleep a través de la wave — si duerme, Q garantizado para burst enorme. W recoge summoner spells y items que aparecen de minions.', en: 'Poke with Q (throw far for more damage). E sleep through wave — if sleeps, guaranteed Q for enormous burst. W picks up summoner spells and items that appear from minions.' },
+      mid: { es: 'E sleep a través de paredes tiene rango ENORME. Si dormís a alguien, Q de larga distancia one-shotea. Buscá ángulos de E a través de paredes para picks sorpresa.', en: 'E sleep through walls has ENORMOUS range. If you sleep someone, long distance Q one-shots. Look for E angles through walls for surprise picks.' },
+      late: { es: 'Un E sleep → Q de larga distancia mata a cualquier squishy. Tirá E a través de paredes constantemente. Con items tu Q hace 2000+ daño. Un pick de Zoe gana la partida.', en: 'One E sleep → long distance Q kills any squishy. Throw E through walls constantly. With items your Q does 2000+ damage. One Zoe pick wins the game.' }
+    },
+    combo: {
+      basic: { keys: 'E → Q(lejos) → Q(redirigir)', es: 'E sleep → Q hacia atrás para distancia → Q redirigir al dormido. Cuanto más lejos viaja Q, más daño. El sleep amplifica el primer daño recibido.', en: 'E sleep → Q backwards for distance → Q redirect to sleeping target. The farther Q travels, more damage. Sleep amplifies first damage received.' },
+      advanced: { keys: 'E(a través de pared) → R → Q(lejos) → Q(redirigir) → R(volver)', es: 'E sleep a través de pared → R portal para acercarte → Q lejos → Q redirigir para burst nuclear → R te devuelve a tu posición segura.', en: 'E sleep through wall → R portal to get closer → Q far → Q redirect for nuclear burst → R returns you to safe position.' }
+    },
+    buildReasoning: { es: 'Luden\'s para burst + pen. Shadowflame para más pen (targets dormidos = low MR benefit). Rabadon\'s para que Q de larga distancia haga 2000+. Lich Bane para auto empowered después de Q.', en: 'Luden\'s for burst + pen. Shadowflame for more pen (sleeping targets = low MR benefit). Rabadon\'s so long distance Q does 2000+. Lich Bane for empowered auto after Q.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: tu daño principal. E segundo: menor CD del sleep. W último: el spell pickup no necesita niveles.', en: 'Q first: main damage. E second: lower sleep CD. W last: spell pickup doesn\'t need levels.' }
+  },
+  Zyra: {
+    playstyle: { es: 'Controlar', en: 'Control' },
+    powerSpike: 'mid',
+    identity: { es: 'Maga support con plantas que pelean por vos. Seeds + Q/E spawnean plantas que disparan. R hace crecer todas las plantas y knockea. Zone control extremo con un ejército de plantas.', en: 'Mage support with plants that fight for you. Seeds + Q/E spawn plants that shoot. R grows all plants and knocks up. Extreme zone control with a plant army.' },
+    gameplan: {
+      early: { es: 'Poné seeds (pasiva) y activálas con Q (planta ranged) o E (planta slow). El poke de plantas es constante y molesto. E root + plantas es tu trade. Nivel 1-3 tu daño es sorprendente.', en: 'Place seeds (passive) and activate with Q (ranged plant) or E (slow plant). Plant poke is constant and annoying. E root + plants is your trade. Levels 1-3 your damage is surprising.' },
+      late: { es: 'Poné seeds en bushes antes de peleas. En la pelea, Q+E para activar plantas → R para knockup + crecer plantas (hacen más daño). Tu zone control con plantas es insano.', en: 'Place seeds in bushes before fights. In fight, Q+E to activate plants → R for knockup + grow plants (deal more damage). Your zone control with plants is insane.' },
+      mid: { es: 'R en un grupo + plantas crecidas hace daño absurdo. E root setup + Q plantas + R crecimiento. Poné seeds estratégicamente en chokepoints antes de objetivos.', en: 'R on a group + grown plants deals absurd damage. E root setup + Q plants + R growth. Place seeds strategically in chokepoints before objectives.' }
+    },
+    combo: {
+      basic: { keys: 'E → seed → Q → seed', es: 'E root → Seed en el root → Q AoE (spawna planta ranged + planta del E) → Más seeds. Las plantas hacen el DPS.', en: 'E root → Seed on root → Q AoE (spawns ranged plant + E plant) → More seeds. Plants do the DPS.' },
+      advanced: { keys: 'E → seed → Q → seed → R', es: 'E root → Seeds → Q para spawnear plantas → Seeds → R para knockup + crecer TODAS las plantas. Las plantas crecidas disparan más rápido y hacen más daño.', en: 'E root → Seeds → Q to spawn plants → Seeds → R for knockup + grow ALL plants. Grown plants shoot faster and deal more damage.' }
+    },
+    buildReasoning: { es: 'Liandry\'s porque las plantas aplican quemadura constantemente. Rylai\'s para que las plantas sloween permanentemente. Zhonya\'s para sobrevivir después de R.', en: 'Liandry\'s because plants constantly apply burn. Rylai\'s so plants permanently slow. Zhonya\'s to survive after R.' },
+    skillOrder: { order: 'Q > E > W', es: 'Q primero: daño y spawn de plantas principal. E segundo: menor CD del root. W último: más seeds no necesita niveles tempranos.', en: 'Q first: main damage and plant spawning. E second: lower root CD. W last: more seeds don\'t need early levels.' }
+  },
 }
