@@ -154,28 +154,41 @@ function renderAbout(container, dd) {
 }
 
 /**
- * Generate a standard skill leveling path from a priority order string like "Q > E > W".
- * R is always leveled at 6, 11, 16.
- * First priority skill: levels 1, 3, 5, 7, 9
- * Second priority skill: levels 4, 8, 10, 12, 13
- * Third priority skill: levels 2, 14, 15, 17, 18
+ * Generate skill leveling path from priority order + early levels.
+ * @param {string} order - e.g. "Q > E > W" (max order)
+ * @param {string[]} [earlyLevels] - e.g. ['Q','E','W'] for levels 1,2,3
  */
-function generateSkillPath(order) {
+function generateSkillPath(order, earlyLevels) {
   if (!order) return []
   const skills = order.split('>').map(s => s.trim().toUpperCase())
   if (skills.length < 3) return []
 
   const path = new Array(18).fill(null)
-  // R always at 6, 11, 16
   path[5] = 'R'; path[10] = 'R'; path[15] = 'R'
 
-  const firstSlots = [0, 2, 4, 6, 8]       // levels 1,3,5,7,9
-  const secondSlots = [3, 7, 9, 11, 12]     // levels 4,8,10,12,13
-  const thirdSlots = [1, 13, 14, 16, 17]    // levels 2,14,15,17,18
+  // Early levels: use explicit order for 1-3 if provided
+  const early = earlyLevels || [skills[0], skills[1], skills[2]]
+  path[0] = early[0]
+  path[1] = early[1]
+  path[2] = early[2]
 
-  firstSlots.forEach(idx => { path[idx] = skills[0] })
-  secondSlots.forEach(idx => { path[idx] = skills[1] })
-  thirdSlots.forEach(idx => { path[idx] = skills[2] })
+  // Count points already spent per skill
+  const counts = {}
+  for (const s of skills) counts[s] = 0
+  counts['R'] = 0
+  for (let i = 0; i < 18; i++) {
+    if (path[i]) counts[path[i]] = (counts[path[i]] || 0) + 1
+  }
+
+  // Fill remaining: max each skill to 5 in priority order
+  for (const skill of skills) {
+    for (let i = 0; i < 18 && counts[skill] < 5; i++) {
+      if (path[i] === null) {
+        path[i] = skill
+        counts[skill]++
+      }
+    }
+  }
 
   return path.map((skill, i) => ({ level: i + 1, skill }))
 }
@@ -301,7 +314,7 @@ function renderAbilities(container, dd, version, identity, lang) {
 
   // Skill order grid
   if (identity?.skillOrder) {
-    const skillPath = generateSkillPath(identity.skillOrder.order)
+    const skillPath = generateSkillPath(identity.skillOrder.order, identity.skillOrder.earlyLevels)
 
     if (skillPath.length === 18) {
       const gridWrapper = el('div', { cls: 'skill-grid-wrapper' })

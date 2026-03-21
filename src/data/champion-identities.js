@@ -1349,8 +1349,9 @@ export const CHAMPION_IDENTITIES = {
     },
     skillOrder: {
       order: 'Q > E > W',
-      es: 'Q primero: es tu mayor fuente de daño y clear. E segundo: reduce el CD del dash y da más armadura. W último: el slow y ceguera escalan poco.',
-      en: 'Q first: it\'s your main damage and clear. E second: reduces dash CD and gives more armor. W last: the slow and blind scale poorly.'
+      earlyLevels: ['Q', 'E', 'W'],
+      es: 'Q primero: es tu mayor fuente de daño y clear. E segundo: reduce el CD del dash y da más armadura. W último: el slow y ceguera escalan poco. Niveles 1-3: Q → E → W (E nivel 2 para el dash + armadura en el clear).',
+      en: 'Q first: it\'s your main damage and clear. E second: reduces dash CD and gives more armor. W last: the slow and blind scale poorly. Levels 1-3: Q → E → W (E at level 2 for dash + armor during clear).'
     }
   },
   Gwen: {
