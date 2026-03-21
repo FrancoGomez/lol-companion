@@ -213,7 +213,9 @@ function renderAbilities(container, dd, version, identity, lang) {
     const info = el('div')
     append(info, el('div', { cls: 'ability-key', text: t('passive') }))
     append(info, el('div', { cls: 'ability-name', text: dd.passive.name }))
-    append(info, el('div', { cls: 'ability-desc', html: cleanDescription(dd.passive.description) }))
+    // Use identity ability description if available (has real damage numbers)
+    const passiveDesc = identity?.abilities?.P?.[lang] || identity?.abilities?.P?.en
+    append(info, el('div', { cls: 'ability-desc', html: passiveDesc || cleanDescription(dd.passive.description) }))
     append(row, icon, info)
     append(leftCol, row)
   }
@@ -229,15 +231,22 @@ function renderAbilities(container, dd, version, identity, lang) {
     const info = el('div')
     append(info, el('div', { cls: 'ability-key', text: keys[i] }))
     append(info, el('div', { cls: 'ability-name', text: spell.name }))
-    const tooltipText = spell.tooltip ? cleanTooltip(spell.tooltip, spell) : ''
-    const unresolvedCount = (tooltipText.match(/font-style:italic/g) || []).length
-    if (unresolvedCount === 0 && spell.tooltip) {
-      append(info, el('div', { cls: 'ability-desc', html: tooltipText }))
+
+    // Priority: identity abilities (real numbers) > tooltip > description
+    const identityDesc = identity?.abilities?.[keys[i]]?.[lang] || identity?.abilities?.[keys[i]]?.en
+    if (identityDesc) {
+      append(info, el('div', { cls: 'ability-desc', html: identityDesc }))
     } else {
-      append(info, el('div', { cls: 'ability-desc', html: cleanDescription(spell.description) }))
-      const scalingInfo = buildScalingInfo(spell)
-      if (scalingInfo) {
-        append(info, el('div', { cls: 'ability-scaling', html: scalingInfo }))
+      const tooltipText = spell.tooltip ? cleanTooltip(spell.tooltip, spell) : ''
+      const unresolvedCount = (tooltipText.match(/font-style:italic/g) || []).length
+      if (unresolvedCount === 0 && spell.tooltip) {
+        append(info, el('div', { cls: 'ability-desc', html: tooltipText }))
+      } else {
+        append(info, el('div', { cls: 'ability-desc', html: cleanDescription(spell.description) }))
+        const scalingInfo = buildScalingInfo(spell)
+        if (scalingInfo) {
+          append(info, el('div', { cls: 'ability-scaling', html: scalingInfo }))
+        }
       }
     }
 

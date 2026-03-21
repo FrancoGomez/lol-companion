@@ -469,6 +469,12 @@ body {
   margin-top: 4px;
 }
 
+.ability-desc .dmg-physical { color: #c97e2a; font-weight: 600; }
+.ability-desc .dmg-magic { color: #4e7ab5; font-weight: 600; }
+.ability-desc .dmg-true { color: #f0f0f0; font-weight: 600; }
+.ability-desc .stat-armor { color: #ff9800; font-weight: 600; }
+.ability-desc .stat-mr { color: #9c27b0; font-weight: 600; }
+
 .ability-meta {
   display: flex;
   gap: 12px;

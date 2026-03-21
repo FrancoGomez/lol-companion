@@ -1313,6 +1313,28 @@ export const CHAMPION_IDENTITIES = {
   Graves: {
     playstyle: { es: 'Farmear', en: 'Farm' },
     powerSpike: 'mid',
+    abilities: {
+      P: {
+        es: 'La escopeta de Graves dispara 4 balas en un cono. Las balas no atraviesan unidades. Los ataques críticos disparan 6 balas. Graves debe recargar tras 2 disparos — la recarga tarda 1 seg pero se reduce con velocidad de ataque. Las unidades no-campeones impactadas por múltiples balas son empujadas hacia atrás.',
+        en: 'Graves\' shotgun fires 4 bullets in a cone. Bullets can\'t pass through units. Critical strikes fire 6 bullets. Graves must reload after 2 shots — reload takes 1 sec but scales with attack speed. Non-champion units hit by multiple bullets are knocked back.'
+      },
+      Q: {
+        es: 'Dispara un proyectil que inflige <span class="dmg-physical">25/50/75/100/125 (+65% AD bonus)</span> de daño físico. Tras 1 seg o al chocar con terreno, detona e inflige <span class="dmg-physical">35/80/125/170/215 (+40/55/70/85/100% AD bonus)</span> de daño físico. Los enemigos impactados por ambas partes reciben el daño total.',
+        en: 'Fires a projectile dealing <span class="dmg-physical">25/50/75/100/125 (+65% bonus AD)</span> physical damage. After 1 sec or hitting terrain, detonates dealing <span class="dmg-physical">35/80/125/170/215 (+40/55/70/85/100% bonus AD)</span> physical damage. Enemies hit by both take full damage.'
+      },
+      W: {
+        es: 'Dispara un cartucho de humo que inflige <span class="dmg-magic">60/110/160/210/260 (+60% AP)</span> de daño mágico al impactar y ralentiza un 50% por 0.5 seg. Crea una nube de humo por 4 seg que ciega a los enemigos dentro (reduce su rango de visión a 300).',
+        en: 'Fires a smoke canister dealing <span class="dmg-magic">60/110/160/210/260 (+60% AP)</span> magic damage on impact and slowing by 50% for 0.5 sec. Creates a smoke cloud for 4 sec that blinds enemies inside (reduces their vision range to 300).'
+      },
+      E: {
+        es: 'Se desplaza en la dirección indicada y recarga 1 bala. Gana <span class="stat-armor">6/9/12/15/18 de armadura</span> y <span class="stat-mr">3/4.5/6/7.5/9 de MR</span> por 4 seg. Stackea hasta 8 veces. Los autos contra campeones reducen el CD de E en 0.5 seg. Al dashear hacia un campeón enemigo, gana 2 stacks.',
+        en: 'Dashes in target direction and reloads 1 bullet. Gains <span class="stat-armor">6/9/12/15/18 armor</span> and <span class="stat-mr">3/4.5/6/7.5/9 MR</span> for 4 sec. Stacks up to 8 times. Autos vs champions reduce E cooldown by 0.5 sec. Dashing toward an enemy champion grants 2 stacks.'
+      },
+      R: {
+        es: 'Dispara un proyectil explosivo que inflige <span class="dmg-physical">250/400/550 (+150% AD bonus)</span> de daño físico al primer campeón impactado. Después explota en un cono infligiendo <span class="dmg-physical">200/320/440 (+120% AD bonus)</span> de daño físico. El retroceso empuja a Graves hacia atrás.',
+        en: 'Fires an explosive shell dealing <span class="dmg-physical">250/400/550 (+150% bonus AD)</span> physical damage to the first champion hit. Then explodes in a cone dealing <span class="dmg-physical">200/320/440 (+120% bonus AD)</span> physical damage. Recoil knocks Graves backwards.'
+      },
+    },
     identity: {
       es: 'Jungler AD que farmea rápido y pelea con ventaja de items. Tratalo como un ADC de jungla.',
       en: 'AD jungler who farms fast and fights with item advantage. Treat him like a jungle ADC.'
