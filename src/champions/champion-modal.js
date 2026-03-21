@@ -5,11 +5,38 @@ import { el, append, clear, spinner, statAtLevel, formatStat } from '../utilitie
 import { openModal } from '../app.js'
 import { openItemPicker } from '../matchup/item-picker.js'
 
-export async function openChampionModal(champ, version) {
+// Shared state for "Copy build to Stats" feature
+let sharedBuildItems = []
+let switchToStatsTab = null
+
+const SHARD_OPTIONS = [
+  // Row 1 (Offense)
+  [
+    { id: 'adaptive1', label: '+9 AD / +14 AP', stat: 'adaptive', value: 9 },
+    { id: 'as', label: '+10% AS', stat: 'attackSpeed', value: 0.10 },
+    { id: 'ah', label: '+8 AH', stat: 'abilityHaste', value: 8 },
+  ],
+  // Row 2 (Flex)
+  [
+    { id: 'adaptive2', label: '+9 AD / +14 AP', stat: 'adaptive', value: 9 },
+    { id: 'ms', label: '+2% MS', stat: 'percentMovespeed', value: 0.02 },
+    { id: 'hpscale', label: '+10-180 HP', stat: 'healthScaling', value: 10 },
+  ],
+  // Row 3 (Defense)
+  [
+    { id: 'hp', label: '+65 HP', stat: 'health', value: 65 },
+    { id: 'tenacity', label: '+10% Tenacity', stat: 'tenacity', value: 10 },
+    { id: 'hpscale2', label: '+10-180 HP', stat: 'healthScaling', value: 10 },
+  ],
+]
+
+const AD_TAGS = ['Fighter', 'Assassin', 'Marksman']
+
+export async function openChampionModal(champ, version, { silent = false } = {}) {
   openModal((content) => {
     append(content, spinner())
     loadChampionData(champ, version, content)
-  })
+  }, silent ? null : `champion/${champ.id}`)
 }
 
 async function loadChampionData(champ, version, content) {
@@ -78,6 +105,7 @@ async function renderModal(content, champ, version, dd) {
 
   const tabContents = {}
 
+  const tabButtons = {}
   tabDefs.forEach((tab, i) => {
     const btn = el('button', {
       cls: `modal-tab${i === 0 ? ' active' : ''}`,
@@ -91,8 +119,17 @@ async function renderModal(content, champ, version, dd) {
         }
       }
     })
+    tabButtons[tab.key] = btn
     append(tabsContainer, btn)
   })
+
+  // Wire up the module-level tab switch so Builds can trigger Stats tab
+  switchToStatsTab = () => {
+    tabsContainer.querySelectorAll('.modal-tab').forEach(b => b.classList.remove('active'))
+    tabButtons.stats.classList.add('active')
+    Object.values(tabContents).forEach(c => c.classList.remove('active'))
+    tabContents.stats.classList.add('active')
+  }
 
   append(content, header, tabsContainer)
 
@@ -116,47 +153,46 @@ function renderAbout(container, dd) {
   append(container, el('p', { cls: 'lore-text', text: dd.lore }))
 }
 
+/**
+ * Generate a standard skill leveling path from a priority order string like "Q > E > W".
+ * R is always leveled at 6, 11, 16.
+ * First priority skill: levels 1, 3, 5, 7, 9
+ * Second priority skill: levels 4, 8, 10, 12, 13
+ * Third priority skill: levels 2, 14, 15, 17, 18
+ */
+function generateSkillPath(order) {
+  if (!order) return []
+  const skills = order.split('>').map(s => s.trim().toUpperCase())
+  if (skills.length < 3) return []
+
+  const path = new Array(18).fill(null)
+  // R always at 6, 11, 16
+  path[5] = 'R'; path[10] = 'R'; path[15] = 'R'
+
+  const firstSlots = [0, 2, 4, 6, 8]       // levels 1,3,5,7,9
+  const secondSlots = [3, 7, 9, 11, 12]     // levels 4,8,10,12,13
+  const thirdSlots = [1, 13, 14, 16, 17]    // levels 2,14,15,17,18
+
+  firstSlots.forEach(idx => { path[idx] = skills[0] })
+  secondSlots.forEach(idx => { path[idx] = skills[1] })
+  thirdSlots.forEach(idx => { path[idx] = skills[2] })
+
+  return path.map((skill, i) => ({ level: i + 1, skill }))
+}
+
 function renderAbilities(container, dd, version, identity, lang) {
   if (!dd) {
     append(container, el('div', { cls: 'empty-state', text: t('abilitiesNA') }))
     return
   }
 
-  // Combo section at the top
-  if (identity?.combo) {
-    const comboSection = el('div', { cls: 'combo-section' })
-    append(comboSection, el('h3', { cls: 'combo-title', text: lang === 'es' ? 'Combos' : 'Combos' }))
+  const layout = el('div', { cls: 'abilities-layout' })
+  const leftCol = el('div', { cls: 'abilities-left' })
+  const rightCol = el('div', { cls: 'abilities-right' })
 
-    if (identity.combo.basic) {
-      const basic = el('div', { cls: 'combo-card' })
-      append(basic, el('div', { cls: 'combo-label', text: lang === 'es' ? 'Combo básico' : 'Basic combo' }))
-      append(basic, el('div', { cls: 'combo-keys', text: identity.combo.basic.keys }))
-      append(basic, el('div', { cls: 'combo-explain', text: identity.combo.basic[lang] || identity.combo.basic.en }))
-      append(comboSection, basic)
-    }
-
-    if (identity.combo.advanced) {
-      const adv = el('div', { cls: 'combo-card' })
-      append(adv, el('div', { cls: 'combo-label', text: lang === 'es' ? 'Combo avanzado' : 'Advanced combo' }))
-      append(adv, el('div', { cls: 'combo-keys', text: identity.combo.advanced.keys }))
-      append(adv, el('div', { cls: 'combo-explain', text: identity.combo.advanced[lang] || identity.combo.advanced.en }))
-      append(comboSection, adv)
-    }
-
-    append(container, comboSection)
-  }
-
-  // Skill order
-  if (identity?.skillOrder) {
-    const skillSection = el('div', { cls: 'skill-order-section' })
-    append(skillSection, el('span', { cls: 'skill-order-label', text: lang === 'es' ? 'Orden de maxeo: ' : 'Skill max: ' }))
-    append(skillSection, el('strong', { cls: 'skill-order-value', text: identity.skillOrder.order }))
-    append(skillSection, el('span', { cls: 'skill-order-reason', text: ' — ' + (identity.skillOrder[lang] || identity.skillOrder.en) }))
-    append(container, skillSection)
-  }
-
+  // === LEFT COLUMN: Ability rows (P, Q, W, E, R) ===
   if (dd.passive) {
-    const row = el('div', { cls: 'ability-row' })
+    const row = el('div', { cls: 'ability-row', attrs: { 'data-key': 'P' } })
     const icon = el('img', {
       cls: 'ability-icon',
       attrs: { src: PASSIVE_IMG(version, dd.passive.image.full), alt: dd.passive.name }
@@ -166,12 +202,12 @@ function renderAbilities(container, dd, version, identity, lang) {
     append(info, el('div', { cls: 'ability-name', text: dd.passive.name }))
     append(info, el('div', { cls: 'ability-desc', html: cleanDescription(dd.passive.description) }))
     append(row, icon, info)
-    append(container, row)
+    append(leftCol, row)
   }
 
   const keys = ['Q', 'W', 'E', 'R']
   dd.spells.forEach((spell, i) => {
-    const row = el('div', { cls: 'ability-row' })
+    const row = el('div', { cls: 'ability-row', attrs: { 'data-key': keys[i] } })
     const icon = el('img', {
       cls: 'ability-icon',
       attrs: { src: SPELL_IMG(version, spell.image.full), alt: spell.name }
@@ -180,15 +216,12 @@ function renderAbilities(container, dd, version, identity, lang) {
     const info = el('div')
     append(info, el('div', { cls: 'ability-key', text: keys[i] }))
     append(info, el('div', { cls: 'ability-name', text: spell.name }))
-    // Use tooltip if it resolves well, otherwise fall back to description + scaling data
     const tooltipText = spell.tooltip ? cleanTooltip(spell.tooltip, spell) : ''
     const unresolvedCount = (tooltipText.match(/font-style:italic/g) || []).length
     if (unresolvedCount === 0 && spell.tooltip) {
       append(info, el('div', { cls: 'ability-desc', html: tooltipText }))
     } else {
-      // Show clean description + raw scaling data
       append(info, el('div', { cls: 'ability-desc', html: cleanDescription(spell.description) }))
-      // Add scaling info from effectBurn and vars
       const scalingInfo = buildScalingInfo(spell)
       if (scalingInfo) {
         append(info, el('div', { cls: 'ability-scaling', html: scalingInfo }))
@@ -208,8 +241,108 @@ function renderAbilities(container, dd, version, identity, lang) {
     append(info, meta)
 
     append(row, icon, info)
-    append(container, row)
+    append(leftCol, row)
   })
+
+  // === RIGHT COLUMN: Combos + Skill order grid + Reasoning ===
+
+  // Helper: highlight ability rows on combo hover
+  function highlightAbilities(keysStr, highlight) {
+    if (!keysStr) return
+    const mentioned = new Set()
+    const upper = keysStr.toUpperCase()
+    ;['Q', 'W', 'E', 'R', 'P'].forEach(k => {
+      if (upper.includes(k)) mentioned.add(k)
+    })
+    leftCol.querySelectorAll('.ability-row[data-key]').forEach(row => {
+      const key = row.getAttribute('data-key')
+      if (mentioned.has(key)) {
+        if (highlight) row.classList.add('ability-highlight')
+        else row.classList.remove('ability-highlight')
+      }
+    })
+  }
+
+  // Combos section
+  if (identity?.combo) {
+    const comboSection = el('div', { cls: 'combo-section' })
+    append(comboSection, el('h3', { cls: 'combo-title', text: 'Combos' }))
+
+    if (identity.combo.basic) {
+      const basic = el('div', {
+        cls: 'combo-card',
+        on: {
+          mouseenter: () => highlightAbilities(identity.combo.basic.keys, true),
+          mouseleave: () => highlightAbilities(identity.combo.basic.keys, false),
+        }
+      })
+      append(basic, el('div', { cls: 'combo-label', text: lang === 'es' ? 'Combo b\u00e1sico' : 'Basic combo' }))
+      append(basic, el('div', { cls: 'combo-keys', text: identity.combo.basic.keys }))
+      append(basic, el('div', { cls: 'combo-explain', text: identity.combo.basic[lang] || identity.combo.basic.en }))
+      append(comboSection, basic)
+    }
+
+    if (identity.combo.advanced) {
+      const adv = el('div', {
+        cls: 'combo-card',
+        on: {
+          mouseenter: () => highlightAbilities(identity.combo.advanced.keys, true),
+          mouseleave: () => highlightAbilities(identity.combo.advanced.keys, false),
+        }
+      })
+      append(adv, el('div', { cls: 'combo-label', text: lang === 'es' ? 'Combo avanzado' : 'Advanced combo' }))
+      append(adv, el('div', { cls: 'combo-keys', text: identity.combo.advanced.keys }))
+      append(adv, el('div', { cls: 'combo-explain', text: identity.combo.advanced[lang] || identity.combo.advanced.en }))
+      append(comboSection, adv)
+    }
+
+    append(rightCol, comboSection)
+  }
+
+  // Skill order grid
+  if (identity?.skillOrder) {
+    const skillPath = generateSkillPath(identity.skillOrder.order)
+
+    if (skillPath.length === 18) {
+      const gridWrapper = el('div', { cls: 'skill-grid-wrapper' })
+      append(gridWrapper, el('h3', { cls: 'combo-title', text: lang === 'es' ? 'Orden de habilidades' : 'Skill Order' }))
+
+      const grid = el('div', { cls: 'skill-grid' })
+
+      // Header row: empty corner + levels 1-18
+      append(grid, el('div', { cls: 'skill-grid-header', text: '' }))
+      for (let lvl = 1; lvl <= 18; lvl++) {
+        append(grid, el('div', { cls: 'skill-grid-header', text: String(lvl) }))
+      }
+
+      // One row per skill: Q, W, E, R
+      const skillColors = { Q: 'active-q', W: 'active-w', E: 'active-e', R: 'active-r' }
+      ;['Q', 'W', 'E', 'R'].forEach(skill => {
+        append(grid, el('div', { cls: 'skill-grid-label', text: skill }))
+        for (let lvl = 1; lvl <= 18; lvl++) {
+          const entry = skillPath[lvl - 1]
+          const isActive = entry.skill === skill
+          const cls = isActive
+            ? `skill-grid-cell active ${skillColors[skill]}`
+            : 'skill-grid-cell'
+          append(grid, el('div', { cls, text: isActive ? lvl.toString() : '' }))
+        }
+      })
+
+      append(gridWrapper, grid)
+      append(rightCol, gridWrapper)
+    }
+
+    // Skill order reasoning text
+    const skillSection = el('div', { cls: 'skill-order-section' })
+    append(skillSection, el('span', { cls: 'skill-order-label', text: lang === 'es' ? 'Orden de maxeo: ' : 'Skill max: ' }))
+    append(skillSection, el('strong', { cls: 'skill-order-value', text: identity.skillOrder.order }))
+    append(skillSection, el('span', { cls: 'skill-order-reason', text: ' \u2014 ' + (identity.skillOrder[lang] || identity.skillOrder.en) }))
+    append(rightCol, skillSection)
+  }
+
+  append(layout, leftCol, rightCol)
+  append(container, layout)
 }
 
 function cleanDescription(html) {
@@ -322,6 +455,43 @@ function renderStats(container, dd, version) {
     return
   }
 
+  // Determine if champion is AD-oriented (for adaptive force shards)
+  const tags = dd?.tags || []
+  const isAD = tags.some(tag => AD_TAGS.includes(tag))
+
+  // Shard selections: default to first option in each row
+  const selectedShards = [0, 0, 0]
+
+  // Shard selector section
+  const shardSection = el('div', { cls: 'shard-section' })
+  const lang = getLang()
+  append(shardSection, el('div', { cls: 'shard-title', text: lang === 'es' ? 'Runas (fragmentos)' : 'Rune Shards' }))
+
+  const shardRowEls = []
+  SHARD_OPTIONS.forEach((row, rowIdx) => {
+    const rowEl = el('div', { cls: 'shard-row' })
+    const btns = []
+    row.forEach((shard, colIdx) => {
+      const btn = el('button', {
+        cls: `shard-btn${colIdx === 0 ? ' active' : ''}`,
+        text: shard.label,
+        on: {
+          click: () => {
+            selectedShards[rowIdx] = colIdx
+            btns.forEach(b => b.classList.remove('active'))
+            btn.classList.add('active')
+            updateStats()
+          }
+        }
+      })
+      btns.push(btn)
+      append(rowEl, btn)
+    })
+    shardRowEls.push(btns)
+    append(shardSection, rowEl)
+  })
+  append(container, shardSection)
+
   const sliderContainer = el('div', { cls: 'level-slider-container' })
   const label = el('label', { text: t('level') })
   const display = el('span', { cls: 'level-display', text: '1' })
@@ -372,12 +542,45 @@ function renderStats(container, dd, version) {
     return bonuses
   }
 
+  function getShardBonuses(level) {
+    const bonuses = { health: 0, attackDamage: 0, abilityPower: 0, attackSpeed: 0, abilityHaste: 0, percentMovespeed: 0, tenacity: 0 }
+    selectedShards.forEach((colIdx, rowIdx) => {
+      const shard = SHARD_OPTIONS[rowIdx][colIdx]
+      switch (shard.stat) {
+        case 'adaptive':
+          if (isAD) bonuses.attackDamage += shard.value
+          else bonuses.abilityPower += shard.value
+          break
+        case 'attackSpeed':
+          bonuses.attackSpeed += shard.value
+          break
+        case 'abilityHaste':
+          bonuses.abilityHaste += shard.value
+          break
+        case 'percentMovespeed':
+          bonuses.percentMovespeed += shard.value
+          break
+        case 'healthScaling':
+          bonuses.health += Math.round(10 + (170 * (level - 1) / 17))
+          break
+        case 'health':
+          bonuses.health += shard.value
+          break
+        case 'tenacity':
+          bonuses.tenacity += shard.value
+          break
+      }
+    })
+    return bonuses
+  }
+
   function updateStats() {
     const level = parseInt(slider.value)
     display.textContent = level
     clear(statsContainer)
 
     const itemBonuses = getItemBonuses()
+    const shardBonuses = getShardBonuses(level)
 
     statConfig.forEach(({ key, perLvl, label, max, color, isAS, itemStat }) => {
       const base = stats[key]
@@ -398,21 +601,27 @@ function renderStats(container, dd, version) {
       let itemBonus = 0
       if (itemStat && itemBonuses[itemStat]) {
         if (isAS) {
-          // Attack speed items give % bonus AS
           itemBonus = base * itemBonuses[itemStat]
         } else {
           itemBonus = itemBonuses[itemStat]
         }
       }
 
-      const totalValue = baseValue + itemBonus
+      // Calculate shard bonus for this stat
+      let shardBonus = 0
+      if (itemStat === 'health') shardBonus += shardBonuses.health
+      if (itemStat === 'attackDamage') shardBonus += shardBonuses.attackDamage
+      if (isAS && shardBonuses.attackSpeed > 0) shardBonus += base * shardBonuses.attackSpeed
+      if (itemStat === 'movespeed' && shardBonuses.percentMovespeed > 0) shardBonus += base * shardBonuses.percentMovespeed
+
+      const totalBonus = itemBonus + shardBonus
+      const totalValue = baseValue + totalBonus
       const baseDisplay = isAS ? baseValue.toFixed(3) : formatStat(Math.round(baseValue * 10) / 10)
 
       const row = el('div', { cls: 'stat-row' })
       append(row, el('span', { cls: 'stat-label', text: label }))
       const barBg = el('div', { cls: 'stat-bar-bg' })
-      // Bar shows total value
-      const adjustedMax = itemBonus > 0 ? Math.max(max, totalValue * 1.1) : max
+      const adjustedMax = totalBonus > 0 ? Math.max(max, totalValue * 1.1) : max
       append(barBg, el('div', {
         cls: 'stat-bar-fill',
         style: { width: `${Math.min((totalValue / adjustedMax) * 100, 100)}%`, background: color || '#666' }
@@ -421,8 +630,8 @@ function renderStats(container, dd, version) {
 
       // Value display: base (+bonus) = total
       const valueContainer = el('span', { cls: 'stat-value' })
-      if (itemBonus > 0) {
-        const bonusDisplay = isAS ? itemBonus.toFixed(3) : formatStat(Math.round(itemBonus * 10) / 10)
+      if (totalBonus > 0) {
+        const bonusDisplay = isAS ? totalBonus.toFixed(3) : formatStat(Math.round(totalBonus * 10) / 10)
         const totalDisplay = isAS ? totalValue.toFixed(3) : formatStat(Math.round(totalValue * 10) / 10)
         valueContainer.innerHTML = `${baseDisplay} <span style="color:#4caf50">+${bonusDisplay}</span> = ${totalDisplay}`
       } else {
@@ -432,6 +641,17 @@ function renderStats(container, dd, version) {
 
       append(statsContainer, row)
     })
+
+    // Show shard-only bonuses that don't map to stat bars (AH, AP, tenacity)
+    const extraLines = []
+    if (shardBonuses.abilityHaste > 0) extraLines.push(`+${shardBonuses.abilityHaste} Ability Haste`)
+    if (shardBonuses.abilityPower > 0) extraLines.push(`+${shardBonuses.abilityPower} AP`)
+    if (shardBonuses.tenacity > 0) extraLines.push(`+${shardBonuses.tenacity}% Tenacity`)
+    if (extraLines.length > 0) {
+      const extraEl = el('div', { cls: 'shard-extra-stats', text: lang === 'es' ? 'Runas: ' : 'Shards: ' })
+      extraEl.innerHTML += `<span style="color:var(--gold)">${extraLines.join(' · ')}</span>`
+      append(statsContainer, extraEl)
+    }
   }
 
   function renderItemSlots() {
@@ -442,12 +662,10 @@ function renderStats(container, dd, version) {
         on: {
           click: () => {
             if (item) {
-              // Remove item on click if filled
               selectedItems[idx] = null
               renderItemSlots()
               updateStats()
             } else {
-              // Open item picker
               openItemPicker({
                 onSelect: (picked) => {
                   selectedItems[idx] = picked
@@ -474,9 +692,34 @@ function renderStats(container, dd, version) {
     })
   }
 
+  // Check for shared build items (from "Copy to Stats" button)
+  async function applySharedBuild() {
+    if (sharedBuildItems.length === 0) return
+    const itemsMap = await getItems()
+    sharedBuildItems.forEach((id, idx) => {
+      if (idx < selectedItems.length && id && itemsMap[id]) {
+        selectedItems[idx] = { id, ...itemsMap[id] }
+      }
+    })
+    sharedBuildItems = []
+    renderItemSlots()
+    updateStats()
+  }
+
   slider.addEventListener('input', updateStats)
   renderItemSlots()
   updateStats()
+
+  // Apply shared build if present, or set up observer for future switches
+  applySharedBuild()
+
+  // Observe when tab becomes visible to check for shared items
+  const observer = new MutationObserver(() => {
+    if (container.classList.contains('active') && sharedBuildItems.length > 0) {
+      applySharedBuild()
+    }
+  })
+  observer.observe(container, { attributes: true, attributeFilter: ['class'] })
 }
 
 async function renderBuilds(container, champ, version, identity, lang) {
@@ -602,6 +845,32 @@ async function renderBuilds(container, champ, version, identity, lang) {
           append(section, el('div', { cls: 'build-counters', html: counterParts.join(' · ') }))
         }
       }
+
+      // "Copy to Stats" button
+      const copyBtn = el('button', {
+        cls: 'copy-build-btn',
+        text: lang === 'es' ? 'Copiar a Stats' : 'Copy to Stats',
+        on: {
+          click: () => {
+            // Collect core items (3) + first boot option
+            const buildItemIds = []
+            const boots = data.items?.boots
+            if (boots?.length > 0) {
+              const bootEntry = boots[0]
+              buildItemIds.push(typeof bootEntry === 'object' ? bootEntry.id : bootEntry)
+            }
+            const core = data.items?.core
+            if (core) {
+              core.forEach(entry => {
+                buildItemIds.push(typeof entry === 'object' ? entry.id : entry)
+              })
+            }
+            sharedBuildItems = buildItemIds.slice(0, 6)
+            if (switchToStatsTab) switchToStatsTab()
+          }
+        }
+      })
+      append(section, copyBtn)
 
       append(container, section)
     })

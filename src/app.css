@@ -358,9 +358,10 @@ body {
   background: var(--bg-modal);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  max-width: 700px;
+  max-width: 1100px;
   width: 100%;
   max-height: 85vh;
+  min-height: 300px;
   overflow-y: auto;
   position: relative;
   box-shadow: var(--shadow);
@@ -3298,4 +3299,128 @@ body {
   font-size: 0.8rem;
   color: var(--text-secondary);
   margin-bottom: 8px;
+}
+
+/* === Rune shard selectors === */
+.shard-section { margin-bottom: 12px; }
+.shard-title { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px; }
+.shard-row { display: flex; gap: 4px; margin-bottom: 4px; }
+.shard-btn {
+  flex: 1;
+  padding: 4px 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.shard-btn:hover { border-color: var(--gold-dim); }
+.shard-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(200,170,110,0.1); }
+.shard-extra-stats {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding: 4px 0;
+}
+
+/* === Copy build to stats button === */
+.copy-build-btn {
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  color: var(--gold);
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+.copy-build-btn:hover { background: rgba(200,170,110,0.15); }
+
+/* === Abilities 2-column layout === */
+.abilities-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.abilities-left {
+  /* contains ability rows */
+}
+
+.abilities-right {
+  /* contains combos + skill grid */
+  position: sticky;
+  top: 0;
+  align-self: start;
+}
+
+/* Skill order grid */
+.skill-grid-wrapper {
+  margin-bottom: 12px;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: 30px repeat(18, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 0.65rem;
+  margin: 12px 0;
+}
+
+.skill-grid-header {
+  background: var(--bg-card);
+  padding: 4px 2px;
+  text-align: center;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.skill-grid-label {
+  background: var(--bg-card);
+  padding: 4px 2px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.skill-grid-cell {
+  background: var(--bg-secondary);
+  padding: 4px 2px;
+  text-align: center;
+  min-height: 24px;
+}
+
+.skill-grid-cell.active {
+  font-weight: 700;
+  color: #000;
+}
+
+.skill-grid-cell.active-q { background: #4e7ab5; }
+.skill-grid-cell.active-w { background: #4caf50; }
+.skill-grid-cell.active-e { background: #ff9800; }
+.skill-grid-cell.active-r { background: #C8AA6E; }
+
+/* Ability highlight on combo hover */
+.ability-row.ability-highlight {
+  background: rgba(200,170,110,0.1);
+  border-left: 2px solid var(--gold);
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 720px) {
+  .abilities-layout {
+    grid-template-columns: 1fr;
+  }
+  .abilities-right {
+    position: static;
+    order: -1; /* combos first on mobile */
+  }
 }

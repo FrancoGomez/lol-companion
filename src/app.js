@@ -7,6 +7,7 @@ import { initAuth } from './auth/auth-ui.js'
 const tabs = {}
 const tabInited = {}
 let activeTab = 'champions'
+const VALID_TABS = ['champions', 'items', 'academy', 'tracker']
 
 // Lazy-load tab modules
 async function loadTab(name) {
@@ -38,7 +39,13 @@ async function loadTab(name) {
   return tabs[name]
 }
 
-function switchTab(name) {
+export function switchTab(name) {
+  activeTab = name
+  window.history.pushState(null, '', `#${name}`)
+  switchTabSilent(name)
+}
+
+function switchTabSilent(name) {
   activeTab = name
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.tab === name)
@@ -60,7 +67,8 @@ document.getElementById('modal-overlay').addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeModal()
 })
 
-export function openModal(renderFn) {
+export function openModal(renderFn, hashPath) {
+  if (hashPath) window.history.pushState(null, '', `#${hashPath}`)
   const content = document.getElementById('modal-content')
   content.innerHTML = ''
   renderFn(content)
@@ -69,7 +77,20 @@ export function openModal(renderFn) {
 }
 
 export function closeModal() {
-  document.getElementById('modal-overlay').classList.add('hidden')
+  const overlay = document.getElementById('modal-overlay')
+  if (overlay.classList.contains('hidden')) return
+  // Go back in history if we pushed a modal hash (contains '/')
+  if (window.location.hash.includes('/')) {
+    window.history.back()
+  }
+  overlay.classList.add('hidden')
+  document.body.style.overflow = ''
+}
+
+function closeModalSilent() {
+  const overlay = document.getElementById('modal-overlay')
+  if (overlay.classList.contains('hidden')) return
+  overlay.classList.add('hidden')
   document.body.style.overflow = ''
 }
 
@@ -135,6 +156,27 @@ function reloadActiveTab() {
   })
 }
 
+// Back/forward button support
+window.addEventListener('popstate', () => {
+  const hash = window.location.hash.slice(1)
+
+  if (!hash || VALID_TABS.includes(hash)) {
+    // Close modal if open (without pushing history)
+    closeModalSilent()
+    if (hash) {
+      switchTabSilent(hash)
+    }
+  } else if (hash.startsWith('champion/')) {
+    const champId = hash.split('/')[1]
+    if (champId) {
+      // Lazy-load and open champion modal without pushing another hash
+      import('./champions/champion-grid.js').then(m => {
+        if (m.openChampionById) m.openChampionById(champId)
+      })
+    }
+  }
+})
+
 // Init
 async function init() {
   try {
@@ -147,7 +189,26 @@ async function init() {
   setupLangToggle()
   initGlobalSearch()
   initAuth()
-  switchTab('champions')
+
+  // Route based on initial hash
+  const initialHash = window.location.hash.slice(1)
+  const initialTab = VALID_TABS.includes(initialHash) ? initialHash : 'champions'
+  // Use silent switch on initial load to avoid pushing duplicate history entry
+  switchTabSilent(initialTab)
+  // Replace current history entry with the correct hash
+  window.history.replaceState(null, '', `#${initialTab}`)
+
+  // If initial hash is a champion route, open the modal after tab loads
+  if (initialHash.startsWith('champion/')) {
+    const champId = initialHash.split('/')[1]
+    if (champId) {
+      switchTabSilent('champions')
+      window.history.replaceState(null, '', `#${initialHash}`)
+      import('./champions/champion-grid.js').then(m => {
+        if (m.openChampionById) m.openChampionById(champId)
+      })
+    }
+  }
 }
 
 init()

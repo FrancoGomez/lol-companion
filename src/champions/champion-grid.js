@@ -15,6 +15,17 @@ const container = document.getElementById('tab-champions')
 
 export function reset() { initialized = false }
 
+/** Open a champion modal by ID (used for URL routing) */
+export async function openChampionById(champId) {
+  if (!version) version = await getVersion()
+  if (allChampions.length === 0) {
+    const data = await getChampions()
+    allChampions = Object.values(data).sort((a, b) => a.name.localeCompare(b.name))
+  }
+  const champ = allChampions.find(c => c.id === champId)
+  if (champ) openChampionModal(champ, version, { silent: true })
+}
+
 export async function init() {
   if (initialized) return
   initialized = true
